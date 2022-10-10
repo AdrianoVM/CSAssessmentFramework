@@ -58,38 +58,38 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-# Images and other large files
-*.bmp
-*.exr
-*.gif
-*.hdr
-*.iff
-*.jpeg
-*.jpg
-*.pict
-*.png
-*.psd
-*.tga
-*.tif
-*.tiff
+# Images and other large files, not ignored while project is small
+# *.bmp
+# *.exr
+# *.gif
+# *.hdr
+# *.iff
+# *.jpeg
+# *.jpg
+# *.pict
+# *.png
+# *.psd
+# *.tga
+# *.tif
+# *.tiff
 
 # 3d stuff
-*.3dm
-*.3ds
-*.blend
-*.c4d
-*.collada
-*.dae
-*.dxf
-*.fbx
-*.jas
-*.lws
-*.lxo
-*.ma
-*.max
-*.mb
-*.obj
-*.ply
-*.skp
-*.stl
-*.ztl
+# *.3dm
+# *.3ds
+# *.blend
+# *.c4d
+# *.collada
+# *.dae
+# *.dxf
+# *.fbx
+# *.jas
+# *.lws
+# *.lxo
+# *.ma
+# *.max
+# *.mb
+# *.obj
+# *.ply
+# *.skp
+# *.stl
+# *.ztl
