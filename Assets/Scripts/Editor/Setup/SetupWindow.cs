@@ -24,12 +24,16 @@ namespace Setup
             "Environment",
             "Vision"
         };
-
-        private MovementWindow _movementMode;
+        [SerializeField]
+        private MovementWindow movementMode;
 
         private void OnEnable()
         {
-            _movementMode = new MovementWindow();
+            if (movementMode == null)
+            {
+                movementMode = new MovementWindow();
+            }
+            Debug.Log("yes toi ");
         }
 
         private void OnGUI()
@@ -44,7 +48,7 @@ namespace Setup
             switch (_selectedTab)
             {
                 case 0:
-                    _movementMode.OnGUI();
+                    movementMode.OnGUI();
                     
                     break;
                 case 1:

@@ -1,0 +1,30 @@
+[
+  {
+    "monoName": "Basic Sphere",
+    "MonoType": null,
+    "enableOption": true,
+    "expandOption": true,
+    "Mono": {
+      "$type": "Learning.BasicMono, Assembly-CSharp",
+      "count": 5,
+      "test": null,
+      "message": "not",
+      "material": {}
+    }
+  },
+  {
+    "monoName": "Basic Sphere (1)",
+    "MonoType": null,
+    "enableOption": true,
+    "expandOption": true,
+    "Mono": {
+      "$type": "Learning.BasicMono, Assembly-CSharp",
+      "count": 2,
+      "test": {
+        "$type": "Unity.XR.CoreUtils.XROrigin, Unity.XR.CoreUtils"
+      },
+      "message": "not today",
+      "material": {}
+    }
+  }
+]
