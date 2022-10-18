@@ -81,9 +81,11 @@ namespace Learning
             movementOptions[i].expandOption = expandToken != null ? this : false;
 
             // Finding Monobehaviour and Updating It.
-            var monoTypeToken = optionToken[nameof(ShowableOption.Mono)]?["$type"]?.ToObject<Type>();
+            //var monoTypeToken = optionToken[nameof(ShowableOption.Mono)]?["$type"]?.ToObject<Type>();
+            var monoTypeToken = optionToken[nameof(ShowableOption.MonoType)]?.ToObject<Type>();
             if (monoTypeToken != null)
             {
+                movementOptions[i].MonoType = monoTypeToken;
                 //Searching for the monobehaviour 
                 if (movementOptions[i].Mono == null || movementOptions[i].Mono.GetType() != monoTypeToken)
                 {
@@ -102,8 +104,8 @@ namespace Learning
                 // Replacing values in MonoBehaviour if it exists
                 if (movementOptions[i].Mono != null)
                 {
-                    JsonConvert.PopulateObject(optionToken[nameof(ShowableOption.Mono)].ToString(),
-                        movementOptions[i].Mono);
+                    //JsonConvert.PopulateObject(optionToken[nameof(ShowableOption.Mono)].ToString(), movementOptions[i].Mono);
+                    JsonUtility.FromJsonOverwrite(optionToken[nameof(ShowableOption.Mono)].ToString(), movementOptions[i].Mono);
                 }
                 else
                 {
@@ -133,6 +135,19 @@ namespace Learning
 
         public void OnJsonSave()
         {
+            JArray ttt = new JArray(from opt in movementOptions
+                select new JObject(
+                    new JProperty(nameof(ShowableOption.monoName), opt.monoName),
+                    new JProperty(nameof(ShowableOption.MonoType), opt.MonoType?.AssemblyQualifiedName),
+                    new JProperty(nameof(ShowableOption.enableOption), opt.enableOption),
+                    new JProperty(nameof(ShowableOption.expandOption), opt.expandOption),
+                    new JProperty(nameof(ShowableOption.Mono), 
+                        opt.Mono != null ? JObject.Parse(JsonUtility.ToJson(opt.Mono, prettyPrint: true)) : null)));
+            if (FileManager.WriteToFile("SaveData02.dat", ttt.ToString()))
+            {
+                Debug.Log("Save successful");
+            }
+            return;
             
             string fileContent = JsonConvert.SerializeObject(movementOptions, Formatting.Indented, new JsonSerializerSettings
             {

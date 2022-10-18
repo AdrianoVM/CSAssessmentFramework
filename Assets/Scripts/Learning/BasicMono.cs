@@ -6,12 +6,12 @@ using Utilities;
 namespace Learning
 {
     //[JsonObject(MemberSerialization.OptIn)]
-    public class BasicMono : MonoBehaviour, ISerializable
+    public class BasicMono : MonoBehaviour
     {
-        [SerializeField] [JsonProperty] private int count;
-        [SerializeField] [JsonProperty] private MonoBehaviour test; // need public or [JsonProperty]
-        [JsonProperty] public string message = "no";
-        [SerializeField] [JsonProperty] private Material material;
+        [SerializeField] private int count;
+        [SerializeField] private MonoBehaviour test; // need public or [JsonProperty]
+        public string message = "no";
+        [SerializeField] private Material material;
         private void OnEnable()
         {
             Debug.Log(count);

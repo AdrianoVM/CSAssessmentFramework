@@ -77,10 +77,7 @@ namespace Learning
                             option.Mono = null;
                             Debug.LogWarning("Do not try Infinite Recursion");
                             continue;
-                        case not ISerializable:
-                            option.Mono = null;
-                            Debug.LogWarning("Options must implement "+ nameof(ISerializable));
-                            continue;
+                        
                     }
                     // if (option.Mono is TestManager )
                     // {

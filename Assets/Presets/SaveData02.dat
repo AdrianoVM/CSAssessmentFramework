@@ -1,30 +1,34 @@
 [
   {
     "monoName": "Basic Sphere",
-    "MonoType": null,
+    "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
     "enableOption": true,
     "expandOption": true,
     "Mono": {
-      "$type": "Learning.BasicMono, Assembly-CSharp",
       "count": 5,
-      "test": null,
+      "test": {
+        "instanceID": 28406
+      },
       "message": "not",
-      "material": {}
+      "material": {
+        "instanceID": 28494
+      }
     }
   },
   {
     "monoName": "Basic Sphere (1)",
-    "MonoType": null,
+    "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
     "enableOption": true,
     "expandOption": true,
     "Mono": {
-      "$type": "Learning.BasicMono, Assembly-CSharp",
       "count": 2,
       "test": {
-        "$type": "Unity.XR.CoreUtils.XROrigin, Unity.XR.CoreUtils"
+        "instanceID": 0
       },
       "message": "not today",
-      "material": {}
+      "material": {
+        "instanceID": 0
+      }
     }
   }
 ]
