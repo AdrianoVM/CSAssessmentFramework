@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Options
 {
     [Serializable] //[JsonObject(MemberSerialization.OptIn)]
-    public class ShowableOption
+    public class InspectorOption
     {
         [SerializeField]
         private MonoBehaviour monoBehaviour;
@@ -28,12 +28,12 @@ namespace Options
         public bool enableOption = true;
         public bool expandOption = true;
 
-        public ShowableOption()
+        public InspectorOption()
         {
             monoBehaviour = null;
         }
 
-        public ShowableOption(MonoBehaviour mono)
+        public InspectorOption(MonoBehaviour mono)
         {
             monoBehaviour = mono;
         }

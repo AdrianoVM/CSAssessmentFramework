@@ -1,34 +1,51 @@
-[
-  {
-    "monoName": "Basic Sphere",
-    "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-    "enableOption": true,
-    "expandOption": true,
-    "Mono": {
-      "count": 5,
-      "test": {
-        "instanceID": 28406
-      },
-      "message": "not",
-      "material": {
-        "instanceID": 28494
+{
+  "MovementManager": [
+    {
+      "monoName": "Basic Sphere",
+      "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "enableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "count": 4,
+        "test": {
+          "instanceID": 28424
+        },
+        "message": "not",
+        "material": {
+          "instanceID": 28524
+        }
+      }
+    },
+    {
+      "monoName": "Basic Sphere (1)",
+      "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "enableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "count": 2,
+        "test": {
+          "instanceID": 0
+        },
+        "message": "not today",
+        "material": {
+          "instanceID": 0
+        }
       }
     }
-  },
-  {
-    "monoName": "Basic Sphere (1)",
-    "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-    "enableOption": true,
-    "expandOption": true,
-    "Mono": {
-      "count": 2,
-      "test": {
-        "instanceID": 0
-      },
-      "message": "not today",
-      "material": {
-        "instanceID": 0
+  ],
+  "VisionManager": [
+    {
+      "monoName": "XR Manager",
+      "MonoType": "UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "enableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "m_ActionAssets": [
+          {
+            "instanceID": 28496
+          }
+        ]
       }
     }
-  }
-]
+  ]
+}

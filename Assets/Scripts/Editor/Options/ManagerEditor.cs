@@ -1,15 +1,14 @@
 ﻿using System.Linq;
-using Options;
 using Setup;
 using UnityEditor;
 using UnityEngine;
 
-namespace Learning
+namespace Options
 {
-    [CustomEditor(typeof(TestManager))]
-    public class TestManagerEditor : Editor
+    [CustomEditor(typeof(Manager), true)]
+    public class ManagerEditor : Editor
     {
-        static class Styles
+        private static class Styles
         {
             public static GUIContent AccelerationSettings(string title)
             {
@@ -20,34 +19,22 @@ namespace Learning
         
         public override void OnInspectorGUI()
         {
-            var myTestManager = (TestManager) target;
-
+            var myManager = (Manager) target;
             if (GUILayout.Button("Load JSON"))
             {
-                myTestManager.Load();
+                myManager.Load();
             }
             if (GUILayout.Button("Save JSON"))
             {
-                myTestManager.Save();
+                myManager.Save();
             }
-            if (GUILayout.Button("Load test"))
-            {
-                myTestManager.testMono.OnLoad();
-            }
-            if (GUILayout.Button("Save test"))
-            {
-                myTestManager.testMono.OnSave();
-            }
-            base.OnInspectorGUI();
-
             SetupUtilities.DrawSeparatorLine();
-
             
-            //TODO: Add a way to add missing monobehaviour
-            int toRemove = -1;
-            for (int i = 0; i < myTestManager.movementOptions.Count; i++)
+            //TODO: Add a way to add missing MonoBehaviour
+            var toRemove = -1;
+            for (var i = 0; i < myManager.options.Count; i++)
             {
-                InspectorOption option = myTestManager.movementOptions[i];
+                InspectorOption option = myManager.options[i];
                 GUILayout.Label(option.monoName);
                 if (option.Mono == null)
                 {
@@ -56,7 +43,7 @@ namespace Learning
                         Debug.Log("missed");
                         EditorGUILayout.HelpBox("Missing MonoBehaviour of type " + option.MonoType, MessageType.Warning);
                     }
-                    myTestManager.movementOptions[i].Mono = (MonoBehaviour) EditorGUILayout.ObjectField(option.monoName,myTestManager.movementOptions[i].Mono, typeof(MonoBehaviour), true);
+                    myManager.options[i].Mono = (MonoBehaviour) EditorGUILayout.ObjectField(option.monoName,myManager.options[i].Mono, typeof(MonoBehaviour), true);
                     if (GUILayout.Button("Remove"))
                     {
                         toRemove = i;
@@ -66,7 +53,7 @@ namespace Learning
                 {
                     switch (option.Mono)
                     {
-                        case TestManager : 
+                        case Manager : 
                             option.Mono = null;
                             Debug.LogWarning("Do not try Infinite Recursion");
                             continue;
@@ -108,15 +95,17 @@ namespace Learning
 
             if (toRemove >= 0)
             {
-                myTestManager.movementOptions.RemoveAt(toRemove);
+                myManager.options.RemoveAt(toRemove);
             }
-            if (!myTestManager.movementOptions.Any() || myTestManager.movementOptions.Last().Mono != null)
+            if (!myManager.options.Any() || myManager.options.Last().Mono != null)
             {
                 if (GUILayout.Button("Add Option"))
                 {
-                    myTestManager.movementOptions.Add(new InspectorOption());
+                    myManager.options.Add(new InspectorOption());
                 }
             }
+            
+            
         }
     }
 }

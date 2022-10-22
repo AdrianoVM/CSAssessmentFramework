@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using UnityEditor;
 using UnityEngine;
 using Utilities;
 
@@ -15,6 +16,10 @@ namespace Learning
         private void OnEnable()
         {
             Debug.Log(count);
+            var t = AssetDatabase.GetAssetPath(material);
+            Debug.Log("Path: "+t);
+            Debug.Log("GUID: "+AssetDatabase.GUIDFromAssetPath(t));
+            Debug.Log("recover? "+AssetDatabase.GetAssetPath(28424));
         }
         
         public void OnLoad()

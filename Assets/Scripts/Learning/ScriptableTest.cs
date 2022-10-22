@@ -9,6 +9,7 @@ namespace Learning
     {
         public int testInt;
         public MonoBehaviour testMono;
-        public List<ShowableOption> movementOptions;
+        public List<InspectorOption> movementOptions;
+        public List<Object> references;
     }
 }

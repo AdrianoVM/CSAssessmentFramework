@@ -15,15 +15,15 @@ namespace Setup
     public class MovementWindow
     {
 
-        public List<ShowableOption> movementOptions = new(Enumerable.Repeat(new ShowableOption(), 1));
+        public List<InspectorOption> movementOptions = new(Enumerable.Repeat(new InspectorOption(), 1));
         //private SetupSettings _Settings = ScriptableObject.CreateInstance<SetupSettings>();
         
         [SerializeField]
-        private List<ShowableOption> movementOptions2 = new(Enumerable.Repeat(new ShowableOption(), 1));
+        private List<InspectorOption> movementOptions2 = new(Enumerable.Repeat(new InspectorOption(), 1));
         [SerializeField]
         private int testInt;
 
-        [SerializeField] private ShowableOption testOpt = new ShowableOption();
+        [SerializeField] private InspectorOption testOpt = new InspectorOption();
 
         private ScriptableObject _target;
         private SerializedObject so;
@@ -73,9 +73,9 @@ namespace Setup
             for (int i = 0; i < movementOptionsProperty.arraySize; i++)
             {
                 SerializedProperty optionRef = movementOptionsProperty.GetArrayElementAtIndex(i);
-                SerializedProperty enableOptionRef = optionRef.FindPropertyRelative(nameof(ShowableOption.enableOption));
-                SerializedProperty expandOptionRef = optionRef.FindPropertyRelative(nameof(ShowableOption.expandOption));
-                SerializedProperty monoRef = optionRef.FindPropertyRelative(nameof(ShowableOption.Mono));
+                SerializedProperty enableOptionRef = optionRef.FindPropertyRelative(nameof(InspectorOption.enableOption));
+                SerializedProperty expandOptionRef = optionRef.FindPropertyRelative(nameof(InspectorOption.expandOption));
+                SerializedProperty monoRef = optionRef.FindPropertyRelative(nameof(InspectorOption.Mono));
 
                 monoRef.objectReferenceValue = EditorGUILayout.ObjectField("My Custom Go", monoRef.objectReferenceValue, typeof(MonoBehaviour), true);
                 
@@ -118,7 +118,7 @@ namespace Setup
             {
                 if (GUILayout.Button("Add Option"))
                 {
-                    movementOptions.Add(new ShowableOption());
+                    movementOptions.Add(new InspectorOption());
                 }
             }
 
@@ -133,7 +133,7 @@ namespace Setup
             
             if (GUILayout.Button("add magic"))
             {
-                var newOpt = new ShowableOption();
+                var newOpt = new InspectorOption();
                 newOpt.Mono = (MonoBehaviour)EditorGUILayout.ObjectField(newOpt.Mono, typeof(MonoBehaviour), true);
             }
             //ScriptableObject target = this;
@@ -144,7 +144,7 @@ namespace Setup
             int toRemove = -1;
             for (int i = 0; i < movementOptions.Count; i++)
             {
-                ShowableOption option = movementOptions[i];
+                InspectorOption option = movementOptions[i];
                 if (option.Mono == null)
                 {
                     movementOptions[i].Mono = (MonoBehaviour) EditorGUILayout.ObjectField("New Option ",movementOptions[i].Mono, typeof(MonoBehaviour), true);
@@ -183,7 +183,7 @@ namespace Setup
             {
                 if (GUILayout.Button("Add Option"))
                 {
-                    movementOptions.Add(new ShowableOption());
+                    movementOptions.Add(new InspectorOption());
                 }
             }
             
