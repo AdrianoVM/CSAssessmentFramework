@@ -7,11 +7,12 @@ namespace Utilities
     //From Unitenow20-Persistent-Data
     public static class FileManager
     {
-        public static bool WriteToFile(string a_FileName, string a_FileContents)
+        public static bool WriteToFile(string a_FileName, string a_FileContents, bool isFullPath= false)
         {
             //Temporary change
             //var fullPath = Path.Combine(Application.persistentDataPath, a_FileName);
-            var fullPath = Path.Combine(Application.dataPath, "Presets",a_FileName);
+
+            var fullPath = isFullPath? a_FileName : Path.Combine(Application.dataPath, "Presets",a_FileName);
             try
             {
                 File.WriteAllText(fullPath, a_FileContents);
@@ -24,10 +25,10 @@ namespace Utilities
             }
         }
 
-        public static bool LoadFromFile(string a_FileName, out string result)
+        public static bool LoadFromFile(string a_FileName, out string result, bool isFullPath = false)
         {
             //var fullPath = Path.Combine(Application.persistentDataPath, a_FileName);
-            var fullPath = Path.Combine(Application.dataPath, "Presets",a_FileName);
+            var fullPath = isFullPath? a_FileName : Path.Combine(Application.dataPath, "Presets",a_FileName);
 
             try
             {

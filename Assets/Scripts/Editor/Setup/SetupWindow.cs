@@ -1,6 +1,8 @@
 ﻿
 using System;
-using Unity.XR.CoreUtils;
+using System.Collections.Generic;
+using System.Linq;
+using Options;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -17,7 +19,12 @@ namespace Setup
         
         private int _selectedTab = 0;
         public Object testObject;
+        // private MovementManager _movementManager;
+        // private VisionManager _visionManager;
+        // private EnvironmentManager _environmentManager;
 
+        private Manager[] _managers;
+        private Editor[] _managerEditors;
         private string[] _tabs =
         {
             "Movement",
@@ -29,6 +36,8 @@ namespace Setup
 
         private void OnEnable()
         {
+            _managers = FindObjectsOfType<Manager>();
+            _managerEditors = _managers.Select(i => Editor.CreateEditor(i)).ToArray();
             if (movementMode == null)
             {
                 movementMode = new MovementWindow();
@@ -42,23 +51,11 @@ namespace Setup
             GUILayout.Label("Base Settings", EditorStyles.largeLabel);
 
             EditorGUILayout.BeginVertical();
-            _selectedTab = GUILayout.Toolbar(_selectedTab, _tabs,GUILayout.MinHeight(30));
+            _selectedTab = GUILayout.Toolbar(_selectedTab, _managers.Select(i => i.ManagerName).ToArray(),GUILayout.MinHeight(30));
             EditorGUILayout.EndVertical();
             SetupUtilities.DrawSeparatorLine();
-            switch (_selectedTab)
-            {
-                case 0:
-                    movementMode.OnGUI();
-                    
-                    break;
-                case 1:
-                    EnvironmentTab();
-                    break;
-                case 2:
-                    VisionTab();
-                    break;
-            }
-        
+            _managerEditors[_selectedTab].OnInspectorGUI();
+
         }
 
         private void MovementTab()

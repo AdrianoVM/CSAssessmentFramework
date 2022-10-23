@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Setup;
 using UnityEditor;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Options
     [CustomEditor(typeof(Manager), true)]
     public class ManagerEditor : Editor
     {
+        SerializedProperty m_name;
         private static class Styles
         {
             public static GUIContent AccelerationSettings(string title)
@@ -16,11 +18,29 @@ namespace Options
             } 
             
         }
-        
+
+        private void OnEnable()
+        {
+            m_name = serializedObject.FindProperty(nameof(Manager.ManagerName));
+        }
+
         public override void OnInspectorGUI()
         {
+            
             var myManager = (Manager) target;
+            //EditorGUILayout.PropertyField(m_name, new GUIContent("name"));
+            myManager.ManagerName = EditorGUILayout.TextField("name",myManager.ManagerName);
             serializedObject.Update();
+            if (GUILayout.Button("Select File"))
+            {
+                string path = EditorUtility.OpenFilePanel("Where to Load From", "", "dat");
+                if (path.Length != 0)
+                {
+                    Debug.Log(Application.dataPath);
+                    Debug.Log("path "+path);
+                }
+            }
+            
             if (GUILayout.Button("Load JSON"))
             {
                 myManager.Load();

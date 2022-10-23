@@ -11,8 +11,8 @@ namespace Utilities
         /// <summary>
         /// Finds a MonoBehaviour in the active scene by matching type, and if multiple, by name
         /// </summary>
-        /// <param name="typeToken"></param>
-        /// <param name="nameToken"></param>
+        /// <param name="typeToken">The Type of the Object to find</param>
+        /// <param name="nameToken">The Name of the Object to find</param>
         /// <returns>The found MonoBehaviour or null if not found</returns>
         public static Component FindInScene(Type typeToken, string nameToken)
         {
@@ -37,6 +37,12 @@ namespace Utilities
             return null;
         }
 
+        /// <summary>
+        /// Finds an Object in the Assets.
+        /// </summary>
+        /// <param name="guid">GUID in string format of the object to find.</param>
+        /// <param name="type">The <c>Type</c> of the </param>
+        /// <returns>The found Object or <c>null</c> if not found</returns>
         public static Object FindInAssets(string guid, Type type)
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);

@@ -4,10 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.UnityConverters;
-using Newtonsoft.Json.UnityConverters.Math;
 using UnityEditor;
-using UnityEditor.UI;
 using UnityEngine;
 using Utilities;
 using Debug = UnityEngine.Debug;
@@ -17,14 +14,20 @@ namespace Options
 {
     public class JsonSaving : Object
     {
-        private static JsonSerializerSettings settings = new JsonSerializerSettings
+        private static JsonSerializerSettings _settings = new()
         {
             ContractResolver = new MonoContractResolver()
         };
-        //private static JObject rss;
+
+        /// <summary>
+        /// Saves the <c>InspectorOptions</c> in <paramref name="options"/> as a JSON file.
+        /// </summary>
+        /// <param name="options">The list of <c>InspectorOptions</c> which need to be saved</param>
+        /// <param name="name">The name of the Manager trying to save</param>
+        /// <param name="filename">The fileName in which to save the data</param>
         public static void SaveInspectorOptions(List<InspectorOption> options, string name, string filename)
         {
-            JObject rss = new JObject();
+            var rss = new JObject();
             
             // Temporary placement of MonoType refresh:
             foreach (InspectorOption opt in options)
@@ -44,8 +47,7 @@ namespace Options
                         new JProperty(nameof(InspectorOption.expandOption), opt.expandOption),
                         new JProperty(nameof(InspectorOption.Mono),
                             opt.Mono != null
-                                //? JObject.Parse(JsonUtility.ToJson(opt.Mono, prettyPrint: true))
-                                ? JObject.Parse(JsonConvert.SerializeObject(opt.Mono, settings))
+                                ? JObject.Parse(JsonConvert.SerializeObject(opt.Mono, _settings))
                                 : null))));
             if (FileManager.LoadFromFile(filename, out var json))
             {
@@ -71,7 +73,12 @@ namespace Options
         }
         
         
-        
+        /// <summary>
+        /// Loads the <c>InspectorOption</c> into the <paramref name="options"/> parameter.
+        /// </summary>
+        /// <param name="options">The list of <c>InspectorOptions</c> which need to be saved</param>
+        /// <param name="name">The name of the Manager trying to load</param>
+        /// <param name="filename">The fileName from which to load the data</param>
         public static void LoadInspectorOptions(List<InspectorOption> options, string name, string filename)
         {
             JObject rss;
@@ -129,7 +136,6 @@ namespace Options
             options[i].expandOption = expandToken != null ? (bool)expandToken : false;
 
             // Finding MonoBehaviour and Updating It.
-            //var monoTypeToken = optionToken[nameof(InspectorOption.Mono)]?["$type"]?.ToObject<Type>();
             var monoTypeToken = optionToken[nameof(InspectorOption.MonoType)]?.ToObject<Type>();
             if (monoTypeToken != null)
             {
@@ -139,7 +145,7 @@ namespace Options
                 {
                     MonoBehaviour found = (MonoBehaviour)FindObjects.FindInScene(monoTypeToken, nameToken) ?? options[i].Mono;
                     // for when there are multiple objects of same type in JSON but less in scene.
-                    for (int j = 0; j < i; j++)
+                    for (var j = 0; j < i; j++)
                     {
                         if (options[j].Mono == found)
                         {
@@ -152,7 +158,7 @@ namespace Options
                 // Replacing values in MonoBehaviour if it exists
                 if (options[i].Mono != null)
                 {
-                    JsonConvert.PopulateObject(optionToken[nameof(InspectorOption.Mono)].ToString(), options[i].Mono, settings);
+                    JsonConvert.PopulateObject(optionToken[nameof(InspectorOption.Mono)].ToString(), options[i].Mono, _settings);
                     //JsonUtility.FromJsonOverwrite(optionToken[nameof(InspectorOption.Mono)].ToString(), options[i].Mono);
                 }
                 else
