@@ -1,0 +1,99 @@
+{
+  "MovementManager": [
+    {
+      "monoName": "Basic Sphere",
+      "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "enableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "message": "not",
+        "count": 3,
+        "vecto": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1.0
+        },
+        "vecto2": {
+          "x": -1.0,
+          "y": 0.0
+        },
+        "tr": {
+          "ID": "",
+          "IsAsset": false,
+          "ObjectType": null,
+          "ObjectName": null
+        },
+        "test": {
+          "ID": "28906",
+          "IsAsset": false,
+          "ObjectType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "Basic Sphere (1)"
+        },
+        "material": {
+          "ID": "9dcd94ebeef682a4fae46d694f33b954",
+          "IsAsset": true,
+          "ObjectType": "UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "Blue"
+        }
+      }
+    },
+    {
+      "monoName": "Basic Sphere (1)",
+      "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "enableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "message": "not today",
+        "count": 2,
+        "vecto": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1.0
+        },
+        "vecto2": {
+          "x": -1.0,
+          "y": 0.0
+        },
+        "tr": {
+          "ID": "-1242",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "test": null,
+        "material": {
+          "ID": "",
+          "IsAsset": false,
+          "ObjectType": null,
+          "ObjectName": null
+        }
+      }
+    }
+  ],
+  "VisionManager": [
+    {
+      "monoName": "XR Manager",
+      "MonoType": "UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "enableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "actionAssets": [
+          {
+            "ID": "c348712bda248c246b8c49b3db54643f",
+            "IsAsset": true,
+            "ObjectType": "UnityEngine.InputSystem.InputActionAsset, Unity.InputSystem, Version=1.4.2.0, Culture=neutral, PublicKeyToken=null",
+            "ObjectName": "XRI Default Input Actions"
+          }
+        ],
+        "m_ActionAssets": [
+          {
+            "ID": "c348712bda248c246b8c49b3db54643f",
+            "IsAsset": true,
+            "ObjectType": "UnityEngine.InputSystem.InputActionAsset, Unity.InputSystem, Version=1.4.2.0, Culture=neutral, PublicKeyToken=null",
+            "ObjectName": "XRI Default Input Actions"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -20,6 +20,7 @@ namespace Options
         public override void OnInspectorGUI()
         {
             var myManager = (Manager) target;
+            serializedObject.Update();
             if (GUILayout.Button("Load JSON"))
             {
                 myManager.Load();

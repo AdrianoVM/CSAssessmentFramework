@@ -4,12 +4,12 @@
     {
         public override void Load()
         {
-            JsonSaving.LoadInspectorOptions(options, nameof(MovementManager), "SaveData02.dat");
+            JsonSaving.LoadInspectorOptions(options, nameof(MovementManager), "SaveData03.dat");
         }
 
         public override void Save()
         {
-            JsonSaving.SaveInspectorOptions(options, nameof(MovementManager), "SaveData02.dat");
+            JsonSaving.SaveInspectorOptions(options, nameof(MovementManager), "SaveData03.dat");
         }
     }
 }

@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.UnityConverters;
+using Newtonsoft.Json.UnityConverters.Math;
+using UnityEditor;
+using UnityEditor.UI;
 using UnityEngine;
 using Utilities;
 using Debug = UnityEngine.Debug;
@@ -12,6 +17,10 @@ namespace Options
 {
     public class JsonSaving : Object
     {
+        private static JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            ContractResolver = new MonoContractResolver()
+        };
         //private static JObject rss;
         public static void SaveInspectorOptions(List<InspectorOption> options, string name, string filename)
         {
@@ -35,7 +44,8 @@ namespace Options
                         new JProperty(nameof(InspectorOption.expandOption), opt.expandOption),
                         new JProperty(nameof(InspectorOption.Mono),
                             opt.Mono != null
-                                ? JObject.Parse(JsonUtility.ToJson(opt.Mono, prettyPrint: true))
+                                //? JObject.Parse(JsonUtility.ToJson(opt.Mono, prettyPrint: true))
+                                ? JObject.Parse(JsonConvert.SerializeObject(opt.Mono, settings))
                                 : null))));
             if (FileManager.LoadFromFile(filename, out var json))
             {
@@ -66,7 +76,7 @@ namespace Options
         {
             JObject rss;
 
-            if (FileManager.LoadFromFile("SaveData02.dat", out var json))
+            if (FileManager.LoadFromFile(filename, out var json))
             {
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
@@ -127,23 +137,23 @@ namespace Options
                 //Searching for the MonoBehaviour 
                 if (options[i].Mono == null || options[i].Mono.GetType() != monoTypeToken)
                 {
-                    
-                    var foundObjects = FindObjectsOfType(monoTypeToken, true);
-                    // TODO: add condition if there is only one, disregard name
-                    foreach (Object foundObject in foundObjects)
+                    MonoBehaviour found = (MonoBehaviour)FindObjects.FindInScene(monoTypeToken, nameToken) ?? options[i].Mono;
+                    // for when there are multiple objects of same type in JSON but less in scene.
+                    for (int j = 0; j < i; j++)
                     {
-                        if (foundObject.name == nameToken)
+                        if (options[j].Mono == found)
                         {
-                            options[i].Mono = (MonoBehaviour)foundObject;
-                            break;
+                            found = null;
                         }
                     }
+
+                    options[i].Mono = found;
                 }
                 // Replacing values in MonoBehaviour if it exists
                 if (options[i].Mono != null)
                 {
-                    //JsonConvert.PopulateObject(optionToken[nameof(InspectorOption.Mono)].ToString(), options[i].Mono);
-                    JsonUtility.FromJsonOverwrite(optionToken[nameof(InspectorOption.Mono)].ToString(), options[i].Mono);
+                    JsonConvert.PopulateObject(optionToken[nameof(InspectorOption.Mono)].ToString(), options[i].Mono, settings);
+                    //JsonUtility.FromJsonOverwrite(optionToken[nameof(InspectorOption.Mono)].ToString(), options[i].Mono);
                 }
                 else
                 {
@@ -153,6 +163,48 @@ namespace Options
                 }
                 
             }
+        }
+    }
+    
+    
+
+
+    public class ObjectID
+    {
+        public string ID;
+        public bool IsAsset;
+        public Type ObjectType;
+        public string ObjectName;
+
+
+        public ObjectID(string id, bool isAsset,Type objectType, string objectName)
+        {
+            ID = id;
+            IsAsset = isAsset;
+            ObjectType = objectType;
+            ObjectName = objectName;
+        }
+
+        public static object FindObjectByID(ObjectID objectID)
+        {
+            Object o = null;
+            Type t = objectID.ObjectType;
+            if (objectID.ID != "")
+            {
+                if (objectID.IsAsset)
+                {
+                    o = FindObjects.FindInAssets(objectID.ID, t);
+                }
+                else
+                {
+                    o = EditorUtility.InstanceIDToObject(Convert.ToInt32(objectID.ID));
+                    if (!o)
+                    {
+                        o = FindObjects.FindInScene(t, objectID.ObjectName);
+                    }
+                }
+            }
+            return o;
         }
     }
 }

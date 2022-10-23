@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using Utilities;
 
 namespace Learning
@@ -10,12 +11,14 @@ namespace Learning
     public class BasicMono : MonoBehaviour
     {
         [SerializeField] private int count;
+        [SerializeField] private Vector3 vecto = Vector3.back;
+        [SerializeField] private Vector2 vecto2 = Vector2.left;
+        [SerializeField] private Transform tr;
         [SerializeField] private MonoBehaviour test; // need public or [JsonProperty]
-        public string message = "no";
+        public string message = "nod";
         [SerializeField] private Material material;
         private void OnEnable()
         {
-            Debug.Log(count);
             var t = AssetDatabase.GetAssetPath(material);
             Debug.Log("Path: "+t);
             Debug.Log("GUID: "+AssetDatabase.GUIDFromAssetPath(t));

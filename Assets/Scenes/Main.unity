@@ -554,6 +554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 2
+  vecto: {x: 0, y: 0, z: -1}
+  vecto2: {x: -1, y: 0}
+  tr: {fileID: 131366749279188632}
   test: {fileID: 0}
   message: not today
   material: {fileID: 0}
@@ -646,7 +649,7 @@ GameObject:
   - component: {fileID: 836857850}
   - component: {fileID: 836857849}
   m_Layer: 0
-  m_Name: EnvironmentManager
+  m_Name: MovementManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1060,7 +1063,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5951d781004d72b26d906ac2576cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 4
+  count: 3
+  vecto: {x: 0, y: 0, z: -1}
+  vecto2: {x: -1, y: 0}
+  tr: {fileID: 0}
   test: {fileID: 833011757}
   message: not
   material: {fileID: 2100000, guid: 9dcd94ebeef682a4fae46d694f33b954, type: 2}
@@ -1470,6 +1476,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &131366749279188632 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 131366750110452501, guid: 9fdcf02d01c7cb440befc0fbb4ecefee,
+    type: 3}
+  m_PrefabInstance: {fileID: 131366749279188630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &131366749279188634
 MonoBehaviour:
   m_ObjectHideFlags: 0

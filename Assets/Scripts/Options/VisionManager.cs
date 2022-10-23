@@ -4,12 +4,12 @@
     {
         public override void Load()
         {
-            JsonSaving.LoadInspectorOptions(options, nameof(VisionManager), "SaveData02.dat");
+            JsonSaving.LoadInspectorOptions(options, nameof(VisionManager), "SaveData03.dat");
         }
 
         public override void Save()
         {
-            JsonSaving.SaveInspectorOptions(options, nameof(VisionManager), "SaveData02.dat");
+            JsonSaving.SaveInspectorOptions(options, nameof(VisionManager), "SaveData03.dat");
         }
     }
 }
