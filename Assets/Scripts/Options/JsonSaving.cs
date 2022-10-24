@@ -204,7 +204,7 @@ namespace Options
                 else
                 {
                     o = EditorUtility.InstanceIDToObject(Convert.ToInt32(objectID.ID));
-                    if (!o)
+                    if (!o || objectID.ObjectType != o.GetType())
                     {
                         o = FindObjects.FindInScene(t, objectID.ObjectName);
                     }

@@ -8,7 +8,7 @@ namespace Options
     {
 
         public List<InspectorOption> options = new(Enumerable.Repeat(new InspectorOption(), 1));
-        public string fileName = "saveData.dat";
+        public string fileName = "SaveData03.dat";
 
         [field: SerializeField]
         public virtual string ManagerName { get; set; } = "Manager";

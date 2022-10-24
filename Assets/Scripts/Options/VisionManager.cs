@@ -12,7 +12,7 @@ namespace Options
 
         public override void Save()
         {
-            JsonSaving.SaveInspectorOptions(options, nameof(VisionManager), fileName);
+            JsonSaving.SaveInspectorOptions(options, nameof(VisionManager), "SaveData03.dat");
         }
     }
 }
