@@ -15,6 +15,7 @@ namespace Setup
     public class MovementWindow
     {
 
+        public GlobalInfo globalInfo;
         public List<InspectorOption> movementOptions = new(Enumerable.Repeat(new InspectorOption(), 1));
         //private SetupSettings _Settings = ScriptableObject.CreateInstance<SetupSettings>();
         

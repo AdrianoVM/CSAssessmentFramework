@@ -3,13 +3,14 @@ using System.Linq;
 using Setup;
 using UnityEditor;
 using UnityEngine;
+using Utilities;
 
 namespace Options
 {
     [CustomEditor(typeof(Manager), true)]
     public class ManagerEditor : Editor
     {
-        SerializedProperty m_name;
+
         private static class Styles
         {
             public static GUIContent AccelerationSettings(string title)
@@ -19,38 +20,28 @@ namespace Options
             
         }
 
-        private void OnEnable()
-        {
-            m_name = serializedObject.FindProperty(nameof(Manager.ManagerName));
-        }
-
         public override void OnInspectorGUI()
         {
+            serializedObject.Update();
             
             var myManager = (Manager) target;
             //EditorGUILayout.PropertyField(m_name, new GUIContent("name"));
-            myManager.ManagerName = EditorGUILayout.TextField("name",myManager.ManagerName);
-            serializedObject.Update();
-            if (GUILayout.Button("Select File"))
-            {
-                string path = EditorUtility.OpenFilePanel("Where to Load From", "", "dat");
-                if (path.Length != 0)
-                {
-                    Debug.Log(Application.dataPath);
-                    Debug.Log("path "+path);
-                }
-            }
+            //SerializedProperty globalInfoSP = serializedObject.FindProperty(nameof(Manager.globalInfo));
+            //globalInfoSP = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", myManager.globalInfo, typeof(GlobalInfo), false);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(Manager.globalInfo)));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(Manager.managerName)));
             
-            if (GUILayout.Button("Load JSON"))
-            {
-                myManager.Load();
-            }
-            if (GUILayout.Button("Save JSON"))
-            {
-                myManager.Save();
-            }
+            FileManager.FileButtons(myManager.globalInfo, myManager);
+
             SetupUtilities.DrawSeparatorLine();
             
+            RenderInspectors(myManager);
+
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        private void RenderInspectors(Manager myManager)
+        {
             //TODO: Add a way to add missing MonoBehaviour
             var toRemove = -1;
             for (var i = 0; i < myManager.options.Count; i++)
@@ -64,7 +55,9 @@ namespace Options
                         Debug.Log("missed");
                         EditorGUILayout.HelpBox("Missing MonoBehaviour of type " + option.MonoType, MessageType.Warning);
                     }
-                    myManager.options[i].Mono = (MonoBehaviour) EditorGUILayout.ObjectField(option.monoName,myManager.options[i].Mono, typeof(MonoBehaviour), true);
+
+                    myManager.options[i].Mono = (MonoBehaviour)EditorGUILayout.ObjectField(option.monoName,
+                        myManager.options[i].Mono, typeof(MonoBehaviour), true);
                     if (GUILayout.Button("Remove"))
                     {
                         toRemove = i;
@@ -74,11 +67,10 @@ namespace Options
                 {
                     switch (option.Mono)
                     {
-                        case Manager : 
+                        case Manager:
                             option.Mono = null;
                             Debug.LogWarning("Do not try Infinite Recursion");
                             continue;
-                        
                     }
                     // if (option.Mono is TestManager )
                     // {
@@ -88,11 +80,13 @@ namespace Options
 
                     bool accelerationSettingToggled = option.enableOption;
                     GUILayout.BeginHorizontal();
-                    option.expandOption = SetupUtilities.DrawToggleHeaderFoldout(Styles.AccelerationSettings(option.Mono.name), option.expandOption, ref accelerationSettingToggled, 0f);
+                    option.expandOption = SetupUtilities.DrawToggleHeaderFoldout(Styles.AccelerationSettings(option.Mono.name),
+                        option.expandOption, ref accelerationSettingToggled, 0f);
                     if (GUILayout.Button("Remove"))
                     {
                         toRemove = i;
                     }
+
                     GUILayout.EndHorizontal();
                     ++EditorGUI.indentLevel;
                     if (option.expandOption)
@@ -104,20 +98,21 @@ namespace Options
                             //testEditor.DrawDefaultInspector();
                             testEditor.OnInspectorGUI();
                         }
+
                         EditorGUI.EndDisabledGroup();
                     }
+
                     --EditorGUI.indentLevel;
-                    EditorGUILayout.Space ();
+                    EditorGUILayout.Space();
                     option.enableOption = accelerationSettingToggled;
-                    
                 }
-                
             }
 
             if (toRemove >= 0)
             {
                 myManager.options.RemoveAt(toRemove);
             }
+
             if (!myManager.options.Any() || myManager.options.Last().Mono != null)
             {
                 if (GUILayout.Button("Add Option"))
@@ -125,8 +120,6 @@ namespace Options
                     myManager.options.Add(new InspectorOption());
                 }
             }
-            
-            
         }
     }
 }

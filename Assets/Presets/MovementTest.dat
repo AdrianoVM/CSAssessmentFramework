@@ -14,7 +14,7 @@
           "z": -1.0
         },
         "vecto2": {
-          "x": -1.0,
+          "x": 3.0,
           "y": 0.0
         },
         "tr": {
@@ -63,41 +63,6 @@
           "ObjectName": null
         }
       }
-    }
-  ],
-  "VisionManager": [
-    {
-      "monoName": "XR Manager",
-      "MonoType": "UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "enableOption": true,
-      "expandOption": true,
-      "Mono": {
-        "actionAssets": [
-          {
-            "ID": "c348712bda248c246b8c49b3db54643f",
-            "IsAsset": true,
-            "ObjectType": "UnityEngine.InputSystem.InputActionAsset, Unity.InputSystem, Version=1.4.2.0, Culture=neutral, PublicKeyToken=null",
-            "ObjectName": "XRI Default Input Actions"
-          }
-        ],
-        "m_ActionAssets": [
-          {
-            "ID": "c348712bda248c246b8c49b3db54643f",
-            "IsAsset": true,
-            "ObjectType": "UnityEngine.InputSystem.InputActionAsset, Unity.InputSystem, Version=1.4.2.0, Culture=neutral, PublicKeyToken=null",
-            "ObjectName": "XRI Default Input Actions"
-          }
-        ]
-      }
-    }
-  ],
-  "EnvironmentManager": [
-    {
-      "monoName": "New Option",
-      "MonoType": null,
-      "enableOption": true,
-      "expandOption": true,
-      "Mono": null
     }
   ]
 }

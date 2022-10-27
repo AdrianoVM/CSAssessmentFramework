@@ -49,7 +49,7 @@ namespace Options
                             opt.Mono != null
                                 ? JObject.Parse(JsonConvert.SerializeObject(opt.Mono, _settings))
                                 : null))));
-            if (FileManager.LoadFromFile(filename, out var json))
+            if (FileManager.LoadFromFile(filename, out var json, true))
             {
                 rss = JObject.Parse(json);
                 if (rss.ContainsKey(name))
@@ -66,7 +66,7 @@ namespace Options
                 rss.Add(toSave);
             }
             
-            if (FileManager.WriteToFile(filename, rss.ToString()))
+            if (FileManager.WriteToFile(filename, rss.ToString(), true))
             {
                 Debug.Log("Save successful");
             }
@@ -83,7 +83,7 @@ namespace Options
         {
             JObject rss;
 
-            if (FileManager.LoadFromFile(filename, out var json))
+            if (FileManager.LoadFromFile(filename, out var json, true))
             {
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
