@@ -78,7 +78,7 @@ namespace Learning
                     //     continue;
                     // }
 
-                    bool accelerationSettingToggled = option.enableOption;
+                    bool accelerationSettingToggled = option.EnableOption;
                     GUILayout.BeginHorizontal();
                     option.expandOption = SetupUtilities.DrawToggleHeaderFoldout(Styles.AccelerationSettings(option.Mono.name), option.expandOption, ref accelerationSettingToggled, 0f);
                     if (GUILayout.Button("Remove"))
@@ -89,7 +89,7 @@ namespace Learning
                     ++EditorGUI.indentLevel;
                     if (option.expandOption)
                     {
-                        EditorGUI.BeginDisabledGroup(!option.enableOption);
+                        EditorGUI.BeginDisabledGroup(!option.EnableOption);
                         if (option.Mono != null)
                         {
                             Editor testEditor = CreateEditor(option.Mono);
@@ -100,7 +100,7 @@ namespace Learning
                     }
                     --EditorGUI.indentLevel;
                     EditorGUILayout.Space ();
-                    option.enableOption = accelerationSettingToggled;
+                    option.EnableOption = accelerationSettingToggled;
                     
                 }
                 

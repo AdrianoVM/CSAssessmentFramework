@@ -49,17 +49,22 @@ namespace Utilities
         }
 
 
-        public static void FileButtons(GlobalInfo info, Manager manager)
+        public static void FileButtons(GlobalInfo info, Manager manager, ref bool show)
         {
-            FileButtonsInternal(info, new[]{manager}, true);
+            FileButtonsInternal(info, new[]{manager}, true, ref show);
         }
 
-        public static void FileButtons(GlobalInfo info, Manager[] managers)
+        public static void FileButtons(GlobalInfo info, Manager[] managers, ref bool show)
         {
-            FileButtonsInternal(info, managers, false);
+            FileButtonsInternal(info, managers, false, ref show);
         }
-        private static void FileButtonsInternal(GlobalInfo info, Manager[] managers, bool isUnique)
+        private static void FileButtonsInternal(GlobalInfo info, Manager[] managers, bool isUnique, ref bool showButtons)
         {
+            showButtons = EditorGUILayout.Foldout(showButtons, "Save System", true);
+            if (!showButtons)
+            {
+                return;
+            }
             var fileName = isUnique ? info.GetPathOfManager(managers[0].managerName, true) : info.FilePath;
             GUILayout.Label("Chosen File: "+Path.GetFileName(fileName), EditorStyles.largeLabel);
             GUILayout.BeginHorizontal();
@@ -118,7 +123,7 @@ namespace Utilities
             }
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Load"))
+            if (GUILayout.Button("Load",GUILayout.MaxWidth(100)))
             {
                 if (isUnique)
                 {
@@ -130,7 +135,7 @@ namespace Utilities
                 }
                 
             }
-            if (GUILayout.Button("Save"))
+            if (GUILayout.Button("Save",GUILayout.MaxWidth(100)))
             {
                 if (isUnique)
                 {

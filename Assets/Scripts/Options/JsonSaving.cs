@@ -43,13 +43,13 @@ namespace Options
                     select new JObject(
                         new JProperty(nameof(InspectorOption.monoName), opt.monoName),
                         new JProperty(nameof(InspectorOption.MonoType), opt.MonoType?.AssemblyQualifiedName),
-                        new JProperty(nameof(InspectorOption.enableOption), opt.enableOption),
+                        new JProperty(nameof(InspectorOption.EnableOption), opt.EnableOption),
                         new JProperty(nameof(InspectorOption.expandOption), opt.expandOption),
                         new JProperty(nameof(InspectorOption.Mono),
                             opt.Mono != null
                                 ? JObject.Parse(JsonConvert.SerializeObject(opt.Mono, _settings))
                                 : null))));
-            if (FileManager.LoadFromFile(filename, out var json, true))
+            if (FileManager.LoadFromFile(filename, out var json, true, true))
             {
                 rss = JObject.Parse(json);
                 if (rss.ContainsKey(name))
@@ -106,9 +106,20 @@ namespace Options
                     DeSerializeOption(options, i, optionToken);
                 }
 
-                if (fullList?.Count < options.Count)
+                
+                var loadedListSize = fullList != null ? fullList.Count : 0;
+                // disables the monoBehaviours that are going to be removed
+                for (var i = loadedListSize; i < options.Count; i++)
                 {
-                    options.RemoveRange(fullList.Count,options.Count-fullList.Count);
+                    if (options[i].Mono != null)
+                    {
+                        options[i].Mono.enabled = false;
+                    }
+                }
+                // Removes the MonoBehaviours that are not present in the loaded list
+                if (loadedListSize < options.Count)
+                {
+                    options.RemoveRange(loadedListSize,options.Count-loadedListSize);
                 }
                 stopWatch.Stop();
                 Debug.Log("Load successful in: " + stopWatch.Elapsed.ToString(@"m\:ss\.fff"));
@@ -129,11 +140,6 @@ namespace Options
             {
                 options.Insert(i,new InspectorOption());
             }
-            //updating the parameters of each InspectorOption
-            var enableToken = optionToken[nameof(InspectorOption.enableOption)]?.ToObject<bool>();
-            options[i].enableOption = enableToken != null ? (bool)enableToken : false;
-            var expandToken = optionToken[nameof(InspectorOption.expandOption)]?.ToObject<bool>();
-            options[i].expandOption = expandToken != null ? (bool)expandToken : false;
 
             // Finding MonoBehaviour and Updating It.
             var monoTypeToken = optionToken[nameof(InspectorOption.MonoType)]?.ToObject<Type>();
@@ -169,6 +175,12 @@ namespace Options
                 }
                 
             }
+            //updating the parameters of each InspectorOption
+            var enableToken = optionToken[nameof(InspectorOption.EnableOption)]?.ToObject<bool>();
+            options[i].EnableOption = enableToken != null ? (bool)enableToken : false;
+            var expandToken = optionToken[nameof(InspectorOption.expandOption)]?.ToObject<bool>();
+            options[i].expandOption = expandToken != null ? (bool)expandToken : false;
+
         }
     }
     

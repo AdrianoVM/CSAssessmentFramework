@@ -74,7 +74,7 @@ namespace Setup
             for (int i = 0; i < movementOptionsProperty.arraySize; i++)
             {
                 SerializedProperty optionRef = movementOptionsProperty.GetArrayElementAtIndex(i);
-                SerializedProperty enableOptionRef = optionRef.FindPropertyRelative(nameof(InspectorOption.enableOption));
+                SerializedProperty enableOptionRef = optionRef.FindPropertyRelative(nameof(InspectorOption.EnableOption));
                 SerializedProperty expandOptionRef = optionRef.FindPropertyRelative(nameof(InspectorOption.expandOption));
                 SerializedProperty monoRef = optionRef.FindPropertyRelative(nameof(InspectorOption.Mono));
 
@@ -153,7 +153,7 @@ namespace Setup
                 else
                 {
 
-                    bool accelerationSettingToggled = option.enableOption;
+                    bool accelerationSettingToggled = option.EnableOption;
                     GUILayout.BeginHorizontal();
                     option.expandOption = SetupUtilities.DrawToggleHeaderFoldout(Styles.AccelerationSettings(option.Mono.name), option.expandOption, ref accelerationSettingToggled, 0f);
                     if (GUILayout.Button("Remove"))
@@ -164,13 +164,13 @@ namespace Setup
                     ++EditorGUI.indentLevel;
                     if (option.expandOption)
                     {
-                        EditorGUI.BeginDisabledGroup(!option.enableOption);
+                        EditorGUI.BeginDisabledGroup(!option.EnableOption);
                         ShowAccelerationSettings(option.Mono);
                         EditorGUI.EndDisabledGroup();
                     }
                     --EditorGUI.indentLevel;
                     EditorGUILayout.Space ();
-                    option.enableOption = accelerationSettingToggled;
+                    option.EnableOption = accelerationSettingToggled;
                     
                 }
                 

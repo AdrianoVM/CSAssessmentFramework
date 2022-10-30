@@ -1,0 +1,53 @@
+{
+  "EnvironmentManager": [
+    {
+      "monoName": "New Option",
+      "MonoType": null,
+      "EnableOption": false,
+      "expandOption": true,
+      "Mono": null
+    }
+  ],
+  "VisionManager": [],
+  "MovementManager": [
+    {
+      "monoName": "Basic Sphere",
+      "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "message": "not",
+        "count": 2,
+        "vecto": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1.0
+        },
+        "vecto2": {
+          "x": -1.0,
+          "y": 0.0
+        },
+        "tr": {
+          "ID": "",
+          "IsAsset": false,
+          "ObjectType": null,
+          "ObjectName": null
+        },
+        "test": null,
+        "material": {
+          "ID": "9dcd94ebeef682a4fae46d694f33b954",
+          "IsAsset": true,
+          "ObjectType": "UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "Blue"
+        }
+      }
+    },
+    {
+      "monoName": "Basic Sphere (2)",
+      "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": null
+    }
+  ]
+}

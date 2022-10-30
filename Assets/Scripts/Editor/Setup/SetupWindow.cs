@@ -19,6 +19,7 @@ namespace Setup
         }
         
         private int _selectedTab = 0;
+        private bool _showButtons;
 
         private PlayModeStateChange _currentState;
         // private MovementManager _movementManager;
@@ -91,7 +92,7 @@ namespace Setup
 
             
             info = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", info, typeof(GlobalInfo), false);
-            FileManager.FileButtons(info, _managers);
+            FileManager.FileButtons(info, _managers, ref _showButtons);
 
             EditorGUILayout.Space();
             EditorGUILayout.BeginVertical();

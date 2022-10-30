@@ -3,7 +3,7 @@
     {
       "monoName": "Basic Sphere",
       "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "enableOption": true,
+      "EnableOption": true,
       "expandOption": true,
       "Mono": {
         "message": "not",
@@ -35,7 +35,7 @@
     {
       "monoName": "Basic Sphere (2)",
       "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "enableOption": true,
+      "EnableOption": true,
       "expandOption": true,
       "Mono": {
         "message": "not today",
@@ -50,7 +50,7 @@
           "y": 0.0
         },
         "tr": {
-          "ID": "29004",
+          "ID": "28988",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
@@ -69,7 +69,7 @@
     {
       "monoName": "XR Manager",
       "MonoType": "UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "enableOption": true,
+      "EnableOption": true,
       "expandOption": true,
       "Mono": {
         "actionAssets": [
@@ -95,7 +95,7 @@
     {
       "monoName": "New Option",
       "MonoType": null,
-      "enableOption": true,
+      "EnableOption": false,
       "expandOption": true,
       "Mono": null
     }

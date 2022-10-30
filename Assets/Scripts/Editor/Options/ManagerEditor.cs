@@ -11,6 +11,9 @@ namespace Options
     public class ManagerEditor : Editor
     {
 
+        private bool _showButtons;
+        private Vector2 _scrollPos;
+
         private static class Styles
         {
             public static GUIContent AccelerationSettings(string title)
@@ -28,15 +31,16 @@ namespace Options
             //EditorGUILayout.PropertyField(m_name, new GUIContent("name"));
             //SerializedProperty globalInfoSP = serializedObject.FindProperty(nameof(Manager.globalInfo));
             //globalInfoSP = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", myManager.globalInfo, typeof(GlobalInfo), false);
+            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(Manager.globalInfo)));
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(Manager.managerName)));
             
-            FileManager.FileButtons(myManager.globalInfo, myManager);
+            FileManager.FileButtons(myManager.globalInfo, myManager, ref _showButtons);
 
             SetupUtilities.DrawSeparatorLine();
             
             RenderInspectors(myManager);
-
+            EditorGUILayout.EndScrollView();
             serializedObject.ApplyModifiedProperties();
         }
 
@@ -48,15 +52,16 @@ namespace Options
             {
                 InspectorOption option = myManager.options[i];
                 GUILayout.Label(option.monoName);
+
+                //GUILayout.Label(option.MonoType == null ? option.monoName : option.MonoType.Name.CamelCaseToSpaces());
                 if (option.Mono == null)
                 {
                     if (option.monoName != new InspectorOption().monoName)
                     {
-                        Debug.Log("missed");
                         EditorGUILayout.HelpBox("Missing MonoBehaviour of type " + option.MonoType, MessageType.Warning);
                     }
 
-                    myManager.options[i].Mono = (MonoBehaviour)EditorGUILayout.ObjectField(option.monoName,
+                    myManager.options[i].Mono = (MonoBehaviour)EditorGUILayout.ObjectField(option.MonoType?.Name.CamelCaseToSpaces(),
                         myManager.options[i].Mono, typeof(MonoBehaviour), true);
                     if (GUILayout.Button("Remove"))
                     {
@@ -72,17 +77,12 @@ namespace Options
                             Debug.LogWarning("Do not try Infinite Recursion");
                             continue;
                     }
-                    // if (option.Mono is TestManager )
-                    // {
-                    //     option.Mono = null;
-                    //     continue;
-                    // }
 
-                    bool accelerationSettingToggled = option.enableOption;
+                    bool optionEnabled = option.EnableOption;
                     GUILayout.BeginHorizontal();
-                    option.expandOption = SetupUtilities.DrawToggleHeaderFoldout(Styles.AccelerationSettings(option.Mono.name),
-                        option.expandOption, ref accelerationSettingToggled, 0f);
-                    if (GUILayout.Button("Remove"))
+                    option.expandOption = SetupUtilities.DrawToggleHeaderFoldout(Styles.AccelerationSettings(option.MonoType?.Name.CamelCaseToSpaces()),
+                        option.expandOption, ref optionEnabled, 0f);
+                    if (GUILayout.Button("Remove", GUILayout.MaxWidth(100)))
                     {
                         toRemove = i;
                     }
@@ -91,7 +91,7 @@ namespace Options
                     ++EditorGUI.indentLevel;
                     if (option.expandOption)
                     {
-                        EditorGUI.BeginDisabledGroup(!option.enableOption);
+                        EditorGUI.BeginDisabledGroup(!option.EnableOption);
                         if (option.Mono != null)
                         {
                             Editor testEditor = CreateEditor(option.Mono);
@@ -104,12 +104,18 @@ namespace Options
 
                     --EditorGUI.indentLevel;
                     EditorGUILayout.Space();
-                    option.enableOption = accelerationSettingToggled;
+                    option.EnableOption = optionEnabled;
                 }
             }
 
             if (toRemove >= 0)
             {
+                // Disables the MonoBehaviour before removing it from the list
+                MonoBehaviour mono = myManager.options[toRemove].Mono;
+                if (mono != null)
+                {
+                    mono.enabled = false;
+                }
                 myManager.options.RemoveAt(toRemove);
             }
 

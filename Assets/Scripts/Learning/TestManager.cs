@@ -65,7 +65,7 @@ namespace Learning
                 select new JObject(
                     new JProperty(nameof(InspectorOption.monoName), opt.monoName),
                     new JProperty(nameof(InspectorOption.MonoType), opt.MonoType?.AssemblyQualifiedName),
-                    new JProperty(nameof(InspectorOption.enableOption), opt.enableOption),
+                    new JProperty(nameof(InspectorOption.EnableOption), opt.EnableOption),
                     new JProperty(nameof(InspectorOption.expandOption), opt.expandOption),
                     new JProperty(nameof(InspectorOption.Mono), 
                         opt.Mono != null ? JObject.Parse(JsonUtility.ToJson(opt.Mono, prettyPrint: true)) : null)));
