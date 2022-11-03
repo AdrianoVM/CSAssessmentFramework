@@ -33,7 +33,12 @@
           "ObjectType": null,
           "ObjectName": null
         },
-        "test": null,
+        "test": {
+          "ID": "-37180",
+          "IsAsset": false,
+          "ObjectType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "Basic Sphere (2)"
+        },
         "material": {
           "ID": "9dcd94ebeef682a4fae46d694f33b954",
           "IsAsset": true,
@@ -47,7 +52,32 @@
       "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
       "EnableOption": true,
       "expandOption": true,
-      "Mono": null
+      "Mono": {
+        "message": "not today",
+        "count": 13,
+        "vecto": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "vecto2": {
+          "x": -1.0,
+          "y": 0.0
+        },
+        "tr": {
+          "ID": "",
+          "IsAsset": false,
+          "ObjectType": null,
+          "ObjectName": null
+        },
+        "test": null,
+        "material": {
+          "ID": "",
+          "IsAsset": false,
+          "ObjectType": null,
+          "ObjectName": null
+        }
+      }
     }
   ]
 }

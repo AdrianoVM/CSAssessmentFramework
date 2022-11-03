@@ -109,9 +109,10 @@ namespace Options
                 
                 var loadedListSize = fullList != null ? fullList.Count : 0;
                 // disables the monoBehaviours that are going to be removed
+                // unless there is another instance of same MonoBehaviour
                 for (var i = loadedListSize; i < options.Count; i++)
                 {
-                    if (options[i].Mono != null)
+                    if (options[i].Mono != null && options.Where(o => o.Mono == options[i].Mono).Count() < 2)
                     {
                         options[i].Mono.enabled = false;
                     }
@@ -127,7 +128,6 @@ namespace Options
             
         }
         
-        //TODO: issues with some classes (Material), how to search for stuff outside of scene?
         //TODO: Make it so that it doesn't overwrite if the ref is dead?
         private static void DeSerializeOption(List<InspectorOption> options, int i, JToken optionToken)
         {

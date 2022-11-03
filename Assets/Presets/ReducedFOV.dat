@@ -7,29 +7,13 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "29736",
+          "ID": "29740",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"
         },
         "intensity": 0.61,
         "smoothness": 0.36
-      }
-    },
-    {
-      "monoName": "Main Camera",
-      "MonoType": "Options.Vision.ConstantDepthOfField, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "EnableOption": false,
-      "expandOption": false,
-      "Mono": {
-        "postProcessing": {
-          "ID": "29736",
-          "IsAsset": false,
-          "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "PostProcess"
-        },
-        "blurStartDistance": 0.0,
-        "blurMaxDistance": 9.5
       }
     }
   ]

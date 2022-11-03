@@ -61,8 +61,25 @@ namespace Options
                         EditorGUILayout.HelpBox("Missing MonoBehaviour of type " + option.MonoType, MessageType.Warning);
                     }
 
-                    myManager.options[i].Mono = (MonoBehaviour)EditorGUILayout.ObjectField(option.MonoType?.Name.CamelCaseToSpaces(),
+                     var addedMono = (MonoBehaviour)EditorGUILayout.ObjectField(option.MonoType?.Name.CamelCaseToSpaces(),
                         myManager.options[i].Mono, typeof(MonoBehaviour), true);
+                     
+                     //Some checks to not add weird interactions
+                     if (addedMono != null)
+                     {
+                         if (addedMono is Manager)
+                         {
+                             Debug.LogWarning("Do not try Infinite Recursion 2");
+                             addedMono = null;
+                         }
+                         else if (myManager.options.Where(o => o.Mono == addedMono).Any())
+                         {
+                             Debug.LogWarning("Inspector Is Already In the List");
+                             addedMono = null;
+                         }
+                     }
+                     
+                     myManager.options[i].Mono = addedMono;
                     if (GUILayout.Button("Remove"))
                     {
                         toRemove = i;
@@ -70,15 +87,8 @@ namespace Options
                 }
                 else
                 {
-                    switch (option.Mono)
-                    {
-                        case Manager:
-                            option.Mono = null;
-                            Debug.LogWarning("Do not try Infinite Recursion");
-                            continue;
-                    }
 
-                    bool optionEnabled = option.EnableOption;
+                    var optionEnabled = option.EnableOption;
                     GUILayout.BeginHorizontal();
                     option.expandOption = SetupUtilities.DrawToggleHeaderFoldout(Styles.AccelerationSettings(option.MonoType?.Name.CamelCaseToSpaces()),
                         option.expandOption, ref optionEnabled, 0f);

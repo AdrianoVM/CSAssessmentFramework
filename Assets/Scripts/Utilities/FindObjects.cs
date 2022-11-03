@@ -17,12 +17,12 @@ namespace Utilities
         public static Component FindInScene(Type typeToken, string nameToken)
         {
             var foundObjects = Object.FindObjectsOfType(typeToken, true);
-            // TODO: add condition if there is only one, disregard name
+            // TODO: Fix warning, add more details on who raised issue
             if (foundObjects.Length == 1)
             {
                 if (foundObjects.First().name != nameToken)
                 {
-                    Debug.Log("Name is not the same but type is: "+ nameToken);
+                    Debug.LogWarning("Name is not the same but type is: "+ nameToken);
                 }
                 return (Component)foundObjects.First();
             }
