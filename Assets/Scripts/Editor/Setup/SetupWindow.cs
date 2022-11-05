@@ -99,22 +99,16 @@ namespace Setup
             _selectedTab = GUILayout.Toolbar(_selectedTab, _managers.Select(i => i.managerName).ToArray(),GUILayout.MinHeight(30));
             EditorGUILayout.EndVertical();
             SetupUtilities.DrawSeparatorLine();
-            _managerEditors[_selectedTab].OnInspectorGUI();
+            if (_managerEditors.Length < _selectedTab)
+            {
+                Debug.LogError("Selected Manager Not found, Try refreshing scene");
+            }
+            else
+            {
+                _managerEditors[_selectedTab].OnInspectorGUI();
+            }
+            
 
-        }
-
-        private void MovementTab()
-        {
-        
-            EditorGUILayout.LabelField("Level", "banana");
-        }
-        private void EnvironmentTab()
-        {
-            EditorGUILayout.LabelField("Level", "banana2");
-        }
-        private void VisionTab()
-        {
-            EditorGUILayout.LabelField("Level", "banana");
         }
 
         private void OnDisable()
