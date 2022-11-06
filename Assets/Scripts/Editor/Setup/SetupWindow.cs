@@ -29,9 +29,6 @@ namespace Setup
         public GlobalInfo info = null;
         private Manager[] _managers;
         private Editor[] _managerEditors;
-        
-        [SerializeField]
-        private MovementWindow movementMode;
 
         private void OnEnable()
         {
@@ -45,6 +42,7 @@ namespace Setup
             FindManagers();
             Repaint();
         }
+        
 
         /// <summary>
         /// Updates <see cref="_currentState"/> and calls <see cref="FindManagers"/>.
@@ -66,10 +64,6 @@ namespace Setup
         {
             _managers = FindObjectsOfType<Manager>();
             _managerEditors = _managers.Select(i => Editor.CreateEditor(i)).ToArray();
-            if (movementMode == null)
-            {
-                movementMode = new MovementWindow();
-            }
             
         }
         
@@ -88,8 +82,12 @@ namespace Setup
                 GUILayout.Label("Loading", EditorStyles.largeLabel);
                 return;
             }
-            
 
+            if (_managers.Length < 1)
+            {
+                GUILayout.Label("No Managers in Scene", EditorStyles.largeLabel);
+                return;
+            }
             
             info = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", info, typeof(GlobalInfo), false);
             FileManager.FileButtons(info, _managers, ref _showButtons);
@@ -99,15 +97,15 @@ namespace Setup
             _selectedTab = GUILayout.Toolbar(_selectedTab, _managers.Select(i => i.managerName).ToArray(),GUILayout.MinHeight(30));
             EditorGUILayout.EndVertical();
             SetupUtilities.DrawSeparatorLine();
-            if (_managerEditors.Length < _selectedTab)
+            if (_managerEditors.Length <= _selectedTab)
             {
-                Debug.LogError("Selected Manager Not found, Try refreshing scene");
+                _selectedTab = 0;
+                FindManagers();
             }
             else
             {
                 _managerEditors[_selectedTab].OnInspectorGUI();
             }
-            
 
         }
 

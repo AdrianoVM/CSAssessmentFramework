@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -37,13 +38,14 @@ namespace Options.Vision
             }
         }
 
-        private void Update() //modify to make it not use update
+        private void OnValidate()
         {
             if (postProcessing != null && _depthOfField != null)
             {
                 UpdateDof();
             }
         }
+        
 
         private void UpdateDof()
         {

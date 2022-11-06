@@ -37,7 +37,7 @@ namespace Options.Vision
             }
         }
 
-        private void Update() //modify to make it not use update
+        private void OnValidate()
         {
             if (postProcessing != null && _vignette != null)
             {

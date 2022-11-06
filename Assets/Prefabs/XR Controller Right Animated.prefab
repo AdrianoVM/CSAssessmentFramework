@@ -662,6 +662,23 @@ MonoBehaviour:
     type: 3}
   joystickValue: {fileID: -5245773423067291001, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  triggerRelatedActions: []
+  gripRelatedActions:
+  - {fileID: 15759602096507913, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  primaryBRelatedActions: []
+  secondaryBRelatedActions: []
+  joystickRelatedActions:
+  - {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  enabledMaterial: {fileID: 2100000, guid: 0e6af354a89f5994298052955990b514, type: 2}
+  disabledMaterial: {fileID: 2100000, guid: f6e32b22eca20204db222e6d1f3a6bc4, type: 2}
+  triggerRenderer: {fileID: 6222061728285645309}
+  gripRenderer: {fileID: 7719922701147835158}
+  primaryBRenderer: {fileID: 1262533695417161841}
+  secondaryBRenderer: {fileID: 4429944492674854971}
+  joystickRenderer: {fileID: 3132869029958731363}
 --- !u!1 &7668580908103619598
 GameObject:
   m_ObjectHideFlags: 0

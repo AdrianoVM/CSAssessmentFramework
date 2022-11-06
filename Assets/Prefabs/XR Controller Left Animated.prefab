@@ -865,3 +865,20 @@ MonoBehaviour:
     type: 3}
   joystickValue: {fileID: 4613619346418574047, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  triggerRelatedActions: []
+  gripRelatedActions:
+  - {fileID: -3742484312079769484, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  primaryBRelatedActions: []
+  secondaryBRelatedActions: []
+  joystickRelatedActions:
+  - {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: -7374733323251553461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: 1010738217276881514, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  enabledMaterial: {fileID: 2100000, guid: 0e6af354a89f5994298052955990b514, type: 2}
+  disabledMaterial: {fileID: 2100000, guid: f6e32b22eca20204db222e6d1f3a6bc4, type: 2}
+  triggerRenderer: {fileID: 6958626615685456081}
+  gripRenderer: {fileID: 6767110268987273786}
+  primaryBRenderer: {fileID: 2832304089219162461}
+  secondaryBRenderer: {fileID: 842565859864168727}
+  joystickRenderer: {fileID: 2139519800840634191}

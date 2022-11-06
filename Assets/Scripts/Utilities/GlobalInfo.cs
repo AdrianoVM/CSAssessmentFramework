@@ -20,6 +20,8 @@ namespace Utilities
 
         private Dictionary<string, string> _managerFilePaths = new();
 
+        public Dictionary<string, string> ManagerFilePaths => _managerFilePaths;
+
         public void AddToManagerFilePaths(string managerName, string path)
         {
             _managerFilePaths[managerName] = path;

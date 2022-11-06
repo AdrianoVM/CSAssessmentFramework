@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131366749048842759}
-  - component: {fileID: 123750143797830601}
+  - component: {fileID: 8220911044289329708}
   - component: {fileID: 131366749048842755}
   - component: {fileID: 2615764235116868232}
   m_Layer: 0
@@ -120,7 +120,7 @@ Transform:
   m_Father: {fileID: 131366748053059273}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &123750143797830601
+--- !u!114 &8220911044289329708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,10 +129,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 131366749048842758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ac216f0eb04754b1d938aac6380b31, type: 3}
+  m_Script: {fileID: 11500000, guid: 0062bbe024a04173bbcfa7ce9aaba5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DirectInteractor: {fileID: 0}
+  directInteractor: {fileID: 0}
   m_RayInteractor: {fileID: 1731629054764043773}
   m_TeleportInteractor: {fileID: 1048543577547608170}
   m_Select: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -140,16 +140,16 @@ MonoBehaviour:
     type: 3}
   m_AnchorRotate: {fileID: -5913262927076077117, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  m_TeleportModeActivate: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f,
+  teleportModeActivate: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  m_TeleportModeCancel: {fileID: 2307464322626738743, guid: c348712bda248c246b8c49b3db54643f,
+  teleportModeCancel: {fileID: 2307464322626738743, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  m_Turn: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_SnapTurn: {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f,
+  turn: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  snapTurn: {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  m_Move: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_SmoothMotionEnabled: 0
-  m_SmoothTurnEnabled: 0
+  move: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  motionType: 2
+  turnType: 1
 --- !u!114 &131366749048842755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131366749472886119}
-  - component: {fileID: 637687498632035415}
+  - component: {fileID: 8970361440762857730}
   - component: {fileID: 131366749472886115}
   - component: {fileID: 8917058857840090490}
   m_Layer: 0
@@ -411,7 +411,7 @@ Transform:
   m_Father: {fileID: 131366748053059273}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &637687498632035415
+--- !u!114 &8970361440762857730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,10 +420,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 131366749472886118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ac216f0eb04754b1d938aac6380b31, type: 3}
+  m_Script: {fileID: 11500000, guid: 0062bbe024a04173bbcfa7ce9aaba5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DirectInteractor: {fileID: 0}
+  directInteractor: {fileID: 0}
   m_RayInteractor: {fileID: 8315695731511516289}
   m_TeleportInteractor: {fileID: 2260105276853032572}
   m_Select: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
@@ -432,16 +432,16 @@ MonoBehaviour:
     type: 3}
   m_AnchorRotate: {fileID: -7363382999065477798, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  m_TeleportModeActivate: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f,
+  teleportModeActivate: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  m_TeleportModeCancel: {fileID: 737890489006591557, guid: c348712bda248c246b8c49b3db54643f,
+  teleportModeCancel: {fileID: 737890489006591557, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  m_Turn: {fileID: 1010738217276881514, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_SnapTurn: {fileID: -7374733323251553461, guid: c348712bda248c246b8c49b3db54643f,
+  turn: {fileID: 1010738217276881514, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  snapTurn: {fileID: -7374733323251553461, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  m_Move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_SmoothMotionEnabled: 1
-  m_SmoothTurnEnabled: 0
+  move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  motionType: 0
+  turnType: 2
 --- !u!114 &131366749472886115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,7 +883,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131366749540000593}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3ad45e0df3f43eaac92ce26bd7c4c1a, type: 3}
   m_Name: 
@@ -903,6 +903,7 @@ GameObject:
   - component: {fileID: 131366750110452500}
   - component: {fileID: 7232751838692026444}
   - component: {fileID: 131366749279188634}
+  - component: {fileID: 5058732888698417907}
   - component: {fileID: 2239684198774116323}
   - component: {fileID: 2959235629638493892}
   - component: {fileID: 885137017385525124}
@@ -978,6 +979,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Timeout: 10
   m_XROrigin: {fileID: 131366750110452500}
+--- !u!114 &5058732888698417907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131366750110452503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b84358f50e4162af9f4722a14f26a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamicMoveProvider: {fileID: 0}
+  snapTurnProvider: {fileID: 0}
+  continuousTurnProvider: {fileID: 0}
+  leftHandControllerManager: {fileID: 8970361440762857730}
+  rightHandControllerManager: {fileID: 8220911044289329708}
+  leftHandLocomotionType: 0
+  leftHandTurnType: 2
 --- !u!114 &2239684198774116323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760ff70c1c91bdd45907d0ff0cdcaf7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_System: {fileID: 0}
+  m_System: {fileID: 131366749279188634}
   m_EnableFreeXMovement: 1
   m_EnableFreeYMovement: 0
   m_EnableFreeZMovement: 1
