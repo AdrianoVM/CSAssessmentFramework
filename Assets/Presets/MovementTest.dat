@@ -1,67 +1,61 @@
 {
   "MovementManager": [
     {
-      "monoName": "Basic Sphere",
-      "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "enableOption": true,
+      "monoName": "XR Origin",
+      "MonoType": "Options.Movement.LocomotionHandler, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
       "expandOption": true,
       "Mono": {
-        "message": "not",
-        "count": 2,
-        "vecto": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": -1.0
-        },
-        "vecto2": {
-          "x": 3.0,
-          "y": 0.0
-        },
-        "tr": {
-          "ID": "",
+        "LeftHandLocomotionType": "Continuous",
+        "LeftHandTurnType": "Disabled",
+        "RightHandLocomotionType": "Disabled",
+        "RightHandTurnType": "Continuous",
+        "dynamicMoveProvider": null,
+        "snapTurnProvider": null,
+        "continuousTurnProvider": null,
+        "leftHandControllerManager": {
+          "ID": "-1722",
           "IsAsset": false,
-          "ObjectType": null,
-          "ObjectName": null
+          "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "LeftHand Controller"
         },
-        "test": null,
-        "material": {
-          "ID": "9dcd94ebeef682a4fae46d694f33b954",
-          "IsAsset": true,
-          "ObjectType": "UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "Blue"
-        }
+        "rightHandControllerManager": {
+          "ID": "-1890",
+          "IsAsset": false,
+          "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "RightHand Controller"
+        },
+        "leftHandLocomotionType": "Continuous",
+        "leftHandTurnType": "Disabled",
+        "rightHandLocomotionType": "Disabled",
+        "rightHandTurnType": "Continuous"
       }
-    },
+    }
+  ],
+  "EnvironmentManager": [
     {
-      "monoName": "Basic Sphere (2)",
-      "MonoType": "Learning.BasicMono, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "enableOption": true,
+      "monoName": "New Option",
+      "MonoType": null,
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": null
+    }
+  ],
+  "VisionManager": [
+    {
+      "monoName": "Main Camera",
+      "MonoType": "Options.Vision.ConstantReducedFOV, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
       "expandOption": true,
       "Mono": {
-        "message": "not today",
-        "count": 2,
-        "vecto": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": -1.0
-        },
-        "vecto2": {
-          "x": -1.0,
-          "y": 0.0
-        },
-        "tr": {
-          "ID": "29004",
+        "postProcessing": {
+          "ID": "-1716",
           "IsAsset": false,
-          "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "XR Origin"
+          "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "PostProcess"
         },
-        "test": null,
-        "material": {
-          "ID": "",
-          "IsAsset": false,
-          "ObjectType": null,
-          "ObjectName": null
-        }
+        "intensity": 0.61,
+        "smoothness": 0.36
       }
     }
   ]

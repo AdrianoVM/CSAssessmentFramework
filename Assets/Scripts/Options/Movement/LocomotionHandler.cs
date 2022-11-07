@@ -42,7 +42,34 @@ namespace Options.Movement
         public MovementType LeftHandTurnType
         {
             get => leftHandTurnType;
-            set => leftHandTurnType = value;
+            set
+            {
+                UpdateLeftLocomotion(leftHandLocomotionType, value);
+                leftHandTurnType = value;
+            }
+        }
+
+        [SerializeField] private MovementType rightHandLocomotionType;
+        public MovementType RightHandLocomotionType
+        {
+            get => rightHandLocomotionType;
+            set
+            {
+                UpdateRightLocomotion(value, rightHandTurnType);
+                rightHandLocomotionType = value;
+            }
+        }
+
+        [SerializeField] private MovementType rightHandTurnType;
+
+        public MovementType RightHandTurnType
+        {
+            get => rightHandTurnType;
+            set
+            {
+                UpdateRightLocomotion(rightHandLocomotionType, value);
+                rightHandTurnType = value;
+            }
         }
 
 
@@ -85,6 +112,7 @@ namespace Options.Movement
         private void OnValidate()
         {
             UpdateLeftLocomotion(leftHandLocomotionType, leftHandTurnType);
+            UpdateRightLocomotion(rightHandLocomotionType, rightHandTurnType);
         }
     }
 }

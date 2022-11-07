@@ -901,9 +901,9 @@ GameObject:
   m_Component:
   - component: {fileID: 131366750110452501}
   - component: {fileID: 131366750110452500}
+  - component: {fileID: 5058732888698417907}
   - component: {fileID: 7232751838692026444}
   - component: {fileID: 131366749279188634}
-  - component: {fileID: 5058732888698417907}
   - component: {fileID: 2239684198774116323}
   - component: {fileID: 2959235629638493892}
   - component: {fileID: 885137017385525124}
@@ -951,6 +951,27 @@ MonoBehaviour:
   m_CameraFloorOffsetObject: {fileID: 131366748053059272}
   m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
+--- !u!114 &5058732888698417907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131366750110452503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b84358f50e4162af9f4722a14f26a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamicMoveProvider: {fileID: 0}
+  snapTurnProvider: {fileID: 0}
+  continuousTurnProvider: {fileID: 0}
+  leftHandControllerManager: {fileID: 8970361440762857730}
+  rightHandControllerManager: {fileID: 8220911044289329708}
+  leftHandLocomotionType: 0
+  leftHandTurnType: 2
+  rightHandLocomotionType: 2
+  rightHandTurnType: 0
 --- !u!114 &7232751838692026444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,25 +1000,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Timeout: 10
   m_XROrigin: {fileID: 131366750110452500}
---- !u!114 &5058732888698417907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131366750110452503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b84358f50e4162af9f4722a14f26a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicMoveProvider: {fileID: 0}
-  snapTurnProvider: {fileID: 0}
-  continuousTurnProvider: {fileID: 0}
-  leftHandControllerManager: {fileID: 8970361440762857730}
-  rightHandControllerManager: {fileID: 8220911044289329708}
-  leftHandLocomotionType: 0
-  leftHandTurnType: 2
 --- !u!114 &2239684198774116323
 MonoBehaviour:
   m_ObjectHideFlags: 0
