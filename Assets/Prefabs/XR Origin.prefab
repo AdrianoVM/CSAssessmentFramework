@@ -149,7 +149,7 @@ MonoBehaviour:
     type: 3}
   move: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   motionType: 2
-  turnType: 1
+  turnType: 0
 --- !u!114 &131366749048842755
 MonoBehaviour:
   m_ObjectHideFlags: 0

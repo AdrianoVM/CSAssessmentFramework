@@ -25,7 +25,7 @@ namespace Options
         /// <param name="options">The list of <c>InspectorOptions</c> which need to be saved</param>
         /// <param name="name">The name of the Manager trying to save</param>
         /// <param name="filename">The fileName in which to save the data</param>
-        public static void SaveInspectorOptions(List<InspectorOption> options, string name, string filename)
+        public static void SaveInspectorOptions(ref List<InspectorOption> options, string name, string filename)
         {
             var rss = new JObject();
             
@@ -76,10 +76,10 @@ namespace Options
         /// <summary>
         /// Loads the <c>InspectorOption</c> into the <paramref name="options"/> parameter.
         /// </summary>
-        /// <param name="options">The list of <c>InspectorOptions</c> which need to be saved</param>
+        /// <param name="options">The list of <c>InspectorOptions</c> which need to be loaded</param>
         /// <param name="name">The name of the Manager trying to load</param>
         /// <param name="filename">The fileName from which to load the data</param>
-        public static void LoadInspectorOptions(List<InspectorOption> options, string name, string filename)
+        public static void LoadInspectorOptions(ref List<InspectorOption> options, string name, string filename)
         {
             JObject rss;
 
@@ -112,7 +112,8 @@ namespace Options
                 // unless there is another instance of same MonoBehaviour
                 for (var i = loadedListSize; i < options.Count; i++)
                 {
-                    if (options[i].Mono != null && options.Where(o => o.Mono == options[i].Mono).Count() < 2)
+                    var list = options; // as options is a ref
+                    if (options[i].Mono != null && options.Where(o => o.Mono == list[i].Mono).Count() < 2)
                     {
                         options[i].Mono.enabled = false;
                     }

@@ -1,41 +1,61 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 
-namespace Options
+namespace Options.Managers
 {
     public class VisionManager : Manager
     {
         
-        public override void Load()
+        public override void Load(ref List<InspectorOption> optionsList)
         {
             if (CanSaveOrLoad())
             {
-                JsonSaving.LoadInspectorOptions(options, nameof(VisionManager), globalInfo.FilePath);
+                JsonSaving.LoadInspectorOptions(ref optionsList, nameof(VisionManager), globalInfo.FilePath);
             }
             
         }
         
-        public override void LoadUnique()
+        public override void Load()
+        {
+            Load(ref options);
+        }
+        
+        public override void LoadUnique(ref List<InspectorOption> optionsList)
         {
             if (CanSaveOrLoad(managerName))
             {
-                JsonSaving.LoadInspectorOptions(options, nameof(VisionManager), globalInfo.GetPathOfManager(managerName));
-            }
-        }
-
-        public override void Save()
-        {
-            if (CanSaveOrLoad())
-            {
-                JsonSaving.SaveInspectorOptions(options, nameof(VisionManager), globalInfo.FilePath);
+                JsonSaving.LoadInspectorOptions(ref optionsList, nameof(VisionManager), managerPath);
             }
         }
         
-        public override void SaveUnique()
+        public override void LoadUnique()
+        {
+            LoadUnique(ref options);
+        }
+
+        public override void Save(ref List<InspectorOption> optionsList)
+        {
+            if (CanSaveOrLoad())
+            {
+                JsonSaving.SaveInspectorOptions(ref optionsList, nameof(VisionManager), globalInfo.FilePath);
+            }
+        }
+        
+        public override void Save()
+        {
+            Save(ref options);
+        }
+        
+        public override void SaveUnique(ref List<InspectorOption> optionsList)
         {
             if (CanSaveOrLoad(managerName))
             {
-                JsonSaving.SaveInspectorOptions(options, nameof(VisionManager), globalInfo.GetPathOfManager(managerName));
+                JsonSaving.SaveInspectorOptions(ref optionsList, nameof(VisionManager), managerPath);
             }
+        }
+
+        public override void SaveUnique()
+        {
+            SaveUnique(ref options);
         }
     }
 }

@@ -7,7 +7,7 @@
       "expandOption": false,
       "Mono": {
         "postProcessing": {
-          "ID": "29736",
+          "ID": "-1722",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"
@@ -23,13 +23,13 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "29736",
+          "ID": "-1722",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"
         },
         "blurStartDistance": 0.0,
-        "blurMaxDistance": 0.0
+        "blurMaxDistance": 1.0
       }
     }
   ]

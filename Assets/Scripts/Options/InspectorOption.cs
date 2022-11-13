@@ -62,6 +62,7 @@ namespace Options
         }
 
         public string monoName = "New Option";
+        
         public Type _monoType;
         public string MonoTypeName = "";
         [SerializeField]
@@ -84,6 +85,27 @@ namespace Options
             _monoType = null;
         }
 
+        /// <summary>
+        /// When <see cref="monoBehaviour"/> is updated in inspector the set part is not handled.
+        /// This method fixes that.
+        /// </summary>
+        public void UpdateMonoInfo()
+        {
+            if (monoBehaviour != null)
+            {
+                Mono = monoBehaviour;
+                EnableOption = enableOption;
+            }
+        }
+
+        public void UpdateMonoInfo(MonoBehaviour mono)
+        {
+            if (mono != null)
+            {
+                Mono = mono;
+                EnableOption = enableOption;
+            }
+        }
         
     }
 }

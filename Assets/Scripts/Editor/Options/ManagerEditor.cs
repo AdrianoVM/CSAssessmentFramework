@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using Options.Managers;
 using Setup;
 using UnityEditor;
 using UnityEngine;
@@ -10,17 +10,30 @@ namespace Options
     [CustomEditor(typeof(Manager), true)]
     public class ManagerEditor : Editor
     {
-
-        private bool _showButtons;
+        
         private Vector2 _scrollPos;
 
         private static class Styles
         {
-            public static GUIContent AccelerationSettings(string title)
+            public static GUIContent ToggleTitleStyle(string title)
             {
                 return EditorGUIUtility.TrTextContent(title, "Toggle to enable or disable changing the settings.");
             } 
             
+        }
+
+        private SerializedProperty _options;
+        private SerializedProperty _globalInfo;
+        private SerializedProperty _managerName;
+        private SerializedProperty _showFileButtons;
+
+        private void OnEnable()
+        {
+            _options = serializedObject.FindProperty("options");
+            _showFileButtons = serializedObject.FindProperty("showFileButtons");
+            // I don't know for sure which way is best
+            _globalInfo = serializedObject.FindProperty(nameof(Manager.globalInfo));
+            _managerName = serializedObject.FindProperty(nameof(Manager.managerName));
         }
 
         public override void OnInspectorGUI()
@@ -28,58 +41,86 @@ namespace Options
             serializedObject.Update();
             
             var myManager = (Manager) target;
-            //EditorGUILayout.PropertyField(m_name, new GUIContent("name"));
-            //SerializedProperty globalInfoSP = serializedObject.FindProperty(nameof(Manager.globalInfo));
-            //globalInfoSP = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", myManager.globalInfo, typeof(GlobalInfo), false);
-            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(Manager.globalInfo)));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(Manager.managerName)));
-            
-            FileManager.FileButtons(myManager.globalInfo, myManager, ref _showButtons);
 
+            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
+            EditorGUILayout.PropertyField(_globalInfo);
+            EditorGUILayout.PropertyField(_managerName);
+
+            var buttonsValue = _showFileButtons.boolValue;
+            FileEditorTools.FileButtons(myManager.globalInfo, serializedObject, ref buttonsValue);
+            _showFileButtons.boolValue = buttonsValue;
             SetupUtilities.DrawSeparatorLine();
             
-            RenderInspectors(myManager);
+            RenderInspectors();
             EditorGUILayout.EndScrollView();
+            
             serializedObject.ApplyModifiedProperties();
+            //apply all the setters
+            foreach (InspectorOption option in myManager.options)
+            {
+                option.UpdateMonoInfo();
+            }
         }
 
-        private void RenderInspectors(Manager myManager)
+        private void RenderInspectors()
         {
-            //TODO: Add a way to add missing MonoBehaviour
+            //TODO: Add a way to add missing MonoBehaviour notification
             var toRemove = -1;
-            for (var i = 0; i < myManager.options.Count; i++)
+            for (var i = 0; i < _options.arraySize; i++)
             {
-                InspectorOption option = myManager.options[i];
-                GUILayout.Label(option.monoName);
-
-                //GUILayout.Label(option.MonoType == null ? option.monoName : option.MonoType.Name.CamelCaseToSpaces());
-                if (option.Mono == null)
+                SerializedProperty optionP = _options.GetArrayElementAtIndex(i);
+                if (optionP.managedReferenceValue == null)
                 {
-                    if (option.monoName != new InspectorOption().monoName)
+                    toRemove = i;
+                    break;
+                }
+                SerializedProperty expandOption = optionP.FindPropertyRelative("expandOption");
+                SerializedProperty enableOption = optionP.FindPropertyRelative("enableOption");
+                SerializedProperty mono = optionP.FindPropertyRelative("monoBehaviour");
+                SerializedProperty monoName = optionP.FindPropertyRelative("monoName");
+                SerializedProperty monoTypeName = optionP.FindPropertyRelative("MonoTypeName");
+                GUILayout.Label(monoName.stringValue);
+                if (mono.objectReferenceValue == null)
+                {
+                    if (monoName.stringValue != new InspectorOption().monoName)
                     {
-                        EditorGUILayout.HelpBox("Missing MonoBehaviour of type " + option.MonoType, MessageType.Warning);
+                        EditorGUILayout.HelpBox("Missing MonoBehaviour of type " + Type.GetType(monoTypeName.stringValue)?.Name.CamelCaseToSpaces(), MessageType.Warning);
                     }
-
-                     var addedMono = (MonoBehaviour)EditorGUILayout.ObjectField(option.MonoType?.Name.CamelCaseToSpaces(),
-                        myManager.options[i].Mono, typeof(MonoBehaviour), true);
+                    
+                    var addedMono = (MonoBehaviour)EditorGUILayout.ObjectField(Type.GetType(monoTypeName.stringValue)?.Name.CamelCaseToSpaces(), 
+                        mono.objectReferenceValue, typeof(MonoBehaviour), true);
                      
                      //Some checks to not add weird interactions
-                     if (addedMono != null)
-                     {
-                         if (addedMono is Manager)
-                         {
-                             Debug.LogWarning("Do not try Infinite Recursion 2");
-                             addedMono = null;
-                         }
-                         else if (myManager.options.Where(o => o.Mono == addedMono).Any())
-                         {
-                             Debug.LogWarning("Inspector Is Already In the List");
-                             addedMono = null;
-                         }
-                     }
-                     
-                     myManager.options[i].Mono = addedMono;
+                    if (addedMono != null)
+                    {
+                        var alreadyIn = false;
+                        for (var j = 0; j < _options.arraySize; j++)
+                        {
+                            if (_options.GetArrayElementAtIndex(j).FindPropertyRelative("monoBehaviour")
+                                    .objectReferenceValue == addedMono)
+                            {
+                                alreadyIn = true;
+                                break;
+                            }
+                        }
+                        if (addedMono is Manager)
+                        {
+                            Debug.LogWarning("Do not try Infinite Recursion");
+                        }
+                        else if (alreadyIn)
+                        {
+                            Debug.LogWarning("Inspector Is Already In the List");
+                        }
+                        else
+                        {
+                            mono.objectReferenceValue = addedMono;
+                            monoName.stringValue = addedMono.name;
+                            // to update the info of option, as the SerializedProperty only gets applied in the end
+                            monoTypeName.stringValue = addedMono.GetType().AssemblyQualifiedName;
+                            
+                        }
+                    }
+                    
                     if (GUILayout.Button("Remove"))
                     {
                         toRemove = i;
@@ -87,11 +128,10 @@ namespace Options
                 }
                 else
                 {
-
-                    var optionEnabled = option.EnableOption;
+                    var optionEnabled = enableOption.boolValue;
                     GUILayout.BeginHorizontal();
-                    option.expandOption = SetupUtilities.DrawToggleHeaderFoldout(Styles.AccelerationSettings(option.MonoType?.Name.CamelCaseToSpaces()),
-                        option.expandOption, ref optionEnabled, 0f);
+                    expandOption.boolValue = SetupUtilities.DrawToggleHeaderFoldout(Styles.ToggleTitleStyle(Type.GetType(monoTypeName.stringValue)?.Name.CamelCaseToSpaces()),
+                        expandOption.boolValue, ref optionEnabled, 0f);
                     if (GUILayout.Button("Remove", GUILayout.MaxWidth(100)))
                     {
                         toRemove = i;
@@ -99,13 +139,12 @@ namespace Options
 
                     GUILayout.EndHorizontal();
                     ++EditorGUI.indentLevel;
-                    if (option.expandOption)
+                    if (expandOption.boolValue)
                     {
-                        EditorGUI.BeginDisabledGroup(!option.EnableOption);
-                        if (option.Mono != null)
+                        EditorGUI.BeginDisabledGroup(!enableOption.boolValue);
+                        if (mono.objectReferenceValue != null)
                         {
-                            Editor testEditor = CreateEditor(option.Mono);
-                            //testEditor.DrawDefaultInspector();
+                            Editor testEditor = CreateEditor(mono.objectReferenceValue);
                             testEditor.OnInspectorGUI();
                         }
 
@@ -114,26 +153,30 @@ namespace Options
 
                     --EditorGUI.indentLevel;
                     EditorGUILayout.Space();
-                    option.EnableOption = optionEnabled;
+                    enableOption.boolValue = optionEnabled;
                 }
             }
 
             if (toRemove >= 0)
             {
                 // Disables the MonoBehaviour before removing it from the list
-                MonoBehaviour mono = myManager.options[toRemove].Mono;
+                var mono = _options.GetArrayElementAtIndex(toRemove).FindPropertyRelative("monoBehaviour")?.objectReferenceValue as MonoBehaviour;
                 if (mono != null)
                 {
                     mono.enabled = false;
                 }
-                myManager.options.RemoveAt(toRemove);
+                // This function makes an element null if it exists instead of deleting.
+                // apparently, but not how it works for me. May cause issues. 
+                _options.DeleteArrayElementAtIndex(toRemove);
             }
 
-            if (!myManager.options.Any() || myManager.options.Last().Mono != null)
+            if (_options.arraySize == 0 || _options.GetArrayElementAtIndex(_options.arraySize-1).FindPropertyRelative("monoBehaviour")?.objectReferenceValue != null)
             {
                 if (GUILayout.Button("Add Option"))
                 {
-                    myManager.options.Add(new InspectorOption());
+                    _options.arraySize++;
+                    _options.GetArrayElementAtIndex(_options.arraySize - 1).managedReferenceValue =
+                        new InspectorOption();
                 }
             }
         }

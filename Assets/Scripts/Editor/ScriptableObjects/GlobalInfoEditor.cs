@@ -14,15 +14,6 @@ namespace ScriptableObjects
 
             GUILayout.Label("Main Path");
             GUILayout.Label(myGlobalInfo.FilePath);
-            GUILayout.Space(2);
-            GUILayout.Label("Manager Editors");
-            foreach (var (managerName, path) in myGlobalInfo.ManagerFilePaths)
-            {
-                GUILayout.BeginHorizontal();
-                GUILayout.Label(managerName );
-                GUILayout.Label(path);
-                GUILayout.EndHorizontal();
-            }
         }
     }
 }

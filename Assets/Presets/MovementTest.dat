@@ -9,18 +9,18 @@
         "LeftHandLocomotionType": "Continuous",
         "LeftHandTurnType": "Disabled",
         "RightHandLocomotionType": "Disabled",
-        "RightHandTurnType": "Continuous",
+        "RightHandTurnType": "Discrete",
         "dynamicMoveProvider": null,
         "snapTurnProvider": null,
         "continuousTurnProvider": null,
         "leftHandControllerManager": {
-          "ID": "-1722",
+          "ID": "-1732",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "LeftHand Controller"
         },
         "rightHandControllerManager": {
-          "ID": "-1890",
+          "ID": "-1900",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "RightHand Controller"
@@ -28,7 +28,7 @@
         "leftHandLocomotionType": "Continuous",
         "leftHandTurnType": "Disabled",
         "rightHandLocomotionType": "Disabled",
-        "rightHandTurnType": "Continuous"
+        "rightHandTurnType": "Discrete"
       }
     }
   ],
@@ -49,7 +49,7 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "-1716",
+          "ID": "-1726",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"

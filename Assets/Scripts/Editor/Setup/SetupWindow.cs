@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Options;
+using Options.Managers;
 using UnityEditor;
 using UnityEngine;
 using Utilities;
@@ -48,7 +49,7 @@ namespace Setup
         private void StateChanged(PlayModeStateChange state)
         {
             _currentState = state;
-            FindManagers();
+            //FindManagers();
             
             // To refresh the UI
             Repaint();
@@ -87,8 +88,16 @@ namespace Setup
             }
             
             info = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", info, typeof(GlobalInfo), false);
-            FileManager.FileButtons(info, _managers, ref _showButtons);
-
+            var managerSOList = new SerializedObject[_managers.Length];
+            for (var i = 0; i < _managers.Length; i++)
+            {
+                managerSOList[i] = new SerializedObject(_managers[i]);
+            }
+            FileEditorTools.FileButtons(info, managerSOList, ref _showButtons);
+            foreach (SerializedObject serializedObject in managerSOList)
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
             EditorGUILayout.Space();
             EditorGUILayout.BeginVertical();
             _selectedTab = GUILayout.Toolbar(_selectedTab, _managers.Select(i => i.managerName).ToArray(),GUILayout.MinHeight(30));
