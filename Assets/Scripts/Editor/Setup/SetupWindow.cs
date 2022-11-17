@@ -2,7 +2,9 @@
 using Options;
 using Options.Managers;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utilities;
 using Object = UnityEngine.Object;
 
@@ -27,10 +29,12 @@ namespace Setup
         public GlobalInfo info = null;
         private Manager[] _managers;
         private Editor[] _managerEditors;
+        private SerializedObject[] _managerSOList;
 
         private void OnEnable()
         {
             EditorApplication.playModeStateChanged += StateChanged;
+            EditorSceneManager.sceneOpened += SceneChanged;
             
             FindManagers();
         }
@@ -56,13 +60,27 @@ namespace Setup
         }
 
         /// <summary>
+        /// Is Called by <see cref="EditorApplication.playModeStateChanged"/> event
+        /// </summary>
+        /// <param name="scene"> discarded</param>
+        /// <param name="mode">discarded</param>
+        private void SceneChanged(Scene scene, OpenSceneMode mode)
+        {
+            FindManagers();
+        }
+
+        /// <summary>
         /// Finds all the managers in the current scene.
         /// </summary>
         private void FindManagers()
         {
             _managers = FindObjectsOfType<Manager>();
             _managerEditors = _managers.Select(i => Editor.CreateEditor(i)).ToArray();
-            
+            _managerSOList = new SerializedObject[_managers.Length];
+            for (var i = 0; i < _managers.Length; i++)
+            {
+                _managerSOList[i] = new SerializedObject(_managers[i]);
+            }
         }
         
 
@@ -88,13 +106,9 @@ namespace Setup
             }
             
             info = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", info, typeof(GlobalInfo), false);
-            var managerSOList = new SerializedObject[_managers.Length];
-            for (var i = 0; i < _managers.Length; i++)
-            {
-                managerSOList[i] = new SerializedObject(_managers[i]);
-            }
-            FileEditorTools.FileButtons(info, managerSOList, ref _showButtons);
-            foreach (SerializedObject serializedObject in managerSOList)
+            
+            FileEditorTools.FileButtons(info, _managerSOList, ref _showButtons);
+            foreach (SerializedObject serializedObject in _managerSOList)
             {
                 serializedObject.ApplyModifiedProperties();
             }
@@ -118,6 +132,7 @@ namespace Setup
         private void OnDisable()
         {
             EditorApplication.playModeStateChanged -= StateChanged;
+            EditorSceneManager.sceneOpened -= SceneChanged;
         }
     }
 }

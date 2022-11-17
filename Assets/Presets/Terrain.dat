@@ -1,0 +1,18 @@
+{
+  "EnvironmentManager": [
+    {
+      "monoName": "Terrain",
+      "MonoType": "Options.Environment.TerrainModifier, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "sizeOfCurve": 15.0,
+        "curveApplyToX": true,
+        "curveApplyToY": true,
+        "smallScaleCurve": {},
+        "zAngle": 0,
+        "xAngle": 0
+      }
+    }
+  ]
+}

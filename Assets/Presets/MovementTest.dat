@@ -10,17 +10,39 @@
         "LeftHandTurnType": "Disabled",
         "RightHandLocomotionType": "Disabled",
         "RightHandTurnType": "Discrete",
-        "dynamicMoveProvider": null,
-        "snapTurnProvider": null,
-        "continuousTurnProvider": null,
+        "dynamicMoveProvider": {
+          "ID": "-1746",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets.DynamicMoveProvider, Unity.XR.Interaction.Toolkit.Samples.StarterAssets, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "teleportationProvider": {
+          "ID": "-1754",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.TeleportationProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "grabMoveProvider": null,
+        "snapTurnProvider": {
+          "ID": "-1752",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedSnapTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "continuousTurnProvider": {
+          "ID": "-1750",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedContinuousTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
         "leftHandControllerManager": {
-          "ID": "-1732",
+          "ID": "-1786",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "LeftHand Controller"
         },
         "rightHandControllerManager": {
-          "ID": "-1900",
+          "ID": "-1954",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "RightHand Controller"

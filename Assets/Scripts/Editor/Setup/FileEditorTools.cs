@@ -41,14 +41,11 @@ namespace Setup
                     {
                         if (isUnique)
                         {
-                            //managers.ForEach(m => info.AddToManagerFilePaths(m.managerName, path));
-                            //managers.ForEach(m => m.LoadUnique());
                             foreach (SerializedObject managerSO in managers)
                             {
                                 var manager = (Manager)managerSO.targetObject;
                                 managerSO.FindProperty("managerPath").stringValue = path;
                                 managerSO.ApplyModifiedPropertiesWithoutUndo();
-                                //info.AddToManagerFilePaths(manager.managerName, path);
                                 SerializedOptionsAction(managerSO, manager.LoadUnique);
                             }
                         }
@@ -80,16 +77,13 @@ namespace Setup
                     {
                         if (isUnique)
                         {
-                            //managers.ForEach(m => info.AddToManagerFilePaths(m.managerName, path));
-                            
                             foreach (SerializedObject managerSO in managers)
                             {
                                 var manager = (Manager)managerSO.targetObject;
                                 managerSO.FindProperty("managerPath").stringValue = path;
-                                //info.AddToManagerFilePaths(manager.managerName, path);
+                                managerSO.ApplyModifiedPropertiesWithoutUndo();
                                 SerializedOptionsAction(managerSO, manager.SaveUnique);
                             }
-                            //managers.ForEach(m => m.SaveUnique());
                         }
                         else
                         {

@@ -13,8 +13,10 @@ namespace Options.Vision
         [Range(0, 50)] [SerializeField] private float blurMaxDistance = 20;
         private DepthOfField _depthOfField;
         
+        //TODO: figure out simple way to get rid of non-dirtying
         private void OnEnable()
         {
+            
             if (postProcessing == null)
             {
                 Debug.LogWarning("No Post Processing set");
@@ -25,6 +27,7 @@ namespace Options.Vision
                 Debug.LogWarning("No Depth of Field found");
                 return;
             }
+            
             _depthOfField.active = true;
             UpdateDof();
         }

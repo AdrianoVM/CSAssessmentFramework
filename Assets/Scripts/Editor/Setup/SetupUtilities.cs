@@ -8,13 +8,13 @@ namespace Setup
     /// </summary>
     public class SetupUtilities
     {
-        public static void DrawSeparatorLine()
+        public static void DrawSeparatorLine(int width = 4)
         {
             Rect rect = EditorGUILayout.GetControlRect(GUILayout.Height(12));
             rect.height = 1;
             rect.y = rect.y + 5;
-            rect.x = 2;
-            rect.width -= 4;
+            rect.x = width;
+            rect.width -= width;
             EditorGUI.DrawRect(rect, new Color(0.35f, 0.35f, 0.35f));
         }
         

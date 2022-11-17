@@ -144,8 +144,8 @@ namespace Options
                         EditorGUI.BeginDisabledGroup(!enableOption.boolValue);
                         if (mono.objectReferenceValue != null)
                         {
-                            Editor testEditor = CreateEditor(mono.objectReferenceValue);
-                            testEditor.OnInspectorGUI();
+                            Editor editor = CreateEditor(mono.objectReferenceValue);
+                            editor.OnInspectorGUI();
                         }
 
                         EditorGUI.EndDisabledGroup();

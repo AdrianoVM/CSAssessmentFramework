@@ -41,6 +41,7 @@ namespace Options.Vision
         {
             if (postProcessing != null && _vignette != null)
             {
+                Debug.Log("fov val");
                 UpdateFOV();
             }
         }

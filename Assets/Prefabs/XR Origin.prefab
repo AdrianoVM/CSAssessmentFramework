@@ -963,9 +963,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b84358f50e4162af9f4722a14f26a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dynamicMoveProvider: {fileID: 0}
-  snapTurnProvider: {fileID: 0}
-  continuousTurnProvider: {fileID: 0}
+  dynamicMoveProvider: {fileID: 2239684198774116323}
+  teleportationProvider: {fileID: 2377494212811200967}
+  grabMoveProvider: {fileID: 0}
+  snapTurnProvider: {fileID: 6881962302160247801}
+  continuousTurnProvider: {fileID: 885137017385525124}
   leftHandControllerManager: {fileID: 8970361440762857730}
   rightHandControllerManager: {fileID: 8220911044289329708}
   leftHandLocomotionType: 0
