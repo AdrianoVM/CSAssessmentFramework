@@ -4,13 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Options;
 using UnityEditor;
 using UnityEngine;
-using Utilities;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
-namespace Options
+namespace Utilities.Json
 {
     public class JsonSaving : Object
     {

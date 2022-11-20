@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mail;
+using Utilities.Json;
 
 namespace Options.Managers
 {

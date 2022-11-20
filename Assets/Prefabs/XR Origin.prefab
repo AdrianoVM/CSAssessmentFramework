@@ -149,7 +149,7 @@ MonoBehaviour:
     type: 3}
   move: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   motionType: 2
-  turnType: 0
+  turnType: 1
 --- !u!114 &131366749048842755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,8 +874,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postProcessing: {fileID: 608504448}
-  blurStartDistance: 0
-  blurMaxDistance: 0
+  blurStartDistance: 50
+  blurMaxDistance: 50
 --- !u!114 &131366749279188636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,8 +889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postProcessing: {fileID: 608504448}
-  intensity: 0.61
-  smoothness: 0.36
+  intensity: 0
+  smoothness: 0.01
 --- !u!1 &131366750110452503
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 56035293239204759}
   m_Layer: 0
   m_Name: XR Origin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -973,7 +973,7 @@ MonoBehaviour:
   leftHandLocomotionType: 0
   leftHandTurnType: 2
   rightHandLocomotionType: 2
-  rightHandTurnType: 0
+  rightHandTurnType: 1
 --- !u!114 &7232751838692026444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 131366749279188634}
-  m_MoveSpeed: 1
+  m_MoveSpeed: 3
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
@@ -1204,8 +1204,8 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.36144
-  m_Radius: 0.1
-  m_SlopeLimit: 45
+  m_Radius: 0.15
+  m_SlopeLimit: 30
   m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -1221,6 +1221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ray Interactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787346994484839025, guid: ad818c36731146e994540a1896ad8f24,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5888765399538998960, guid: ad818c36731146e994540a1896ad8f24,
         type: 3}
@@ -2030,6 +2035,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ray Interactor
       objectReference: {fileID: 0}
+    - target: {fileID: 1787346994484839025, guid: ad818c36731146e994540a1896ad8f24,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5888765399538998960, guid: ad818c36731146e994540a1896ad8f24,
         type: 3}
       propertyPath: m_RootOrder
@@ -2084,6 +2094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462879561657043759, guid: ad818c36731146e994540a1896ad8f24,
+        type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad818c36731146e994540a1896ad8f24, type: 3}

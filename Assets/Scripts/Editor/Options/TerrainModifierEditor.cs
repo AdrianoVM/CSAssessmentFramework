@@ -9,7 +9,7 @@ namespace Options
     {
         public override void OnInspectorGUI()
         {
-            serializedObject.Update();
+            
 
             var myTerrainModifier = target as TerrainModifier;
             

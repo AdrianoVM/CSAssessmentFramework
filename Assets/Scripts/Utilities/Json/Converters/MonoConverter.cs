@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Options;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Object = UnityEngine.Object;
 
-namespace Utilities
+namespace Utilities.Json
 {
     public class MonoConverter : JsonConverter
     {
@@ -124,11 +122,7 @@ namespace Utilities
             {
                 return objectList[0];
             }
-            
-            //var readId = obj.ToObject<ObjectID>();
-            //var found = ObjectID.FindObjectByID(readId);
-            //return found ?? existingValue;
-            
+
         }
         
         public override bool CanWrite => true;

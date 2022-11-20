@@ -27,6 +27,8 @@ namespace Options
         private SerializedProperty _managerName;
         private SerializedProperty _showFileButtons;
 
+        private Editor[] _editors = new Editor[1];
+
         private void OnEnable()
         {
             _options = serializedObject.FindProperty("options");
@@ -34,6 +36,21 @@ namespace Options
             // I don't know for sure which way is best
             _globalInfo = serializedObject.FindProperty(nameof(Manager.globalInfo));
             _managerName = serializedObject.FindProperty(nameof(Manager.managerName));
+            CreateEditors();
+        }
+
+        private void CreateEditors()
+        {
+            _editors = new Editor[_options.arraySize];
+            for (var i = 0; i < _options.arraySize; i++)
+            {
+                SerializedProperty monoP = _options.GetArrayElementAtIndex(i).FindPropertyRelative("monoBehaviour");
+                if (monoP.objectReferenceValue != null)
+                {
+                    _editors[i] = CreateEditor(monoP.objectReferenceValue);
+                    //editor.OnInspectorGUI();
+                }
+            }
         }
 
         public override void OnInspectorGUI()
@@ -117,7 +134,7 @@ namespace Options
                             monoName.stringValue = addedMono.name;
                             // to update the info of option, as the SerializedProperty only gets applied in the end
                             monoTypeName.stringValue = addedMono.GetType().AssemblyQualifiedName;
-                            
+                            CreateEditors();
                         }
                     }
                     
@@ -144,8 +161,8 @@ namespace Options
                         EditorGUI.BeginDisabledGroup(!enableOption.boolValue);
                         if (mono.objectReferenceValue != null)
                         {
-                            Editor editor = CreateEditor(mono.objectReferenceValue);
-                            editor.OnInspectorGUI();
+                            //Editor editor = CreateEditor(mono.objectReferenceValue);
+                            _editors[i].OnInspectorGUI();
                         }
 
                         EditorGUI.EndDisabledGroup();
@@ -168,6 +185,7 @@ namespace Options
                 // This function makes an element null if it exists instead of deleting.
                 // apparently, but not how it works for me. May cause issues. 
                 _options.DeleteArrayElementAtIndex(toRemove);
+                CreateEditors();
             }
 
             if (_options.arraySize == 0 || _options.GetArrayElementAtIndex(_options.arraySize-1).FindPropertyRelative("monoBehaviour")?.objectReferenceValue != null)
@@ -177,6 +195,7 @@ namespace Options
                     _options.arraySize++;
                     _options.GetArrayElementAtIndex(_options.arraySize - 1).managedReferenceValue =
                         new InspectorOption();
+                    CreateEditors();
                 }
             }
         }

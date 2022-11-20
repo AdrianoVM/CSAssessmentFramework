@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Options;
 using Options.Managers;
+using ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 using Utilities;

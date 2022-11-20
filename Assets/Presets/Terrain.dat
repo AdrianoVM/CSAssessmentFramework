@@ -6,12 +6,79 @@
       "EnableOption": true,
       "expandOption": true,
       "Mono": {
-        "sizeOfCurve": 15.0,
+        "sizeOfCurve": 4.0,
         "curveApplyToX": true,
-        "curveApplyToY": true,
+        "curveApplyToZ": false,
         "smallScaleCurve": {},
-        "zAngle": 0,
-        "xAngle": 0
+        "zAngle": 5,
+        "xAngle": -5,
+        "rotateWithTerrain": {
+          "ID": "30034",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "Rotate With Terrain"
+        }
+      }
+    },
+    {
+      "monoName": "Game Manager",
+      "MonoType": "Options.Gameplay.GameManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "collectibleEventChannel": {
+          "ID": "60b2c797e3ce4314cbc0316fe664468a",
+          "IsAsset": true,
+          "ObjectType": "ScriptableObjects.CollectiblePickUpSO, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "CollectiblePickUpChannelSO"
+        },
+        "numberOfCollectiblesToPickUp": 10,
+        "gameLengthInSeconds": 0
+      }
+    },
+    {
+      "monoName": "SplineTest",
+      "MonoType": "Options.Environment.Activity.CollectiblePlacer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "spacing": 10.0,
+        "numberOfVisibleCollectibles": 5,
+        "pathCreator": {
+          "ID": "30026",
+          "IsAsset": false,
+          "ObjectType": "PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "SplineTest"
+        },
+        "collectible": {
+          "ID": "30102",
+          "IsAsset": false,
+          "ObjectType": "Options.Environment.Activity.Collectible, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "Collectible"
+        },
+        "holder": {
+          "ID": "",
+          "IsAsset": true,
+          "ObjectType": "UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "CollectibleHolder"
+        }
+      }
+    },
+    {
+      "monoName": "SplineTest",
+      "MonoType": "PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "path": {},
+        "bezierPath": {
+          "IsClosed": true,
+          "Space": 2,
+          "pointList": "[{\"x\":-0.412838936,\"y\":0.0,\"z\":12.0793133},{\"x\":8.246201,\"y\":0.0,\"z\":26.746664},{\"x\":28.5828857,\"y\":0.0,\"z\":23.87801},{\"x\":41.3922462,\"y\":0.0,\"z\":-27.831377},{\"x\":15.3072987,\"y\":0.0,\"z\":-8.128791},{\"x\":3.12658119,\"y\":0.0,\"z\":-13.04936}]"
+        },
+        "EditorData": {},
+        "editorData": {},
+        "initialized": true
       }
     }
   ]

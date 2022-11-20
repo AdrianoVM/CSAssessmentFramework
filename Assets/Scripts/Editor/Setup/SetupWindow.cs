@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Options;
 using Options.Managers;
+using ScriptableObjects;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -106,7 +107,11 @@ namespace Setup
             }
             
             info = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", info, typeof(GlobalInfo), false);
-            
+
+            foreach (SerializedObject serializedObject in _managerSOList)
+            {
+                serializedObject.Update();
+            }
             FileEditorTools.FileButtons(info, _managerSOList, ref _showButtons);
             foreach (SerializedObject serializedObject in _managerSOList)
             {

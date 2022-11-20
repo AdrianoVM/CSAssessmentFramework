@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Options;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Utilities
+namespace ScriptableObjects
 {
     [CreateAssetMenu(fileName = "GlobalInfo", menuName = "ScriptableObjects/GlobalInfo", order = 0)]
     public class GlobalInfo : ScriptableObject

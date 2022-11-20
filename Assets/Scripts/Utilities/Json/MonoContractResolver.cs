@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using Learning;
-using Mono.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.UnityConverters;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Utilities
+namespace Utilities.Json
 {
     public class MonoContractResolver : UnityTypeContractResolver
     {
