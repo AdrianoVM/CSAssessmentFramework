@@ -3,13 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Options;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Utilities.Json
+namespace Utilities.Json.Converters
 {
     public class MonoConverter : JsonConverter
     {
@@ -38,7 +37,7 @@ namespace Utilities.Json
                 if (obj != null)
                 {
                     // If it is in the scene
-                    if (obj.GetType().IsSubclassOf(typeof(Component)))
+                    if (obj.GetType().IsSubclassOf(typeof(Component)) && !EditorUtility.IsPersistent(obj))
                     {
                         path = obj.GetInstanceID().ToString();
                     }

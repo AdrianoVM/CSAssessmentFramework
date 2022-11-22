@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.UnityConverters;
 using UnityEngine;
+using Utilities.Json.Converters;
 using Object = UnityEngine.Object;
 
 namespace Utilities.Json

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using PathCreation;
-using PathCreation.Examples;
 using UnityEngine;
 
-namespace Options.Environment.Activity {
+namespace Options.Gameplay.Activity {
 
     
     public class CollectiblePlacer : MonoBehaviour

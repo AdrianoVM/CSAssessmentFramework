@@ -2,9 +2,8 @@
 using System.Collections;
 using ScriptableObjects;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Options.Environment.Activity
+namespace Options.Gameplay.Activity
 {
     public class Collectible : MonoBehaviour
     {
