@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Options.Environment
 {
@@ -12,6 +13,9 @@ namespace Options.Environment
         [SerializeField] private bool curveApplyToX = true;
         [SerializeField] private bool curveApplyToZ = true;
         [SerializeField] private AnimationCurve smallScaleCurve;
+        [SerializeField] private bool usePerlinNoise;
+        [SerializeField] private float perlinScale = 10;
+        [SerializeField] private float perlinIntensity = 10;
         [Header("Terrain Orientation")]
         [Range(-30,30)]
         [SerializeField] private int zAngle;
@@ -30,6 +34,8 @@ namespace Options.Environment
 
         public void Apply()
         {
+            float oriX = Random.Range(0, 999);
+            float oriZ = Random.Range(0, 999);
             var tMaxHeight = _terrain.terrainData.heightmapScale.y;
             Transform transformT = _terrain.transform;
             Vector3 position = transformT.position;
@@ -54,6 +60,16 @@ namespace Options.Environment
                     {
                         h = 0;
                     }
+
+                    if (usePerlinNoise)
+                    {
+                        
+                        var xP = xPos / perlinScale + oriX;
+                        var zP = zPos / perlinScale + oriZ;
+                        var sample = Mathf.PerlinNoise(xP, zP);
+                        h += (sample - 0.5f)*perlinIntensity;
+                    }
+                    
                     arr[k, l] = (h+zOrientation+xOrientation+tMaxHeight/2)/tMaxHeight;
                 }
                     

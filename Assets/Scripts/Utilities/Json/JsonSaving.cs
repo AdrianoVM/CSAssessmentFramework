@@ -143,7 +143,18 @@ namespace Utilities.Json
             }
 
             // Finding MonoBehaviour and Updating It.
-            var monoTypeToken = optionToken[nameof(InspectorOption.MonoType)]?.ToObject<Type>();
+            JToken typeJson = optionToken[nameof(InspectorOption.MonoType)];
+            Type monoTypeToken;
+            try
+            {
+                monoTypeToken = typeJson?.ToObject<Type>();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(nameToken+" in File has type "+ typeJson?.ToString().Split(",")[0] +", which is not a type that exists");
+                monoTypeToken = null;
+            }
+             
             if (monoTypeToken != null)
             {
                 options[i].MonoType = monoTypeToken;

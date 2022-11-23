@@ -12,29 +12,32 @@ namespace Setup
 {
     public static class FileEditorTools
     {
-        public static void FileButtons(GlobalInfo info, SerializedObject manager, ref bool show)
+        public static bool FileButtons(GlobalInfo info, SerializedObject manager, ref bool show)
         {
-            FileButtonsInternal(info, new[]{manager}, true, ref show);
+            return FileButtonsInternal(info, new[]{manager}, true, ref show);
         }
 
-        public static void FileButtons(GlobalInfo info, SerializedObject[] managers, ref bool show)
+        public static bool FileButtons(GlobalInfo info, SerializedObject[] managers, ref bool show)
         {
-            FileButtonsInternal(info, managers, false, ref show);
+            return FileButtonsInternal(info, managers, false, ref show);
         }
         
-        private static void FileButtonsInternal(GlobalInfo info, SerializedObject[] managers, bool isUnique, ref bool showButtons)
+        private static bool FileButtonsInternal(GlobalInfo info, SerializedObject[] managers, bool isUnique, ref bool showButtons)
         {
             showButtons = EditorGUILayout.Foldout(showButtons, "Save System", true);
             if (!showButtons)
             {
-                return;
+                return false;
             }
+
+            var pressed = false;
             //var fileName = isUnique ? info.GetPathOfManager(managers[0].FindProperty("managerName").stringValue, true) : info.FilePath;
             var fileName = isUnique ? managers[0].FindProperty("managerPath").stringValue : info.FilePath;
             GUILayout.Label("Chosen File: "+Path.GetFileName(fileName), EditorStyles.largeLabel);
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Load From", GUILayout.MaxWidth(100)))
             {
+                pressed = true;
                 var path = EditorUtility.OpenFilePanel("Where to Load From", "", "dat");
                 if (path.Length != 0)
                 {
@@ -71,6 +74,7 @@ namespace Setup
 
             if (GUILayout.Button("Save As", GUILayout.MaxWidth(100)))
             {
+                pressed = true;
                 var path = EditorUtility.SaveFilePanel("Where to Save", "", "OptionPreset", "dat");
                 if (path.Length != 0)
                 {
@@ -108,6 +112,7 @@ namespace Setup
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Load",GUILayout.MaxWidth(100)))
             {
+                pressed = true;
                 if (isUnique)
                 {
                     foreach (SerializedObject manager in managers)
@@ -129,6 +134,7 @@ namespace Setup
             }
             if (GUILayout.Button("Save",GUILayout.MaxWidth(100)))
             {
+                pressed = true;
                 if (isUnique)
                 {
                     foreach (SerializedObject manager in managers)
@@ -148,6 +154,7 @@ namespace Setup
             }
             GUILayout.EndHorizontal();
             EditorGUILayout.Space();
+            return pressed;
         }
 
         private static void SerializedOptionsAction(SerializedObject managerSO, Manager.ManagerDelegate managerDelegate)

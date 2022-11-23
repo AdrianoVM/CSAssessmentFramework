@@ -9,11 +9,13 @@
         "sizeOfCurve": 4.0,
         "curveApplyToX": true,
         "curveApplyToZ": false,
-        "smallScaleCurve": {},
+        "smallScaleCurve": {
+          "keys": "[{\"time\":0.0,\"value\":0.0,\"inTangent\":1.0,\"outTangent\":1.0,\"inWeight\":0.0,\"outWeight\":0.333333343,\"weightedMode\":\"None\",\"tangentMode\":34},{\"time\":0.5,\"value\":0.5,\"inTangent\":1.0,\"outTangent\":-1.0,\"inWeight\":0.333333343,\"outWeight\":0.333333343,\"weightedMode\":\"None\",\"tangentMode\":69},{\"time\":1.0,\"value\":0.0,\"inTangent\":-1.0,\"outTangent\":-1.0,\"inWeight\":0.333333343,\"outWeight\":0.0,\"weightedMode\":\"None\",\"tangentMode\":34}]"
+        },
         "zAngle": 5,
         "xAngle": -5,
         "rotateWithTerrain": {
-          "ID": "30034",
+          "ID": "30054",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "Rotate With Terrain"
@@ -37,35 +39,14 @@
       }
     },
     {
-      "monoName": "SplineTest",
-      "MonoType": "Options.Environment.Activity.CollectiblePlacer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "monoName": "New Option",
+      "MonoType": null,
       "EnableOption": true,
       "expandOption": true,
-      "Mono": {
-        "spacing": 10.0,
-        "numberOfVisibleCollectibles": 5,
-        "pathCreator": {
-          "ID": "30026",
-          "IsAsset": false,
-          "ObjectType": "PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "SplineTest"
-        },
-        "collectible": {
-          "ID": "30102",
-          "IsAsset": false,
-          "ObjectType": "Options.Environment.Activity.Collectible, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "Collectible"
-        },
-        "holder": {
-          "ID": "",
-          "IsAsset": true,
-          "ObjectType": "UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "CollectibleHolder"
-        }
-      }
+      "Mono": null
     },
     {
-      "monoName": "SplineTest",
+      "monoName": "CollectiblesPath",
       "MonoType": "PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
       "EnableOption": true,
       "expandOption": true,

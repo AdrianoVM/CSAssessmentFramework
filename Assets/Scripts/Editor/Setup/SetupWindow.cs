@@ -112,11 +112,15 @@ namespace Setup
             {
                 serializedObject.Update();
             }
-            FileEditorTools.FileButtons(info, _managerSOList, ref _showButtons);
-            foreach (SerializedObject serializedObject in _managerSOList)
+
+            if (FileEditorTools.FileButtons(info, _managerSOList, ref _showButtons))
             {
-                serializedObject.ApplyModifiedProperties();
+                foreach (SerializedObject serializedObject in _managerSOList)
+                {
+                    serializedObject.ApplyModifiedProperties();
+                }
             }
+
             EditorGUILayout.Space();
             EditorGUILayout.BeginVertical();
             _selectedTab = GUILayout.Toolbar(_selectedTab, _managers.Select(i => i.managerName).ToArray(),GUILayout.MinHeight(30));
