@@ -26,23 +26,25 @@ namespace Setup
         /// <param name="state"></param>
         /// <param name="enabled"></param>
         /// <param name="padding"></param>
-        /// <returns></returns>
-        public static bool DrawToggleHeaderFoldout(GUIContent title, bool state, ref bool enabled, float padding)
+        public static void DrawToggleHeaderFoldout(GUIContent title, ref bool state, ref bool enabled,float padding)
         {
-            var backgroundRect = GUILayoutUtility.GetRect(1f, 17f);
+            Rect backgroundRect = GUILayoutUtility.GetRect(1f, 17f);
 
-            var labelRect = backgroundRect;
+            Rect labelRect = backgroundRect;
             labelRect.xMin += 32f;
             labelRect.xMax -= 20f;
 
-            var foldoutRect = backgroundRect;
+            Rect foldoutRect = backgroundRect;
             foldoutRect.xMin += padding;
             foldoutRect.y += 1f;
             foldoutRect.width = 13f;
             foldoutRect.height = 13f;
 
-            var toggleRect = foldoutRect;
+            Rect toggleRect = foldoutRect;
             toggleRect.x = foldoutRect.xMax + 4f;
+
+            Rect selectRect = toggleRect;
+            selectRect.x = labelRect.xMax + 4f;
 
             // Background rect should be full-width
             backgroundRect.xMin = padding;
@@ -51,7 +53,7 @@ namespace Setup
             backgroundRect.width += 4f;
 
             // Background
-            float backgroundTint = EditorGUIUtility.isProSkin ? 0.1f : 1f;
+            var backgroundTint = EditorGUIUtility.isProSkin ? 0.1f : 1f;
             EditorGUI.DrawRect(backgroundRect, new Color(backgroundTint, backgroundTint, backgroundTint, 0.2f));
 
             // Title
@@ -62,8 +64,8 @@ namespace Setup
 
             // Enabled toggle
             enabled = GUI.Toggle(toggleRect, enabled, GUIContent.none, EditorStyles.toggle);
-
-            var e = Event.current;
+            
+            Event e = Event.current;
 
             if (e.type == EventType.MouseDown && e.button == 0)
             {
@@ -78,8 +80,6 @@ namespace Setup
                     e.Use();
                 }
             }
-
-            return state;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Options
     {
         public override void OnInspectorGUI()
         {
-            
+            serializedObject.Update();
 
             var myTerrainModifier = target as TerrainModifier;
             
@@ -17,7 +17,11 @@ namespace Options
 
             if (GUILayout.Button("Apply"))
             {
-                if (myTerrainModifier != null) myTerrainModifier.Apply();
+                if (myTerrainModifier != null)
+                {
+                    Undo.RegisterCompleteObjectUndo(myTerrainModifier.TargetTerrain.terrainData, "Apply terrain Changes");
+                    if (myTerrainModifier != null) myTerrainModifier.Apply();
+                }
             }
         }
     }

@@ -7,7 +7,7 @@ namespace Options.Environment
     [ExecuteInEditMode]
     public class TerrainModifier : MonoBehaviour
     {
-        private Terrain _terrain;
+        
         [Header("Repeating Terrain Shape")]
         [SerializeField] private float sizeOfCurve = 5f;
         [SerializeField] private bool curveApplyToX = true;
@@ -17,27 +17,31 @@ namespace Options.Environment
         [SerializeField] private float perlinScale = 10;
         [SerializeField] private float perlinIntensity = 10;
         [Header("Terrain Orientation")]
-        [Range(-30,30)]
-        [SerializeField] private int zAngle;
-        [Range(-30,30)]
-        [SerializeField] private int xAngle;
+        [Range(-20,20)]
+        [SerializeField] private int angle;
+
+        [SerializeField] private bool angleApplyToZInsteadOfX;
 
         [SerializeField] private Transform rotateWithTerrain;
 
         private int _tRes;
-        
+
+        private Terrain _terrain;
+        public Terrain TargetTerrain => _terrain;
+
         private void OnEnable()
         {
             _terrain = Terrain.activeTerrain;
-            _tRes = _terrain.terrainData.heightmapResolution;
+            _tRes = TargetTerrain.terrainData.heightmapResolution;
         }
+
 
         public void Apply()
         {
             float oriX = Random.Range(0, 999);
             float oriZ = Random.Range(0, 999);
-            var tMaxHeight = _terrain.terrainData.heightmapScale.y;
-            Transform transformT = _terrain.transform;
+            var tMaxHeight = TargetTerrain.terrainData.heightmapScale.y;
+            Transform transformT = TargetTerrain.transform;
             Vector3 position = transformT.position;
             position = new Vector3(position.x, -tMaxHeight/2, position.z);
             transformT.position = position;
@@ -46,13 +50,22 @@ namespace Options.Environment
             {
                 for (var l = 0; l < _tRes; l+=1)
                 {
-                    TerrainData terrainData = _terrain.terrainData;
+                    TerrainData terrainData = TargetTerrain.terrainData;
                     var xPos = k * terrainData.size.x / _tRes;
                     var zPos = l * terrainData.size.z / _tRes;
 
                     //Orienting terrain
-                    var zOrientation = (xPos - terrainData.size.x / 2f) * Mathf.Sin(-xAngle * Mathf.Deg2Rad)/Mathf.Sin((90-xAngle) * Mathf.Deg2Rad);
-                    var xOrientation = (zPos - terrainData.size.z / 2f) *Mathf.Sin(zAngle * Mathf.Deg2Rad)/Mathf.Sin((90-zAngle) * Mathf.Deg2Rad);;
+                    float orientation;
+                    if (angleApplyToZInsteadOfX)
+                    {
+                        orientation = (zPos - terrainData.size.z / 2f) *Mathf.Sin(angle * Mathf.Deg2Rad)/Mathf.Sin((90-angle) * Mathf.Deg2Rad);
+                    }
+                    else
+                    {
+                        orientation = (xPos - terrainData.size.x / 2f) * Mathf.Sin(-angle * Mathf.Deg2Rad)/Mathf.Sin((90-angle) * Mathf.Deg2Rad);
+                    }
+                    
+                    
                     //applying the small scale modification
                     var h = (curveApplyToZ ? smallScaleCurve.Evaluate(xPos% (sizeOfCurve+1) / sizeOfCurve) : 1) 
                             * (curveApplyToX ? smallScaleCurve.Evaluate(zPos% (sizeOfCurve+1) / sizeOfCurve) : 1);
@@ -70,15 +83,15 @@ namespace Options.Environment
                         h += (sample - 0.5f)*perlinIntensity;
                     }
                     
-                    arr[k, l] = (h+zOrientation+xOrientation+tMaxHeight/2)/tMaxHeight;
+                    arr[k, l] = (h+orientation+tMaxHeight/2)/tMaxHeight;
                 }
                     
             }
-            _terrain.terrainData.SetHeights(0,0,arr);
+            TargetTerrain.terrainData.SetHeights(0,0,arr);
             
             if (rotateWithTerrain != null)
             {
-                rotateWithTerrain.eulerAngles = new Vector3(xAngle,0,zAngle);
+                rotateWithTerrain.eulerAngles = angleApplyToZInsteadOfX ? new Vector3(0,0,angle) : new Vector3(angle,0,0);
             }
         }
     }

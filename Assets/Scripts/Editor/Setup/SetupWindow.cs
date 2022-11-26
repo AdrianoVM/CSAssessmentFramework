@@ -75,6 +75,7 @@ namespace Setup
         /// </summary>
         private void FindManagers()
         {
+            Debug.Log("Finding managers");
             _managers = FindObjectsOfType<Manager>();
             _managerEditors = _managers.Select(i => Editor.CreateEditor(i)).ToArray();
             _managerSOList = new SerializedObject[_managers.Length];
@@ -125,7 +126,7 @@ namespace Setup
             EditorGUILayout.BeginVertical();
             _selectedTab = GUILayout.Toolbar(_selectedTab, _managers.Select(i => i.managerName).ToArray(),GUILayout.MinHeight(30));
             EditorGUILayout.EndVertical();
-            SetupUtilities.DrawSeparatorLine();
+            //SetupUtilities.DrawSeparatorLine();
             if (_managerEditors.Length <= _selectedTab)
             {
                 _selectedTab = 0;

@@ -6,16 +6,25 @@
       "EnableOption": true,
       "expandOption": true,
       "Mono": {
+        "TargetTerrain": {
+          "ID": "29962",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.Terrain, UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "Terrain"
+        },
         "sizeOfCurve": 4.0,
         "curveApplyToX": true,
-        "curveApplyToZ": false,
+        "curveApplyToZ": true,
         "smallScaleCurve": {
           "keys": "[{\"time\":0.0,\"value\":0.0,\"inTangent\":1.0,\"outTangent\":1.0,\"inWeight\":0.0,\"outWeight\":0.333333343,\"weightedMode\":\"None\",\"tangentMode\":34},{\"time\":0.5,\"value\":0.5,\"inTangent\":1.0,\"outTangent\":-1.0,\"inWeight\":0.333333343,\"outWeight\":0.333333343,\"weightedMode\":\"None\",\"tangentMode\":69},{\"time\":1.0,\"value\":0.0,\"inTangent\":-1.0,\"outTangent\":-1.0,\"inWeight\":0.333333343,\"outWeight\":0.0,\"weightedMode\":\"None\",\"tangentMode\":34}]"
         },
-        "zAngle": 0,
-        "xAngle": 0,
+        "usePerlinNoise": false,
+        "perlinScale": 50.0,
+        "perlinIntensity": 20.0,
+        "angle": 0,
+        "angleApplyToZInsteadOfX": true,
         "rotateWithTerrain": {
-          "ID": "30058",
+          "ID": "30068",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "Rotate With Terrain"
@@ -47,7 +56,7 @@
         "spacing": 10.0,
         "numberOfVisibleCollectibles": 5,
         "pathCreator": {
-          "ID": "30050",
+          "ID": "30060",
           "IsAsset": false,
           "ObjectType": "PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "CollectiblesPath"
@@ -76,7 +85,7 @@
         "bezierPath": {
           "IsClosed": true,
           "Space": 0,
-          "pointList": "[{\"x\":-0.412838936,\"y\":0.0,\"z\":12.0793133},{\"x\":8.246201,\"y\":0.0,\"z\":26.746664},{\"x\":35.42412,\"y\":-0.857228041,\"z\":25.649292},{\"x\":41.3922462,\"y\":0.0,\"z\":-27.831377},{\"x\":14.1174278,\"y\":-0.94657445,\"z\":-9.06678},{\"x\":0.439121842,\"y\":-0.5285752,\"z\":-12.661994}]"
+          "pointList": "[{\"x\":-0.412838936,\"y\":0.0,\"z\":12.0793133},{\"x\":8.246201,\"y\":0.0,\"z\":26.746664},{\"x\":35.40498,\"y\":-0.812387049,\"z\":25.6207466},{\"x\":41.3922462,\"y\":0.0,\"z\":-27.831377},{\"x\":14.1174278,\"y\":-0.94657445,\"z\":-9.06678},{\"x\":0.439121842,\"y\":-0.5285752,\"z\":-12.661994}]"
         },
         "EditorData": {},
         "editorData": {},
@@ -92,7 +101,7 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "-1848",
+          "ID": "-1440",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"
@@ -108,7 +117,7 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "-1848",
+          "ID": "-1440",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"
@@ -126,48 +135,43 @@
       "expandOption": true,
       "Mono": {
         "LeftHandLocomotionType": "Continuous",
-        "LeftHandTurnType": "Disabled",
+        "LeftHandTurnType": "Discrete",
         "RightHandLocomotionType": "Disabled",
         "RightHandTurnType": "Discrete",
-        "dynamicMoveProvider": {
-          "ID": "-1814",
-          "IsAsset": false,
-          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets.DynamicMoveProvider, Unity.XR.Interaction.Toolkit.Samples.StarterAssets, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "XR Origin"
-        },
+        "dynamicMoveProvider": null,
         "teleportationProvider": {
-          "ID": "-1822",
+          "ID": "-1414",
           "IsAsset": false,
           "ObjectType": "UnityEngine.XR.Interaction.Toolkit.TeleportationProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
         },
         "grabMoveProvider": null,
         "snapTurnProvider": {
-          "ID": "-1820",
+          "ID": "-1412",
           "IsAsset": false,
           "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedSnapTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
         },
         "continuousTurnProvider": {
-          "ID": "-1818",
+          "ID": "-1410",
           "IsAsset": false,
           "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedContinuousTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
         },
         "leftHandControllerManager": {
-          "ID": "-1854",
+          "ID": "-1446",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "LeftHand Controller"
         },
         "rightHandControllerManager": {
-          "ID": "-2022",
+          "ID": "-1614",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "RightHand Controller"
         },
         "leftHandLocomotionType": "Continuous",
-        "leftHandTurnType": "Disabled",
+        "leftHandTurnType": "Discrete",
         "rightHandLocomotionType": "Disabled",
         "rightHandTurnType": "Discrete"
       }

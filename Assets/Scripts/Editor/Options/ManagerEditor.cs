@@ -41,6 +41,7 @@ namespace Options
 
         private void CreateEditors()
         {
+            Debug.Log("Creating editors");
             _editors = new Editor[_options.arraySize];
             for (var i = 0; i < _options.arraySize; i++)
             {
@@ -96,9 +97,13 @@ namespace Options
                 SerializedProperty mono = optionP.FindPropertyRelative("monoBehaviour");
                 SerializedProperty monoName = optionP.FindPropertyRelative("monoName");
                 SerializedProperty monoTypeName = optionP.FindPropertyRelative("MonoTypeName");
-                GUILayout.Label(monoName.stringValue);
+                
+                SetupUtilities.DrawSeparatorLine();
+                
                 if (mono.objectReferenceValue == null)
                 {
+                    GUILayout.Label(monoName.stringValue);
+                    
                     if (monoName.stringValue != new InspectorOption().monoName)
                     {
                         EditorGUILayout.HelpBox("Missing MonoBehaviour of type " + Type.GetType(monoTypeName.stringValue)?.Name.CamelCaseToSpaces(), MessageType.Warning);
@@ -145,10 +150,34 @@ namespace Options
                 }
                 else
                 {
-                    var optionEnabled = enableOption.boolValue;
+                    var selectStyle = new GUIStyle();
+                    selectStyle.fixedWidth = 20;
+                    selectStyle.fixedHeight = 20;
                     GUILayout.BeginHorizontal();
-                    expandOption.boolValue = SetupUtilities.DrawToggleHeaderFoldout(Styles.ToggleTitleStyle(Type.GetType(monoTypeName.stringValue)?.Name.CamelCaseToSpaces()),
-                        expandOption.boolValue, ref optionEnabled, 0f);
+
+
+                    //var selected = GUI.Button(selectRect,EditorGUIUtility.IconContent("GameObject Icon","|Select target"), GUIStyle.none);
+                    
+                    var selected = GUILayout.Button(EditorGUIUtility.IconContent("GameObject Icon", "|Select target"),
+                        selectStyle);
+                    EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(),MouseCursor.Link);
+                    GUILayout.Label(monoName.stringValue);
+                    GUILayout.FlexibleSpace();
+                    GUILayout.EndHorizontal();
+                    if (selected)
+                    {
+                        Selection.SetActiveObjectWithContext(mono.objectReferenceValue, null);
+                    }
+                    
+                    EditorGUILayout.Space();
+                    
+                    var optionEnabled = enableOption.boolValue;
+                    var optionExpanded = expandOption.boolValue;
+                    GUILayout.BeginHorizontal();
+                    
+                    SetupUtilities.DrawToggleHeaderFoldout(Styles.ToggleTitleStyle(Type.GetType(monoTypeName.stringValue)?.Name.CamelCaseToSpaces()),
+                        ref optionExpanded, ref optionEnabled,0f);
+                    
                     if (GUILayout.Button("Remove", GUILayout.MaxWidth(100)))
                     {
                         toRemove = i;
@@ -156,13 +185,22 @@ namespace Options
 
                     GUILayout.EndHorizontal();
                     ++EditorGUI.indentLevel;
-                    if (expandOption.boolValue)
+                    if (optionExpanded)
                     {
                         EditorGUI.BeginDisabledGroup(!enableOption.boolValue);
                         if (mono.objectReferenceValue != null)
                         {
-                            //Editor editor = CreateEditor(mono.objectReferenceValue);
-                            _editors[i].OnInspectorGUI();
+                            try
+                            {
+                                _editors[i].OnInspectorGUI();
+                            }
+                            catch (Exception e)
+                            {
+                                // When entering play mode, while Setup window is closed,
+                                // editors are destroyed and recreated
+                                CreateEditors();
+                            }
+                            
                         }
 
                         EditorGUI.EndDisabledGroup();
@@ -170,6 +208,7 @@ namespace Options
 
                     --EditorGUI.indentLevel;
                     EditorGUILayout.Space();
+                    expandOption.boolValue = optionExpanded;
                     enableOption.boolValue = optionEnabled;
                 }
             }

@@ -441,7 +441,7 @@ MonoBehaviour:
     type: 3}
   move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   motionType: 0
-  turnType: 2
+  turnType: 1
 --- !u!114 &131366749472886115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,13 +904,14 @@ GameObject:
   - component: {fileID: 5058732888698417907}
   - component: {fileID: 7232751838692026444}
   - component: {fileID: 131366749279188634}
-  - component: {fileID: 2239684198774116323}
+  - component: {fileID: 6056396285941566891}
   - component: {fileID: 2959235629638493892}
   - component: {fileID: 885137017385525124}
   - component: {fileID: 6881962302160247801}
   - component: {fileID: 2377494212811200967}
   - component: {fileID: 6693290568267614119}
   - component: {fileID: 56035293239204759}
+  - component: {fileID: 7287414401735416644}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Player
@@ -963,7 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b84358f50e4162af9f4722a14f26a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dynamicMoveProvider: {fileID: 2239684198774116323}
+  dynamicMoveProvider: {fileID: 0}
   teleportationProvider: {fileID: 2377494212811200967}
   grabMoveProvider: {fileID: 0}
   snapTurnProvider: {fileID: 6881962302160247801}
@@ -971,7 +972,7 @@ MonoBehaviour:
   leftHandControllerManager: {fileID: 8970361440762857730}
   rightHandControllerManager: {fileID: 8220911044289329708}
   leftHandLocomotionType: 0
-  leftHandTurnType: 2
+  leftHandTurnType: 1
   rightHandLocomotionType: 2
   rightHandTurnType: 1
 --- !u!114 &7232751838692026444
@@ -1002,7 +1003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Timeout: 10
   m_XROrigin: {fileID: 131366750110452500}
---- !u!114 &2239684198774116323
+--- !u!114 &6056396285941566891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1011,7 +1012,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 131366750110452503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b1e8c997df241c1a67045eeac79b41b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a5334fcf5eb4ed88ad9c5b9aa07f33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 131366749279188634}
@@ -1027,7 +1028,7 @@ MonoBehaviour:
       m_Name: Left Hand Move
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 6da12c60-ad99-45b3-a0b1-a4ee1d30ddcc
+      m_Id: dd2af56a-eceb-495b-9f89-c02abfb3372e
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1040,7 +1041,7 @@ MonoBehaviour:
       m_Name: Right Hand Move
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 77f364a5-e031-452a-af50-144d41955e70
+      m_Id: fdf6d5d1-2f85-47db-ba49-47af929c1ee9
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1052,6 +1053,7 @@ MonoBehaviour:
   m_RightControllerTransform: {fileID: 131366749048842759}
   m_LeftHandMovementDirection: 0
   m_RightHandMovementDirection: 0
+  m_FixDownhill: 1
 --- !u!114 &2959235629638493892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,7 +1191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6bf904e410ee8479f9093d8830d1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LocomotionProvider: {fileID: 2239684198774116323}
+  m_LocomotionProvider: {fileID: 0}
   m_MinHeight: 0
   m_MaxHeight: Infinity
 --- !u!143 &56035293239204759
@@ -1210,6 +1212,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.76072, z: 0}
+--- !u!114 &7287414401735416644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131366750110452503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f4282b2768441582e24b7389fa9bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1510447906437371822
 PrefabInstance:
   m_ObjectHideFlags: 0
