@@ -1,8 +1,6 @@
-using System;
-using Player;
 using UnityEngine;
 
-namespace Options.Gameplay
+namespace Player
 {
     public class RespawnZone : MonoBehaviour
     {
@@ -10,7 +8,7 @@ namespace Options.Gameplay
         {
             if (other.CompareTag("Player") && other.TryGetComponent(out GameCharacter character))
             {
-                character.Respawn();
+                character.Respawn(GameCharacter.SpawnPoint.AtPath);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace Options.Movement
         }
         
         // More complete version of ActionBasedContinuousMoveProvider
-        [SerializeField] private DynamicMoveProvider dynamicMoveProvider;
+        [SerializeField] private ExtendedDynamicMoveProvider dynamicMoveProvider;
         [SerializeField] private TeleportationProvider teleportationProvider;
         [SerializeField] private GrabMoveProvider grabMoveProvider;
         [SerializeField] private ActionBasedSnapTurnProvider snapTurnProvider;

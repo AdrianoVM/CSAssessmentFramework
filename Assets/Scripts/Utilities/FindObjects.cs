@@ -46,7 +46,7 @@ namespace Utilities
         public static Object FindInAssets(string guid, Type type)
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);
-            if (path == "")
+            if (guid != "" && path == "")
             {
                 //TODO: raise event
                 Debug.Log("Object of type "+ type.Name+" not found in assets");

@@ -1,14 +1,10 @@
 ﻿using System.Linq;
-using Options;
 using Options.Managers;
 using ScriptableObjects;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Utilities;
-using Object = UnityEngine.Object;
-
 namespace Setup
 {
     public class SetupWindow : EditorWindow
@@ -23,20 +19,19 @@ namespace Setup
         private bool _showButtons;
 
         private PlayModeStateChange _currentState;
-        // private MovementManager _movementManager;
-        // private VisionManager _visionManager;
-        // private EnvironmentManager _environmentManager;
+
+        private bool _stateChangeHandled;
 
         public GlobalInfo info = null;
         private Manager[] _managers;
-        private Editor[] _managerEditors;
+        private Editor[] _managerEditors = new Editor[0];
         private SerializedObject[] _managerSOList;
 
         private void OnEnable()
         {
             EditorApplication.playModeStateChanged += StateChanged;
             EditorSceneManager.sceneOpened += SceneChanged;
-            
+            _managers = new Manager[0];
             FindManagers();
         }
 
@@ -48,13 +43,13 @@ namespace Setup
         
 
         /// <summary>
-        /// Updates <see cref="_currentState"/> and calls <see cref="FindManagers"/>.
+        /// Updates <see cref="_currentState"/>.
         /// </summary>
         /// <param name="state">the (<see cref="PlayModeStateChange"/>) state of the editor.</param>
         private void StateChanged(PlayModeStateChange state)
         {
             _currentState = state;
-            //FindManagers();
+            _stateChangeHandled = false;
             
             // To refresh the UI
             Repaint();
@@ -75,13 +70,24 @@ namespace Setup
         /// </summary>
         private void FindManagers()
         {
-            Debug.Log("Finding managers");
-            _managers = FindObjectsOfType<Manager>();
-            _managerEditors = _managers.Select(i => Editor.CreateEditor(i)).ToArray();
-            _managerSOList = new SerializedObject[_managers.Length];
-            for (var i = 0; i < _managers.Length; i++)
+            var managers = FindObjectsOfType<Manager>();
+            //list comparison, is there a better way?
+            var sameManagers = managers.Except(_managers).Count() < 1 && _managers.Except(managers).Count() < 1;
+            if (!sameManagers || !_stateChangeHandled)
             {
-                _managerSOList[i] = new SerializedObject(_managers[i]);
+                _managers = managers;
+                foreach (Editor editor in _managerEditors)
+                {
+                    DestroyImmediate(editor);
+                }
+                _managerEditors = _managers.Select(i => Editor.CreateEditor(i)).ToArray();
+                _managerSOList = new SerializedObject[_managers.Length];
+                for (var i = 0; i < _managers.Length; i++)
+                {
+                    _managerSOList[i] = new SerializedObject(_managers[i]);
+                }
+
+                _stateChangeHandled = true;
             }
         }
         
@@ -101,6 +107,12 @@ namespace Setup
                 return;
             }
 
+            if (!_stateChangeHandled)
+            {
+                FindManagers();
+                return;
+            }
+
             if (_managers.Length < 1)
             {
                 GUILayout.Label("No Managers in Scene", EditorStyles.largeLabel);
@@ -109,9 +121,22 @@ namespace Setup
             
             info = (GlobalInfo)EditorGUILayout.ObjectField("Global Info", info, typeof(GlobalInfo), false);
 
+            if (info == null)
+            {
+                return;
+            }
+            
             foreach (SerializedObject serializedObject in _managerSOList)
             {
-                serializedObject.Update();
+                if (serializedObject.targetObject == null)
+                {
+                    FindManagers();
+                }
+                else
+                {
+                    serializedObject.Update();
+                }
+                
             }
 
             if (FileEditorTools.FileButtons(info, _managerSOList, ref _showButtons))
@@ -143,6 +168,10 @@ namespace Setup
         {
             EditorApplication.playModeStateChanged -= StateChanged;
             EditorSceneManager.sceneOpened -= SceneChanged;
+            foreach (Editor editor in _managerEditors)
+            {
+                DestroyImmediate(editor);
+            }
         }
     }
 }

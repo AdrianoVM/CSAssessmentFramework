@@ -2,6 +2,7 @@
 using System.Collections;
 using ScriptableObjects;
 using UnityEngine;
+using Utilities;
 
 namespace Options.Gameplay.Activity
 {
@@ -85,6 +86,7 @@ namespace Options.Gameplay.Activity
         private IEnumerator PickedUp()
         {
             //play sound
+            SoundManager.PlaySound(SoundManager.Sound.CoinPickup, transform.position);
             //play Animation
             Vector3 startScale = _scale;
             var timer = 0.0f;
@@ -100,12 +102,11 @@ namespace Options.Gameplay.Activity
             }
 
             //Raising events
-            if (OnPickedUp != null) OnPickedUp(this, EventArgs.Empty);
             if (pickUpChannel != null)
             {
                 pickUpChannel.RaiseEvent(this);
             }
-
+            if (OnPickedUp != null) OnPickedUp(this, EventArgs.Empty);
             //Disappear
             yield return null;
         }

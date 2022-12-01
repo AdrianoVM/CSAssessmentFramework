@@ -1,4 +1,5 @@
-﻿using Options.Environment;
+﻿using System;
+using Options.Environment;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Options
     [CustomEditor(typeof(TerrainModifier))]
     public class TerrainModifierEditor : Editor
     {
+
         public override void OnInspectorGUI()
         {
             serializedObject.Update();

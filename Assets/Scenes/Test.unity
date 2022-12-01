@@ -123,6 +123,66 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &464545918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 464545920}
+  - component: {fileID: 464545919}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &464545919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464545918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b481f64558d8487ab952f24b36b83a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sizeOfCurve: 5
+  curveApplyToX: 1
+  curveApplyToZ: 1
+  smallScaleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  usePerlinNoise: 0
+  perlinSeed: 0
+  perlinScale: 10
+  perlinIntensity: 10
+  angle: 0
+  angleApplyToZNotX: 0
+  rotateWithTerrain: {fileID: 0}
+--- !u!4 &464545920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464545918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1050377879
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +333,7 @@ MonoBehaviour:
   count: 3
   vecto: {x: 0, y: 0, z: -1}
   vecto2: {x: -1, y: 0}
+  tr: {fileID: 0}
   test: {fileID: 1310146733}
   message: not
   material: {fileID: 2100000, guid: 9dcd94ebeef682a4fae46d694f33b954, type: 2}
@@ -415,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2078031143}
-  - component: {fileID: 2078031142}
+  - component: {fileID: 2078031144}
   m_Layer: 0
   m_Name: MovementManager
   m_TagString: Untagged
@@ -423,27 +484,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2078031142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078031141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a6dd5fc53a4cf5ac0d59ca8d1433b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  options:
-  - monoBehaviour: {fileID: 1310146733}
-    monoName: Basic Sphere
-    enableOption: 1
-    expandOption: 1
-  - monoBehaviour: {fileID: 0}
-    monoName: Basic Sphere (1)
-    enableOption: 1
-    expandOption: 1
 --- !u!4 &2078031143
 Transform:
   m_ObjectHideFlags: 0
@@ -459,3 +499,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2078031144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078031141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a6dd5fc53a4cf5ac0d59ca8d1433b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - rid: 6451057953137229841
+  globalInfo: {fileID: 0}
+  managerName: Manager
+  managerPath: 
+  showFileButtons: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6451057953137229841
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: New Option
+        MonoTypeName: 
+        enableOption: 1
+        expandOption: 1

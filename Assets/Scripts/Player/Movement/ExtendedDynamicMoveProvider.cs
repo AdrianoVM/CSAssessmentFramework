@@ -113,7 +113,7 @@ namespace Player.Movement
         }
 
         protected CharacterController characterController;
-        private bool m_AttemptedGetCharacterController;
+        private bool m_triedToGetCharCont;
         // }
 
         /// <inheritdoc />
@@ -240,10 +240,10 @@ namespace Player.Movement
             
             // Save a reference to the optional CharacterController on the rig GameObject
             // that will be used to move instead of modifying the Transform directly.
-            if (characterController == null && !m_AttemptedGetCharacterController)
+            if (characterController == null && !m_triedToGetCharCont)
             {
                 characterController = xrOrigin.Origin.GetComponent<CharacterController>();
-                m_AttemptedGetCharacterController = true;
+                m_triedToGetCharCont = true;
             }
         }
         

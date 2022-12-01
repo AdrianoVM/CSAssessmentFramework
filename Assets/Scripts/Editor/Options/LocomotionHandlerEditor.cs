@@ -83,7 +83,8 @@ namespace Options
                 if (lLocoType == LocomotionHandler.MovementType.Continuous || rLocoType == LocomotionHandler.MovementType.Continuous)
                 {
                     EditorGUILayout.LabelField("Continuous Locomotion Options", EditorStyles.boldLabel);
-                    CreateEditor(_dynamicMoveProvider.objectReferenceValue).OnInspectorGUI();
+                    //TODO: STOP CREATING EDITORS EVERY FRAME
+                    //CreateEditor(_dynamicMoveProvider.objectReferenceValue).OnInspectorGUI();
                     EditorGUILayout.Space();
                     SetupUtilities.DrawSeparatorLine(16);
                     EditorGUILayout.Space();
@@ -96,7 +97,7 @@ namespace Options
                 if (lLocoType == LocomotionHandler.MovementType.Discrete || rLocoType == LocomotionHandler.MovementType.Discrete)
                 {
                     EditorGUILayout.LabelField("Discrete Locomotion Options", EditorStyles.boldLabel);
-                    CreateEditor(_teleportationProvider.objectReferenceValue).OnInspectorGUI();
+                    //CreateEditor(_teleportationProvider.objectReferenceValue).OnInspectorGUI();
                     EditorGUILayout.Space();
                     SetupUtilities.DrawSeparatorLine(16);
                     EditorGUILayout.Space();
@@ -117,7 +118,7 @@ namespace Options
                 if (lTurnType == LocomotionHandler.MovementType.Discrete || rTurnType == LocomotionHandler.MovementType.Discrete)
                 {
                     EditorGUILayout.LabelField("Discrete Turn Options", EditorStyles.boldLabel);
-                    CreateEditor(_snapTurnProvider.objectReferenceValue).OnInspectorGUI();
+                    //CreateEditor(_snapTurnProvider.objectReferenceValue).OnInspectorGUI();
                     EditorGUILayout.Space();
                     SetupUtilities.DrawSeparatorLine(16);
                     EditorGUILayout.Space();
@@ -129,7 +130,7 @@ namespace Options
                 if (lTurnType == LocomotionHandler.MovementType.Continuous || rTurnType == LocomotionHandler.MovementType.Continuous)
                 {
                     EditorGUILayout.LabelField("Continuous Turn Options", EditorStyles.boldLabel);
-                    CreateEditor(_snapTurnProvider.objectReferenceValue).OnInspectorGUI();
+                    //CreateEditor(_snapTurnProvider.objectReferenceValue).OnInspectorGUI();
                     EditorGUILayout.Space();
                     SetupUtilities.DrawSeparatorLine(16);
                     EditorGUILayout.Space();

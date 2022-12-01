@@ -1,5 +1,6 @@
 ﻿using System;
 using Options.Managers;
+using ScriptableObjects;
 using Setup;
 using UnityEditor;
 using UnityEngine;
@@ -27,8 +28,8 @@ namespace Options
         private SerializedProperty _managerName;
         private SerializedProperty _showFileButtons;
 
-        private Editor[] _editors = new Editor[1];
-
+        private Editor[] _editors = new Editor[0];
+        
         private void OnEnable()
         {
             _options = serializedObject.FindProperty("options");
@@ -41,7 +42,10 @@ namespace Options
 
         private void CreateEditors()
         {
-            Debug.Log("Creating editors");
+            foreach (Editor editor in _editors)
+            {
+                DestroyImmediate(editor);
+            }
             _editors = new Editor[_options.arraySize];
             for (var i = 0; i < _options.arraySize; i++)
             {
@@ -49,7 +53,6 @@ namespace Options
                 if (monoP.objectReferenceValue != null)
                 {
                     _editors[i] = CreateEditor(monoP.objectReferenceValue);
-                    //editor.OnInspectorGUI();
                 }
             }
         }
@@ -84,6 +87,7 @@ namespace Options
         {
             //TODO: Add a way to add missing MonoBehaviour notification
             var toRemove = -1;
+            var reCreate = false;
             for (var i = 0; i < _options.arraySize; i++)
             {
                 SerializedProperty optionP = _options.GetArrayElementAtIndex(i);
@@ -139,7 +143,7 @@ namespace Options
                             monoName.stringValue = addedMono.name;
                             // to update the info of option, as the SerializedProperty only gets applied in the end
                             monoTypeName.stringValue = addedMono.GetType().AssemblyQualifiedName;
-                            CreateEditors();
+                            reCreate = true;
                         }
                     }
                     
@@ -198,7 +202,7 @@ namespace Options
                             {
                                 // When entering play mode, while Setup window is closed,
                                 // editors are destroyed and recreated
-                                CreateEditors();
+                                reCreate = true;
                             }
                             
                         }
@@ -224,7 +228,7 @@ namespace Options
                 // This function makes an element null if it exists instead of deleting.
                 // apparently, but not how it works for me. May cause issues. 
                 _options.DeleteArrayElementAtIndex(toRemove);
-                CreateEditors();
+                reCreate = true;
             }
 
             if (_options.arraySize == 0 || _options.GetArrayElementAtIndex(_options.arraySize-1).FindPropertyRelative("monoBehaviour")?.objectReferenceValue != null)
@@ -234,8 +238,21 @@ namespace Options
                     _options.arraySize++;
                     _options.GetArrayElementAtIndex(_options.arraySize - 1).managedReferenceValue =
                         new InspectorOption();
-                    CreateEditors();
+                    reCreate = true;
                 }
+            }
+
+            if (reCreate)
+            {
+                CreateEditors();
+            }
+        }
+
+        private void OnDisable()
+        {
+            foreach (Editor editor in _editors)
+            {
+                DestroyImmediate(editor);
             }
         }
     }

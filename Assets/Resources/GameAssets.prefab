@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8238586174054726205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3943553825353697905}
+  - component: {fileID: -7278854398342408236}
+  m_Layer: 0
+  m_Name: GameAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3943553825353697905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238586174054726205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7278854398342408236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238586174054726205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c55ee66714425e94ee3bf6e5fb4a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundAudioClips:
+  - sound: 0
+    audioClip: {fileID: 8300000, guid: da0e6a73074fdf04180e2c9112f558b4, type: 3}
+    volume: 0.35
+    pitch: 0.8
+    minRepetitionDelay: 0
+    audioMixerGroup: {fileID: 1562814617885363991, guid: c811e67997d4911459b8004038457190,
+      type: 2}
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 86fef823688d30542936718143c5d646, type: 3}
+    volume: 1
+    pitch: 1
+    minRepetitionDelay: 30
+    audioMixerGroup: {fileID: 24300002, guid: c811e67997d4911459b8004038457190, type: 2}
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 97be786f182e7e34ea8ffbda5ba63d21, type: 3}
+    volume: 1
+    pitch: 1
+    minRepetitionDelay: 30
+    audioMixerGroup: {fileID: 24300002, guid: c811e67997d4911459b8004038457190, type: 2}
