@@ -19,8 +19,34 @@ namespace Options.Gameplay.Activity {
         private Queue<Collectible> _collectibles = new();
 
 
+        private void OnEnable()
+        {
+            GameManager.GameStateChanged += OnGameStateChanged;
+        }
+
+        private void OnGameStateChanged(GameManager.StateType state)
+        {
+            if (state == GameManager.StateType.Playing && GameManager.State == GameManager.StateType.Menu)
+            {
+                CreatePath();
+            }
+        }
+
         private void Start()
         {
+            CreatePath();
+        }
+
+        private void CreatePath()
+        {
+            // Clearing possible existing path
+            foreach (Collectible col in _collectibles)
+            {
+                col.OnPickedUp -= OnCollectiblePickup;
+                Destroy(col.gameObject);
+            }
+            _collectibles.Clear();
+            
             spacing = Mathf.Max(MinSpacing, spacing);
             if (pathCreator != null && collectible != null && holder != null)
             {
@@ -74,6 +100,8 @@ namespace Options.Gameplay.Activity {
             {
                 col.OnPickedUp -= OnCollectiblePickup;
             }
+
+            GameManager.GameStateChanged -= OnGameStateChanged;
         }
     }
 }

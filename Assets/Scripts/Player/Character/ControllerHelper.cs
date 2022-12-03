@@ -63,7 +63,7 @@ namespace Player.Character
             ExtendedControllerManager.ActionsModified -= OnActionsModified;
         }
 
-        private void OnActionsModified(object sender, EventArgs e)
+        private void OnActionsModified()
         {
             UpdateMaterial(triggerRenderer, triggerRelatedActions);
             UpdateMaterial(gripRenderer, gripRelatedActions);

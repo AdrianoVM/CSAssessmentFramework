@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directInteractor: {fileID: 0}
   m_RayInteractor: {fileID: 1731629054764043773}
+  canRayInteract: 0
   m_TeleportInteractor: {fileID: 1048543577547608170}
   m_Select: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_AnchorTranslate: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f,
@@ -148,7 +149,7 @@ MonoBehaviour:
   snapTurn: {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   move: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  motionType: 2
+  motionType: 1
   turnType: 1
 --- !u!114 &131366749048842755
 MonoBehaviour:
@@ -425,6 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directInteractor: {fileID: 0}
   m_RayInteractor: {fileID: 8315695731511516289}
+  canRayInteract: 0
   m_TeleportInteractor: {fileID: 2260105276853032572}
   m_Select: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
@@ -441,7 +443,7 @@ MonoBehaviour:
     type: 3}
   move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   motionType: 0
-  turnType: 1
+  turnType: 2
 --- !u!114 &131366749472886115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,15 +968,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dynamicMoveProvider: {fileID: 6056396285941566891}
   teleportationProvider: {fileID: 2377494212811200967}
-  grabMoveProvider: {fileID: 0}
+  grabMoveProvider: {fileID: 2959235629638493892}
   snapTurnProvider: {fileID: 6881962302160247801}
   continuousTurnProvider: {fileID: 885137017385525124}
   leftHandControllerManager: {fileID: 8970361440762857730}
   rightHandControllerManager: {fileID: 8220911044289329708}
   leftHandLocomotionType: 0
-  leftHandTurnType: 1
-  rightHandLocomotionType: 2
+  leftHandTurnType: 2
+  rightHandLocomotionType: 1
   rightHandTurnType: 1
+  leftHandGrabMove: 0
+  rightHandGrabMove: 0
+  m_MoveSpeed: 2
+  m_EnableStrafe: 1
+  m_LeftHandMovementDirection: 0
+  m_RightHandMovementDirection: 0
+  m_FixDownhill: 1
+  m_DelayTime: 0
+  m_MoveFactor: 1
+  m_RequireTwoHandsForTranslation: 0
+  m_EnableRotation: 0
+  m_EnableScaling: 1
+  m_TurnAmount: 45
+  m_DebounceTime: 0.5
+  m_EnableTurnAround: 1
+  m_TurnSpeed: 60
 --- !u!114 &7232751838692026444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,7 +1034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 131366749279188634}
-  m_MoveSpeed: 3
+  m_MoveSpeed: 2
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
@@ -1078,9 +1096,9 @@ MonoBehaviour:
   m_MoveFactor: 1
   m_RequireTwoHandsForTranslation: 0
   m_EnableRotation: 0
-  m_EnableScaling: 0
+  m_EnableScaling: 1
   m_MinimumScale: 0.2
-  m_MaximumScale: 100
+  m_MaximumScale: 3
 --- !u!114 &885137017385525124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,6 +1341,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 131366749048842759}
     m_Modifications:
+    - target: {fileID: 2761784063978902503, guid: c1800acf6366418a9b5f610249000331,
+        type: 3}
+      propertyPath: m_RaycastMask.m_Bits
+      value: 2147483713
+      objectReference: {fileID: 0}
     - target: {fileID: 2761784063978902506, guid: c1800acf6366418a9b5f610249000331,
         type: 3}
       propertyPath: m_RootOrder
@@ -1606,6 +1629,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 131366749472886119}
     m_Modifications:
+    - target: {fileID: 2761784063978902503, guid: c1800acf6366418a9b5f610249000331,
+        type: 3}
+      propertyPath: m_RaycastMask.m_Bits
+      value: 2147483713
+      objectReference: {fileID: 0}
     - target: {fileID: 2761784063978902506, guid: c1800acf6366418a9b5f610249000331,
         type: 3}
       propertyPath: m_RootOrder

@@ -15,6 +15,13 @@ namespace Player
             AtPosition,
             AtPath
         }
+
+
+        private void OnEnable()
+        {
+            GameManager.GameStateChanged += OnGameStateChanged;
+        }
+
         private void Start()
         {
             _activeTerrain = Terrain.activeTerrain;
@@ -22,6 +29,14 @@ namespace Player
             _spawnPos = transform.position;
             GameManager.Instance.LastCollectiblePos = _spawnPos;
 
+        }
+        
+        private void OnGameStateChanged(GameManager.StateType state)
+        {
+            if (state == GameManager.StateType.Playing && GameManager.State == GameManager.StateType.Menu)
+            {
+                Respawn();
+            }
         }
 
         public void Respawn(SpawnPoint atSpawn = SpawnPoint.AtSpawn)
@@ -47,6 +62,11 @@ namespace Player
                 pos.y = _activeTerrain.SampleHeight(pos) + _activeTerrain.transform.position.y + 0.2f;
                 transform.position = pos;
             }
+        }
+
+        private void OnDisable()
+        {
+            GameManager.GameStateChanged -= OnGameStateChanged;
         }
     }
 }

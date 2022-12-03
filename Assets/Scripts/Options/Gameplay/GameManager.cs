@@ -14,11 +14,13 @@ namespace Options.Gameplay
         [SerializeField] private int numberOfCollectiblesToPickUp = 10;
         [SerializeField] private int gameLengthInSeconds;
         [SerializeField] private bool playFMSPrompt;
-        [SerializeField] private float FMSPromptInterval = 20f;
+        [SerializeField] private float FMSPromptInterval = 30f;
 
-        private int _pickedUpCollectibles = 0;
-        private bool _gameStarted;
-        
+        private int _pickedUpCollectibles;
+        private float _lastTimeFMSPlayed;
+        private float _playTime;
+
+        [Serializable]
         public enum StateType
         {
             Playing,
@@ -26,9 +28,25 @@ namespace Options.Gameplay
             Pause
         }
 
-        public static StateType State;
+        private static StateType _state;
+        
+        public static StateType State
+        {
+            get => _state;
+            private set
+            {
+                //This way when the event is called _state is still previous value
+                if (GameStateChanged != null) GameStateChanged(value);
+                _state = value;
+            }
+        }
+
+        public static event Action<StateType> GameStateChanged;
+
 
         public Vector3 LastCollectiblePos { get; set; } = Vector3.zero;
+
+        
 
         private void Awake()
         {
@@ -49,18 +67,44 @@ namespace Options.Gameplay
             {
                 collectibleEventChannel.OnCollectiblePickup += IncreaseCount;
             }
-
-            _gameStarted = true;
+            
+            State = StateType.Menu;
         }
 
 
         private void Update()
         {
-            if (_gameStarted)
+            if (State == StateType.Playing)
             {
-                SoundManager.PlaySound(SoundManager.Sound.FMS);
+                _playTime += Time.deltaTime;
+                if (playFMSPrompt)
+                {
+                    if (_lastTimeFMSPlayed + FMSPromptInterval < _playTime)
+                    {
+                        _lastTimeFMSPlayed = _playTime;
+                        SoundManager.PlaySound(SoundManager.Sound.FMS);
+                    }
+                }
             }
             
+            
+        }
+        
+        
+        public void StartExperiment()
+        {
+            _pickedUpCollectibles = 0;
+            State = StateType.Playing;
+        }
+
+        public void EndExperiment()
+        {
+            State = StateType.Menu;
+        }
+
+        public void PauseExperiment(bool pause)
+        {
+            State = pause ? StateType.Pause : StateType.Playing;
         }
 
 
@@ -72,6 +116,7 @@ namespace Options.Gameplay
             Debug.Log("nb of collectibles picked up: "+_pickedUpCollectibles);
             if (_pickedUpCollectibles >= numberOfCollectiblesToPickUp)
             {
+                State = StateType.Menu;
                 Debug.Log("Finished!");
             }
         }

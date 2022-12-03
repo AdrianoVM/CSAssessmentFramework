@@ -28,7 +28,7 @@ namespace Player.Movement
         public const int KUpdateOrder = XRInteractionUpdateOrder.k_Controllers - 1;
 
         
-        public static event EventHandler ActionsModified;
+        public static event Action ActionsModified;
         
         [Space]
         [Header("Interactors")]
@@ -41,6 +41,16 @@ namespace Player.Movement
         [SerializeField]
         [Tooltip("The GameObject containing the interactor used for distant/ray manipulation.")]
         XRRayInteractor m_RayInteractor;
+
+        [SerializeField]
+        [Tooltip("Whether the ray Interactor can be enabled or not.")]
+        private bool canRayInteract;
+        
+        public bool CanRayInteract
+        {
+            get => canRayInteract;
+            set => canRayInteract = value;
+        }
 
         [SerializeField]
         [Tooltip("The GameObject containing the interactor used for teleportation.")]
@@ -117,6 +127,8 @@ namespace Player.Movement
                 UpdateTurnActions();
             }
         }
+        
+        
 
 
         public InputActionReference TeleportModeActivate => teleportModeActivate;
@@ -241,7 +253,7 @@ namespace Player.Movement
         void RayInteractorUpdate()
         {
             if (m_RayInteractor != null)
-                m_RayInteractor.gameObject.SetActive(!(m_DirectHover || m_DirectSelect || m_Teleporting));
+                m_RayInteractor.gameObject.SetActive(CanRayInteract && !(m_DirectHover || m_DirectSelect || m_Teleporting));
         }
 
         void RaySelectEntered(SelectEnterEventArgs args)
@@ -414,9 +426,9 @@ namespace Player.Movement
 #pragma warning restore IDE0031
         }
 
-        private static void OnActionsModified()
+        public static void OnActionsModified()
         {
-            ActionsModified?.Invoke(null, EventArgs.Empty);
+            ActionsModified?.Invoke();
         }
     }
 }
