@@ -21,15 +21,12 @@ namespace Options.Gameplay.Activity {
 
         private void OnEnable()
         {
-            GameManager.GameStateChanged += OnGameStateChanged;
+            GameManager.GameStarted += OnGameStart;
         }
 
-        private void OnGameStateChanged(GameManager.StateType state)
+        private void OnGameStart()
         {
-            if (state == GameManager.StateType.Playing && GameManager.State == GameManager.StateType.Menu)
-            {
-                CreatePath();
-            }
+            CreatePath();
         }
 
         private void Start()
@@ -101,7 +98,7 @@ namespace Options.Gameplay.Activity {
                 col.OnPickedUp -= OnCollectiblePickup;
             }
 
-            GameManager.GameStateChanged -= OnGameStateChanged;
+            GameManager.GameStarted -= OnGameStart;
         }
     }
 }

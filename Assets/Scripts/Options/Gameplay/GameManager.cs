@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using Options.Gameplay.Activity;
 using ScriptableObjects;
+using TMPro;
 using UnityEngine;
 using Utilities;
 
@@ -11,14 +13,38 @@ namespace Options.Gameplay
         public static GameManager Instance;
         
         [SerializeField] private CollectiblePickUpSO collectibleEventChannel;
+        [Tooltip("Number of Collectibles to pick up to finish Experiment, 0 means infinity")]
         [SerializeField] private int numberOfCollectiblesToPickUp = 10;
-        [SerializeField] private int gameLengthInSeconds;
+
+        public int NumberOfCollectiblesToPickUp
+        {
+            get => numberOfCollectiblesToPickUp;
+            set => numberOfCollectiblesToPickUp = Mathf.Max(value, 0);
+        }
+
+        [Tooltip("Experiment length in seconds, 0 means infinity")]
+        [SerializeField] private int experimentLength = 30;
+
+        public int ExperimentLength
+        {
+            get => experimentLength;
+            set => experimentLength = Mathf.Max(value, 0);
+        }
+
         [SerializeField] private bool playFMSPrompt;
+
         [SerializeField] private float FMSPromptInterval = 30f;
 
+
+
         private int _pickedUpCollectibles;
+        public int PickedUpCollectibles => _pickedUpCollectibles;
+
         private float _lastTimeFMSPlayed;
+
         private float _playTime;
+
+        public float PlayTime => _playTime;
 
         [Serializable]
         public enum StateType
@@ -29,7 +55,8 @@ namespace Options.Gameplay
         }
 
         private static StateType _state;
-        
+
+
         public static StateType State
         {
             get => _state;
@@ -43,10 +70,13 @@ namespace Options.Gameplay
 
         public static event Action<StateType> GameStateChanged;
 
+        public static event Action GameStarted;
+
+        public static event Action GameEnded;
+
 
         public Vector3 LastCollectiblePos { get; set; } = Vector3.zero;
 
-        
 
         private void Awake()
         {
@@ -56,6 +86,7 @@ namespace Options.Gameplay
                 return;
             }
             Instance = this;
+            Debug.Log("created instance");
             DontDestroyOnLoad(gameObject);
             
             SoundManager.Initialize();
@@ -67,6 +98,8 @@ namespace Options.Gameplay
             {
                 collectibleEventChannel.OnCollectiblePickup += IncreaseCount;
             }
+
+            
             
             State = StateType.Menu;
         }
@@ -76,14 +109,22 @@ namespace Options.Gameplay
         {
             if (State == StateType.Playing)
             {
-                _playTime += Time.deltaTime;
+                _playTime = PlayTime + Time.deltaTime;
+                
+                
                 if (playFMSPrompt)
                 {
-                    if (_lastTimeFMSPlayed + FMSPromptInterval < _playTime)
+                    if (_lastTimeFMSPlayed + FMSPromptInterval < PlayTime)
                     {
-                        _lastTimeFMSPlayed = _playTime;
+                        _lastTimeFMSPlayed = PlayTime;
                         SoundManager.PlaySound(SoundManager.Sound.FMS);
                     }
+                }
+
+                if (ExperimentLength > 0 && PlayTime > ExperimentLength)
+                {
+                    Debug.Log("Experiment Finished! (timeout)");
+                    EndExperiment();
                 }
             }
             
@@ -94,12 +135,15 @@ namespace Options.Gameplay
         public void StartExperiment()
         {
             _pickedUpCollectibles = 0;
+            _playTime = 0;
             State = StateType.Playing;
+            if (GameStarted != null) GameStarted();
         }
 
         public void EndExperiment()
         {
             State = StateType.Menu;
+            if (GameEnded != null) GameEnded();
         }
 
         public void PauseExperiment(bool pause)
@@ -112,15 +156,15 @@ namespace Options.Gameplay
         {
             _pickedUpCollectibles++;
             LastCollectiblePos = collectible.transform.position;
-            Debug.Log("Collected: " + collectible.name + " at "+collectible.transform.position);
-            Debug.Log("nb of collectibles picked up: "+_pickedUpCollectibles);
-            if (_pickedUpCollectibles >= numberOfCollectiblesToPickUp)
+
+            if (NumberOfCollectiblesToPickUp > 0 && _pickedUpCollectibles >= NumberOfCollectiblesToPickUp)
             {
-                State = StateType.Menu;
                 Debug.Log("Finished!");
+                EndExperiment();
             }
         }
         
+
         private void OnDisable()
         {
             if (collectibleEventChannel)
