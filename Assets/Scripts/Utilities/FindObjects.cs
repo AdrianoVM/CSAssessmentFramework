@@ -36,7 +36,7 @@ namespace Utilities
             Debug.Log("Not found: "+nameToken);
             return null;
         }
-
+        #if UNITY_EDITOR
         /// <summary>
         /// Finds an Object in the Assets.
         /// </summary>
@@ -54,5 +54,6 @@ namespace Utilities
             }
             return AssetDatabase.LoadAssetAtPath(path,type);
         }
+        #endif
     }
 }

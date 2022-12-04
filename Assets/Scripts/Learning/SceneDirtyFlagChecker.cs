@@ -6,6 +6,7 @@ namespace Learning
     public class SceneDirtyFlagChecker : MonoBehaviour 
     { 
    
+#if UNITY_EDITOR
         static SceneDirtyFlagChecker() 
         { 
             Undo.postprocessModifications += OnPostProcessModifications; 
@@ -20,5 +21,6 @@ namespace Learning
             } 
             return propertyModifications; 
         } 
+#endif
     } 
 }

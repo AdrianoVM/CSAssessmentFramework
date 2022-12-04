@@ -61,10 +61,12 @@ namespace Utilities.Json.Converters
             writer.WriteValue(value.sound);
             writer.WritePropertyName(nameof(value.volume));
             writer.WriteValue(value.volume);
+#if UNITY_EDITOR
             writer.WritePropertyName(nameof(value.audioClip));
             writer.WriteValue(AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(value.audioClip)));
             writer.WritePropertyName(nameof(value.audioMixerGroup));
             writer.WriteValue(AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(value.audioMixerGroup)));
+#endif
             //AudioMixerGroups are stored in a single asset.
             writer.WritePropertyName(nameof(value.audioMixerGroup)+"Name");
             writer.WriteValue(value.audioMixerGroup.name);

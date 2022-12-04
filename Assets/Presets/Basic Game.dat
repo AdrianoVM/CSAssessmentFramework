@@ -7,7 +7,7 @@
       "expandOption": true,
       "Mono": {
         "TargetTerrain": {
-          "ID": "29984",
+          "ID": "52016",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Terrain, UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "Terrain"
@@ -25,7 +25,7 @@
         "angle": 1,
         "angleApplyToZNotX": false,
         "rotateWithTerrain": {
-          "ID": "30142",
+          "ID": "52428",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "Rotate With Terrain"
@@ -38,6 +38,10 @@
       "EnableOption": true,
       "expandOption": true,
       "Mono": {
+        "NumberOfCollectiblesToPickUp": 10,
+        "ExperimentLength": 320,
+        "PickedUpCollectibles": 0,
+        "PlayTime": 0.0,
         "LastCollectiblePos": {
           "x": 0.0,
           "y": 0.0,
@@ -50,7 +54,7 @@
           "ObjectName": "CollectiblePickUpChannelSO"
         },
         "numberOfCollectiblesToPickUp": 10,
-        "gameLengthInSeconds": 0,
+        "experimentLength": 320,
         "playFMSPrompt": true,
         "FMSPromptInterval": 30.0
       }
@@ -64,7 +68,7 @@
         "spacing": 10.0,
         "numberOfVisibleCollectibles": 5,
         "pathCreator": {
-          "ID": "30134",
+          "ID": "52420",
           "IsAsset": false,
           "ObjectType": "PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "CollectiblesPath"
@@ -130,6 +134,14 @@
             "audioMixerGroup": "c811e67997d4911459b8004038457190",
             "audioMixerGroupName": "Master",
             "minRepetitionDelay": 5.0
+          },
+          {
+            "sound": 2,
+            "volume": 0.5,
+            "audioClip": "ebb836c5e253c324e9d0c23c716b78c6",
+            "audioMixerGroup": "c811e67997d4911459b8004038457190",
+            "audioMixerGroupName": "Master",
+            "minRepetitionDelay": 5.0
           }
         ]
       }
@@ -143,7 +155,7 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "-1374",
+          "ID": "52658",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"
@@ -159,7 +171,7 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "-1374",
+          "ID": "52658",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"
@@ -181,45 +193,45 @@
         "RightHandLocomotionType": "Discrete",
         "RightHandTurnType": "Discrete",
         "LeftHandGrabMove": true,
-        "RightHandGrabMove": false,
+        "RightHandGrabMove": true,
         "dynamicMoveProvider": {
-          "ID": "-1338",
+          "ID": "52834",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedDynamicMoveProvider, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
         },
         "teleportationProvider": {
-          "ID": "-1346",
+          "ID": "52826",
           "IsAsset": false,
           "ObjectType": "UnityEngine.XR.Interaction.Toolkit.TeleportationProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
         },
         "grabMoveProvider": {
-          "ID": "-1340",
+          "ID": "52832",
           "IsAsset": false,
           "ObjectType": "UnityEngine.XR.Interaction.Toolkit.TwoHandedGrabMoveProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
         },
         "snapTurnProvider": {
-          "ID": "-1344",
+          "ID": "52828",
           "IsAsset": false,
           "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedSnapTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
         },
         "continuousTurnProvider": {
-          "ID": "-1342",
+          "ID": "52830",
           "IsAsset": false,
           "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedContinuousTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "XR Origin"
         },
         "leftHandControllerManager": {
-          "ID": "-1380",
+          "ID": "52284",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "LeftHand Controller"
         },
         "rightHandControllerManager": {
-          "ID": "-1548",
+          "ID": "52224",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "RightHand Controller"
@@ -229,14 +241,14 @@
         "rightHandLocomotionType": "Discrete",
         "rightHandTurnType": "Discrete",
         "leftHandGrabMove": true,
-        "rightHandGrabMove": false,
-        "m_MoveSpeed": 2.0,
+        "rightHandGrabMove": true,
+        "m_MoveSpeed": 3.0,
         "m_EnableStrafe": true,
         "m_LeftHandMovementDirection": "HeadRelative",
         "m_RightHandMovementDirection": "HeadRelative",
         "m_FixDownhill": true,
         "m_DelayTime": 0.0,
-        "m_MoveFactor": 1.0,
+        "m_MoveFactor": 3.0,
         "m_RequireTwoHandsForTranslation": false,
         "m_EnableRotation": false,
         "m_EnableScaling": true,

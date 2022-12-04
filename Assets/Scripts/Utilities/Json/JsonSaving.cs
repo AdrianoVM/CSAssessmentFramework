@@ -215,6 +215,7 @@ namespace Utilities.Json
             ObjectName = objectName;
         }
 
+#if UNITY_EDITOR
         public static object FindObjectByID(ObjectID objectID)
         {
             Object o = null;
@@ -236,5 +237,6 @@ namespace Utilities.Json
             }
             return o;
         }
+#endif
     }
 }

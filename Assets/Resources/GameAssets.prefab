@@ -55,12 +55,18 @@ MonoBehaviour:
   - sound: 1
     audioClip: {fileID: 8300000, guid: 86fef823688d30542936718143c5d646, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 0.95
     minRepetitionDelay: 5
     audioMixerGroup: {fileID: 24300002, guid: c811e67997d4911459b8004038457190, type: 2}
   - sound: 1
     audioClip: {fileID: 8300000, guid: 97be786f182e7e34ea8ffbda5ba63d21, type: 3}
     volume: 1
+    pitch: 0.95
+    minRepetitionDelay: 5
+    audioMixerGroup: {fileID: 24300002, guid: c811e67997d4911459b8004038457190, type: 2}
+  - sound: 2
+    audioClip: {fileID: 8300000, guid: ebb836c5e253c324e9d0c23c716b78c6, type: 3}
+    volume: 0.5
     pitch: 1
     minRepetitionDelay: 5
     audioMixerGroup: {fileID: 24300002, guid: c811e67997d4911459b8004038457190, type: 2}

@@ -11,7 +11,7 @@ namespace Utilities.Json
 {
     public class MonoContractResolver : UnityTypeContractResolver
     {
-        public new static readonly MonoContractResolver Instance = new MonoContractResolver();
+        public static readonly MonoContractResolver Instance = new();
         
 
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)

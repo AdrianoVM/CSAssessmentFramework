@@ -37,14 +37,22 @@ namespace Utilities.Json.Converters
                 if (obj != null)
                 {
                     // If it is in the scene
-                    if (obj.GetType().IsSubclassOf(typeof(Component)) && !EditorUtility.IsPersistent(obj))
+                    bool isP;
+#if UNITY_EDITOR
+                    isP = !EditorUtility.IsPersistent(obj);
+#else
+                    isP = false;
+#endif
+                    if (obj.GetType().IsSubclassOf(typeof(Component)) && isP)
                     {
                         path = obj.GetInstanceID().ToString();
                     }
                     else
                     {
+#if UNITY_EDITOR
                         isAsset = true;
                         path = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(obj));
+#endif
                     }
                 }
                 var objInfo = new ObjectID(path, isAsset, obj != null ? obj.GetType() : null, obj != null ? obj.name : null);
@@ -101,7 +109,13 @@ namespace Utilities.Json.Converters
             foreach ((JToken token, var idx) in arr.WithIndex())
             {
                 var readId = token.ToObject<ObjectID>();
-                var found = ObjectID.FindObjectByID(readId);
+                object found;
+                
+#if UNITY_EDITOR
+                found = ObjectID.FindObjectByID(readId);
+#else
+                found = null;
+#endif
                 if (existingObjs.Count <= idx)
                 {
                     objectList.Add(found);

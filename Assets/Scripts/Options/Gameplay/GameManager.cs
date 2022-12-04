@@ -142,6 +142,7 @@ namespace Options.Gameplay
 
         public void EndExperiment()
         {
+            SoundManager.PlaySound(SoundManager.Sound.GameEnd);
             State = StateType.Menu;
             if (GameEnded != null) GameEnded();
         }
@@ -162,6 +163,11 @@ namespace Options.Gameplay
                 Debug.Log("Finished!");
                 EndExperiment();
             }
+        }
+
+        public static void ExitApplication()
+        {
+            Application.Quit();
         }
         
 

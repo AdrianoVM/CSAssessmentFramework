@@ -28,7 +28,10 @@ namespace Utilities.Json.Converters
         
         public static void ReplaceValueWithID<T>(ref T param, string id, string objectName) where T : class
         {
-            var asset = FindObjects.FindInAssets(id, typeof(T)) as T;
+            T asset = null;
+#if UNITY_EDITOR
+            asset = FindObjects.FindInAssets(id, typeof(T)) as T;
+#endif
             if (asset != null)
             {
                 param = asset;
