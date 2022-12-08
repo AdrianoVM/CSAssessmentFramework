@@ -3,6 +3,7 @@ using System.Globalization;
 using Options.Gameplay.Activity;
 using ScriptableObjects;
 using TMPro;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using Utilities;
 
@@ -35,7 +36,7 @@ namespace Options.Gameplay
 
         [SerializeField] private float FMSPromptInterval = 30f;
 
-
+        public XROrigin XROrigin { get; set; }
 
         private int _pickedUpCollectibles;
         public int PickedUpCollectibles => _pickedUpCollectibles;
@@ -78,6 +79,9 @@ namespace Options.Gameplay
         public Vector3 LastCollectiblePos { get; set; } = Vector3.zero;
 
 
+        /// <summary>
+        /// This Class executes its awake before others
+        /// </summary>
         private void Awake()
         {
             if (Instance != null)
@@ -88,7 +92,7 @@ namespace Options.Gameplay
             Instance = this;
             Debug.Log("created instance");
             DontDestroyOnLoad(gameObject);
-            
+            XROrigin = FindObjectOfType<XROrigin>();
             SoundManager.Initialize();
         }
 
@@ -98,8 +102,6 @@ namespace Options.Gameplay
             {
                 collectibleEventChannel.OnCollectiblePickup += IncreaseCount;
             }
-
-            
             
             State = StateType.Menu;
         }

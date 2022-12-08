@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Options.Gameplay;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -50,6 +51,8 @@ namespace Player
             Respawn(SpawnPoint.AtPosition);
             _spawnPos = transform.position;
             GameManager.Instance.LastCollectiblePos = _spawnPos;
+            // When loading a new scene, this updates the reference correctly.
+            GameManager.Instance.XROrigin = GetComponent<XROrigin>();
         }
 
         private void OnGameStart()

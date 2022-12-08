@@ -30,49 +30,66 @@ namespace Options.Movement
 
         [SerializeField] private MovementType leftHandLocomotionType;
 
-        public MovementType LeftHandLocomotionType
+        public MovementType LeftHandLocomotionType => leftHandLocomotionType;
+
+        public void SetLeftHandLocomotionType(MovementType type)
         {
-            get => leftHandLocomotionType;
-            set
-            {
-                UpdateLeftLocomotion(value, leftHandTurnType);
-                leftHandLocomotionType = value;
-            }
+            UpdateLeftLocomotion(type, leftHandTurnType);
+            leftHandLocomotionType = type;
         }
+        
+        public void SetLeftHandLocomotionType(int enumInt)
+        {
+            SetLeftHandLocomotionType((MovementType) enumInt);
+        }
+        
 
         [SerializeField] private MovementType leftHandTurnType;
 
-        public MovementType LeftHandTurnType
+        public MovementType LeftHandTurnType => leftHandTurnType;
+
+        public void SetLeftHandTurnType(MovementType type)
         {
-            get => leftHandTurnType;
-            set
-            {
-                UpdateLeftLocomotion(leftHandLocomotionType, value);
-                leftHandTurnType = value;
-            }
+            UpdateLeftLocomotion(LeftHandLocomotionType, type);
+            leftHandTurnType = type;
         }
 
-        [SerializeField] private MovementType rightHandLocomotionType;
-        public MovementType RightHandLocomotionType
+        public void SetLeftHandTurnType(int enumInt)
         {
-            get => rightHandLocomotionType;
-            set
-            {
-                UpdateRightLocomotion(value, rightHandTurnType);
-                rightHandLocomotionType = value;
-            }
+            SetLeftHandTurnType((MovementType) enumInt);
         }
+        
+        
+
+        [SerializeField] private MovementType rightHandLocomotionType;
+        public MovementType RightHandLocomotionType => rightHandLocomotionType;
+
+
+        public void SetRightHandLocomotionType(MovementType type)
+        {
+            UpdateLeftLocomotion(type, rightHandTurnType);
+            rightHandLocomotionType = type;
+        }
+        
+        public void SetRightHandLocomotionType(int enumInt)
+        {
+            SetRightHandLocomotionType((MovementType) enumInt);
+        }
+        
 
         [SerializeField] private MovementType rightHandTurnType;
 
-        public MovementType RightHandTurnType
+        public MovementType RightHandTurnType => rightHandTurnType;
+
+        public void SetRightHandTurnType(MovementType type)
         {
-            get => rightHandTurnType;
-            set
-            {
-                UpdateRightLocomotion(rightHandLocomotionType, value);
-                rightHandTurnType = value;
-            }
+            UpdateLeftLocomotion(rightHandLocomotionType, type);
+            rightHandTurnType = type;
+        }
+
+        public void SetRightHandTurnType(int enumInt)
+        {
+            SetRightHandTurnType((MovementType) enumInt);
         }
 
 

@@ -978,15 +978,15 @@ MonoBehaviour:
   leftHandTurnType: 2
   rightHandLocomotionType: 1
   rightHandTurnType: 1
-  leftHandGrabMove: 0
-  rightHandGrabMove: 0
-  m_MoveSpeed: 2
+  leftHandGrabMove: 1
+  rightHandGrabMove: 1
+  m_MoveSpeed: 3
   m_EnableStrafe: 1
   m_LeftHandMovementDirection: 0
   m_RightHandMovementDirection: 0
   m_FixDownhill: 1
   m_DelayTime: 0
-  m_MoveFactor: 1
+  m_MoveFactor: 2
   m_RequireTwoHandsForTranslation: 0
   m_EnableRotation: 0
   m_EnableScaling: 1
@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 131366749279188634}
-  m_MoveSpeed: 2
+  m_MoveSpeed: 3
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_LeftGrabMoveProvider: {fileID: 8917058857840090490}
   m_RightGrabMoveProvider: {fileID: 2615764235116868232}
   m_OverrideSharedSettingsOnInit: 1
-  m_MoveFactor: 1
+  m_MoveFactor: 2
   m_RequireTwoHandsForTranslation: 0
   m_EnableRotation: 0
   m_EnableScaling: 1
