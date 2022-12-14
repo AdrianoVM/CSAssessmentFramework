@@ -45,12 +45,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - monoBehaviour: {fileID: 0}
-    monoName: New Option
-    enableOption: 1
-    expandOption: 1
+  - rid: 5952884899374432301
+  - rid: 5952884926967185408
+  - rid: 6451058159429877760
   globalInfo: {fileID: 11400000, guid: 25e517d2b7453e4429afbd1e4b0f3205, type: 2}
   managerName: Vision
+  managerPath: C:/Unity/CSFramework/Assets/Presets/ReducedFOV.dat
+  showFileButtons: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5952884899374432301
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: Main Camera
+        MonoTypeName: Options.Vision.ConstantReducedFOV, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
+    - rid: 5952884926967185408
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: Main Camera
+        MonoTypeName: Options.Vision.DepthOfField, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
+    - rid: 6451058159429877760
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: Main Camera
+        MonoTypeName: Options.Vision.DynamicFOVFilter, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
 --- !u!1 &355805847990095047
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,12 +127,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - monoBehaviour: {fileID: 0}
-    monoName: New Option
-    enableOption: 1
-    expandOption: 1
+  - rid: 1000
+  - rid: 5952885059868688407
+  - rid: 5952885112446910482
+  - rid: 5952885112446910483
+  - rid: 5952885289636069376
   globalInfo: {fileID: 11400000, guid: 25e517d2b7453e4429afbd1e4b0f3205, type: 2}
   managerName: Environment
+  managerPath: C:/Unity/CSFramework/Assets/Presets/Terrain.dat
+  showFileButtons: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 1000
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: Terrain
+        MonoTypeName: Options.Environment.TerrainModifier, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
+    - rid: 5952885059868688407
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: Game Manager
+        MonoTypeName: Options.Gameplay.GameManager, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
+    - rid: 5952885112446910482
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: CollectiblesPath
+        MonoTypeName: Options.Gameplay.Activity.CollectiblePlacer, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
+    - rid: 5952885112446910483
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: CollectiblesPath
+        MonoTypeName: PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
+    - rid: 5952885289636069376
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: -7278854398342408236, guid: 6941212cf0fcb30498dd568e882e175a,
+          type: 3}
+        monoName: GameAssets
+        MonoTypeName: Utilities.GameAssets, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
 --- !u!1 &2015816488260301724
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +216,7 @@ Transform:
   - {fileID: 550215468494247625}
   - {fileID: 8309510887617064160}
   - {fileID: 6204343801552584658}
+  - {fileID: 3956230515298655411}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -181,9 +265,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - monoBehaviour: {fileID: 0}
-    monoName: New Option
-    enableOption: 1
-    expandOption: 1
+  - rid: 5952884899374432303
   globalInfo: {fileID: 11400000, guid: 25e517d2b7453e4429afbd1e4b0f3205, type: 2}
   managerName: Movement
+  managerPath: C:/Unity/CSFramework/Assets/Presets/MovementTest.dat
+  showFileButtons: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5952884899374432303
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: XR Origin
+        MonoTypeName: Options.Movement.LocomotionHandler, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        enableOption: 1
+        expandOption: 1
+--- !u!1 &5202878115511545833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3956230515298655411}
+  - component: {fileID: 6262373218223120419}
+  m_Layer: 0
+  m_Name: ExperimentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3956230515298655411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202878115511545833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1112478915089302274}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6262373218223120419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202878115511545833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff8446ba6ab4898968bab359640501b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - rid: 6451058253346111488
+  globalInfo: {fileID: 11400000, guid: 25e517d2b7453e4429afbd1e4b0f3205, type: 2}
+  managerName: Experiment
+  managerPath: 
+  showFileButtons: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6451058253346111488
+      type: {class: InspectorOption, ns: Options, asm: Assembly-CSharp}
+      data:
+        monoBehaviour: {fileID: 0}
+        monoName: New Option
+        MonoTypeName: 
+        enableOption: 1
+        expandOption: 1

@@ -9,9 +9,9 @@ using Utilities;
 
 namespace Options.Gameplay
 {
-    public class GameManager : MonoBehaviour
+    public class GameHandler : MonoBehaviour
     {
-        public static GameManager Instance;
+        public static GameHandler Instance;
         
         [SerializeField] private CollectiblePickUpSO collectibleEventChannel;
         [Tooltip("Number of Collectibles to pick up to finish Experiment, 0 means infinity")]
@@ -37,6 +37,8 @@ namespace Options.Gameplay
         [SerializeField] private float FMSPromptInterval = 30f;
 
         public XROrigin XROrigin { get; set; }
+        
+        public float StartTime { get; private set; }
 
         private int _pickedUpCollectibles;
         public int PickedUpCollectibles => _pickedUpCollectibles;
@@ -138,6 +140,7 @@ namespace Options.Gameplay
         {
             _pickedUpCollectibles = 0;
             _playTime = 0;
+            StartTime = Time.time;
             State = StateType.Playing;
             if (GameStarted != null) GameStarted();
         }

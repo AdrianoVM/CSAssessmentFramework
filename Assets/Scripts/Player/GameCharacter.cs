@@ -27,8 +27,8 @@ namespace Player
 
         private void OnEnable()
         {
-            GameManager.GameStarted += OnGameStart;
-            GameManager.GameEnded += OnGameEnd;
+            GameHandler.GameStarted += OnGameStart;
+            GameHandler.GameEnded += OnGameEnd;
         }
 
         private void Start()
@@ -50,9 +50,9 @@ namespace Player
             _activeTerrain = Terrain.activeTerrain;
             Respawn(SpawnPoint.AtPosition);
             _spawnPos = transform.position;
-            GameManager.Instance.LastCollectiblePos = _spawnPos;
+            GameHandler.Instance.LastCollectiblePos = _spawnPos;
             // When loading a new scene, this updates the reference correctly.
-            GameManager.Instance.XROrigin = GetComponent<XROrigin>();
+            GameHandler.Instance.XROrigin = GetComponent<XROrigin>();
         }
 
         private void OnGameStart()
@@ -67,7 +67,7 @@ namespace Player
 
         public void Respawn(SpawnPoint atSpawn = SpawnPoint.AtSpawn)
         {
-            if (GameManager.State == GameManager.StateType.Playing)
+            if (GameHandler.State == GameHandler.StateType.Playing)
             {
                 StartCoroutine(ChangeVignette(false,2));
             }
@@ -78,7 +78,7 @@ namespace Player
                 switch (atSpawn)
                 {
                     case SpawnPoint.AtPath:
-                        pos = GameManager.Instance.LastCollectiblePos;
+                        pos = GameHandler.Instance.LastCollectiblePos;
                         break;
                     case SpawnPoint.AtPosition:
                         pos = transform.position;
@@ -129,8 +129,8 @@ namespace Player
 
         private void OnDisable()
         {
-            GameManager.GameStarted -= OnGameStart;
-            GameManager.GameEnded -= OnGameEnd;
+            GameHandler.GameStarted -= OnGameStart;
+            GameHandler.GameEnded -= OnGameEnd;
         }
     }
 }

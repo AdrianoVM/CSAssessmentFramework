@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DataSaving;
 using Options.Gameplay;
 using Options.Movement;
 using TMPro;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Gameplay
 {
-    public class GameManagerUI : MonoBehaviour
+    public class GameHandlerUI : MonoBehaviour
     {
         [SerializeField] private Button startExperimentButton;
         [SerializeField] private Button endExperimentButton;
@@ -19,7 +20,9 @@ namespace Gameplay
 
         [SerializeField] private TextMeshProUGUI collectiblesLabel;
         [SerializeField] private TMP_InputField collectiblesInput;
-        
+
+        [Header("Locomotion options")] 
+        [SerializeField] private GameObject locomotionHolder;
         [SerializeField] private TMP_Dropdown leftLocDropdown;
         [SerializeField] private TMP_Dropdown rightLocDropdown;
         [SerializeField] private TMP_Dropdown leftTurnDropdown;
@@ -27,22 +30,30 @@ namespace Gameplay
         [SerializeField] private Toggle leftHandGrabToggle;
         [SerializeField] private Toggle rightHandGrabToggle;
         
-        private GameManager _gM;
+        [Header("Data Saving")]
+        [SerializeField] private GameObject savingHolder;
+        [SerializeField] private TextMeshProUGUI fileNameLabel;
+        [SerializeField] private TextMeshProUGUI savedNotificationLabel;
+        
+        private GameHandler _gM;
         private LocomotionHandler _locomotionHandler;
 
 
         private void OnEnable()
         {
             
-            GameManager.GameStateChanged += GameManagerOnGameStateChanged;
-            
+            GameHandler.GameStateChanged += GameManagerOnGameStateChanged;
+            // no unsubscribing with anonymous functions
+            DataSaver.FolderChanged += (v) => fileNameLabel.text = v;
+            DataSaver.DataSaved += (v) => savedNotificationLabel.gameObject.SetActive(v);
         }
 
         private void Start()
         {
-            _gM = GameManager.Instance;
+            _gM = GameHandler.Instance;
             _locomotionHandler = _gM.XROrigin.GetComponent<LocomotionHandler>();
             endExperimentButton.gameObject.SetActive(false);
+            savedNotificationLabel.gameObject.SetActive(false);
             if (timeLabel != null && timeInput != null)
             {
                 var t = _gM.ExperimentLength > 0 ? _gM.ExperimentLength.ToString() : "∞";
@@ -78,7 +89,7 @@ namespace Gameplay
 
         private void Update()
         {
-            if (GameManager.State == GameManager.StateType.Playing)
+            if (GameHandler.State == GameHandler.StateType.Playing)
             {
                 if (timeLabel != null)
                 {
@@ -105,11 +116,13 @@ namespace Gameplay
             _gM.ExperimentLength = i;
         }
 
-        private void GameManagerOnGameStateChanged(GameManager.StateType state)
+        private void GameManagerOnGameStateChanged(GameHandler.StateType state)
         {
             switch (state)
             {
-                case GameManager.StateType.Menu:
+                case GameHandler.StateType.Menu:
+                    savingHolder.SetActive(true);
+                    locomotionHolder.SetActive(true);
                     startExperimentButton.gameObject.SetActive(true);
                     endExperimentButton.gameObject.SetActive(false);
                     timeInput.interactable = true;
@@ -118,7 +131,9 @@ namespace Gameplay
                     collectiblesLabel.text = (_gM != null ? _gM.PickedUpCollectibles.ToString() : 0) + " / ";
                     break;
                 
-                case GameManager.StateType.Playing:
+                case GameHandler.StateType.Playing:
+                    savingHolder.SetActive(false);
+                    locomotionHolder.SetActive(false);
                     startExperimentButton.gameObject.SetActive(false);
                     endExperimentButton.gameObject.SetActive(true);
                     timeInput.interactable = false;
@@ -135,7 +150,7 @@ namespace Gameplay
 
         private void OnDisable()
         {
-            GameManager.GameStateChanged -= GameManagerOnGameStateChanged;
+            GameHandler.GameStateChanged -= GameManagerOnGameStateChanged;
         }
     }
 }

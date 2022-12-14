@@ -877,8 +877,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postProcessing: {fileID: 608504448}
+  blurIntensity: 20
+  constantBlur: 0
   blurStartDistance: 50
   blurMaxDistance: 50
+  dynamicBlur: 0
+  dynamicBlurStartDistance: 0
+  dynamicBlurMaxDistance: 0
 --- !u!114 &131366749279188636
 MonoBehaviour:
   m_ObjectHideFlags: 0

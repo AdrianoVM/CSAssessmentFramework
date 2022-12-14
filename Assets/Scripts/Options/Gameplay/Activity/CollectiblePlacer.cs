@@ -21,7 +21,7 @@ namespace Options.Gameplay.Activity {
 
         private void OnEnable()
         {
-            GameManager.GameStarted += OnGameStart;
+            GameHandler.GameStarted += OnGameStart;
         }
 
         private void OnGameStart()
@@ -98,7 +98,7 @@ namespace Options.Gameplay.Activity {
                 col.OnPickedUp -= OnCollectiblePickup;
             }
 
-            GameManager.GameStarted -= OnGameStart;
+            GameHandler.GameStarted -= OnGameStart;
         }
     }
 }

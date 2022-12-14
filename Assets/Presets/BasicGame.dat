@@ -1,4 +1,82 @@
 {
+  "MovementManager": [
+    {
+      "monoName": "XR Origin",
+      "MonoType": "Options.Movement.LocomotionHandler, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "LeftHandLocomotionType": "Continuous",
+        "LeftHandTurnType": "Disabled",
+        "RightHandLocomotionType": "Discrete",
+        "RightHandTurnType": "Discrete",
+        "LeftHandGrabMove": true,
+        "RightHandGrabMove": true,
+        "dynamicMoveProvider": {
+          "ID": "-1306",
+          "IsAsset": false,
+          "ObjectType": "Player.Movement.ExtendedDynamicMoveProvider, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "teleportationProvider": {
+          "ID": "-1314",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.TeleportationProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "grabMoveProvider": {
+          "ID": "-1308",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.TwoHandedGrabMoveProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "snapTurnProvider": {
+          "ID": "-1312",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedSnapTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "continuousTurnProvider": {
+          "ID": "-1310",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedContinuousTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "XR Origin"
+        },
+        "leftHandControllerManager": {
+          "ID": "-1350",
+          "IsAsset": false,
+          "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "LeftHand Controller"
+        },
+        "rightHandControllerManager": {
+          "ID": "-1518",
+          "IsAsset": false,
+          "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "RightHand Controller"
+        },
+        "leftHandLocomotionType": "Continuous",
+        "leftHandTurnType": "Disabled",
+        "rightHandLocomotionType": "Discrete",
+        "rightHandTurnType": "Discrete",
+        "leftHandGrabMove": true,
+        "rightHandGrabMove": true,
+        "m_MoveSpeed": 3.0,
+        "m_EnableStrafe": true,
+        "m_LeftHandMovementDirection": "HeadRelative",
+        "m_RightHandMovementDirection": "HeadRelative",
+        "m_FixDownhill": true,
+        "m_DelayTime": 0.0,
+        "m_MoveFactor": 2.0,
+        "m_RequireTwoHandsForTranslation": false,
+        "m_EnableRotation": false,
+        "m_EnableScaling": true,
+        "m_TurnAmount": 45.0,
+        "m_DebounceTime": 0.5,
+        "m_EnableTurnAround": true,
+        "m_TurnSpeed": 60.0
+      }
+    }
+  ],
   "EnvironmentManager": [
     {
       "monoName": "Terrain",
@@ -7,7 +85,7 @@
       "expandOption": true,
       "Mono": {
         "TargetTerrain": {
-          "ID": "30278",
+          "ID": "30356",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Terrain, UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "Terrain"
@@ -25,39 +103,11 @@
         "angle": 1,
         "angleApplyToZNotX": false,
         "rotateWithTerrain": {
-          "ID": "30724",
+          "ID": "30856",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "Rotate With Terrain"
+          "ObjectName": "Black Volume"
         }
-      }
-    },
-    {
-      "monoName": "Game Manager",
-      "MonoType": "Options.Gameplay.GameManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "EnableOption": true,
-      "expandOption": true,
-      "Mono": {
-        "NumberOfCollectiblesToPickUp": 10,
-        "ExperimentLength": 320,
-        "XROrigin": null,
-        "PickedUpCollectibles": 0,
-        "PlayTime": 0.0,
-        "LastCollectiblePos": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        },
-        "collectibleEventChannel": {
-          "ID": "60b2c797e3ce4314cbc0316fe664468a",
-          "IsAsset": true,
-          "ObjectType": "ScriptableObjects.CollectiblePickUpSO, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "CollectiblePickUpChannelSO"
-        },
-        "numberOfCollectiblesToPickUp": 10,
-        "experimentLength": 320,
-        "playFMSPrompt": true,
-        "FMSPromptInterval": 30.0
       }
     },
     {
@@ -69,7 +119,7 @@
         "spacing": 10.0,
         "numberOfVisibleCollectibles": 5,
         "pathCreator": {
-          "ID": "30706",
+          "ID": "30834",
           "IsAsset": false,
           "ObjectType": "PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "CollectiblesPath"
@@ -103,6 +153,107 @@
         "EditorData": {},
         "editorData": {},
         "initialized": true
+      }
+    }
+  ],
+  "VisionManager": [
+    {
+      "monoName": "Main Camera",
+      "MonoType": "Options.Vision.ConstantReducedFOV, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "postProcessing": {
+          "ID": "-1338",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "PostProcess"
+        },
+        "intensity": 0.364,
+        "smoothness": 0.371
+      }
+    },
+    {
+      "monoName": "Main Camera",
+      "MonoType": "Options.Vision.DepthOfField, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "postProcessing": {
+          "ID": "-1338",
+          "IsAsset": false,
+          "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "PostProcess"
+        },
+        "blurIntensity": 0.5,
+        "constantBlur": false,
+        "blurStartDistance": 0.0,
+        "blurMaxDistance": 0.1,
+        "dynamicBlur": true,
+        "dynamicBlurStartDistance": 0.0,
+        "dynamicBlurMaxDistance": 5.0
+      }
+    },
+    {
+      "monoName": "Main Camera",
+      "MonoType": "Options.Vision.DynamicFOVFilter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "filter": {
+          "ID": "",
+          "IsAsset": true,
+          "ObjectType": "UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "DynamicFov"
+        },
+        "decaySpeed": 2.0,
+        "minFilterScale": 0.6,
+        "maxFilterScale": 1.0,
+        "decayRate": -0.005,
+        "angluarSpeedModifier": 0.0001,
+        "translationSpeedModifier": 0.001
+      }
+    }
+  ],
+  "ExperimentManager": [
+    {
+      "monoName": "Game Manager",
+      "MonoType": "Options.Gameplay.GameHandler, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "NumberOfCollectiblesToPickUp": 10,
+        "ExperimentLength": 320,
+        "XROrigin": null,
+        "StartTime": 0.0,
+        "PickedUpCollectibles": 0,
+        "PlayTime": 0.0,
+        "LastCollectiblePos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "collectibleEventChannel": {
+          "ID": "60b2c797e3ce4314cbc0316fe664468a",
+          "IsAsset": true,
+          "ObjectType": "ScriptableObjects.CollectiblePickUpSO, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "CollectiblePickUpChannelSO"
+        },
+        "numberOfCollectiblesToPickUp": 10,
+        "experimentLength": 320,
+        "playFMSPrompt": true,
+        "FMSPromptInterval": 30.0
+      }
+    },
+    {
+      "monoName": "Game Manager",
+      "MonoType": "DataSaving.DataSaver, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "FolderName": "",
+        "SaveData": false,
+        "sampleFrequencyInSeconds": 1.0
       }
     },
     {
@@ -145,143 +296,6 @@
             "minRepetitionDelay": 5.0
           }
         ]
-      }
-    }
-  ],
-  "VisionManager": [
-    {
-      "monoName": "Main Camera",
-      "MonoType": "Options.Vision.ConstantReducedFOV, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "EnableOption": true,
-      "expandOption": true,
-      "Mono": {
-        "postProcessing": {
-          "ID": "-1332",
-          "IsAsset": false,
-          "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "PostProcess"
-        },
-        "intensity": 0.364,
-        "smoothness": 0.371
-      }
-    },
-    {
-      "monoName": "Main Camera",
-      "MonoType": "Options.Vision.DepthOfField, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "EnableOption": true,
-      "expandOption": true,
-      "Mono": {
-        "postProcessing": {
-          "ID": "-1332",
-          "IsAsset": false,
-          "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "PostProcess"
-        },
-        "blurIntensity": 0.5,
-        "constantBlur": false,
-        "blurStartDistance": 0.0,
-        "blurMaxDistance": 0.1,
-        "dynamicBlur": true,
-        "dynamicBlurStartDistance": 0.0,
-        "dynamicBlurMaxDistance": 5.0
-      }
-    },
-    {
-      "monoName": "Main Camera",
-      "MonoType": "Options.Vision.DynamicFOVFilter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "EnableOption": true,
-      "expandOption": true,
-      "Mono": {
-        "filter": {
-          "ID": "",
-          "IsAsset": true,
-          "ObjectType": "UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "DynamicFov"
-        },
-        "decaySpeed": 2.0,
-        "minFilterScale": 0.6,
-        "maxFilterScale": 1.0,
-        "decayRate": -0.005,
-        "angluarSpeedModifier": 0.0001,
-        "translationSpeedModifier": 0.001
-      }
-    }
-  ],
-  "MovementManager": [
-    {
-      "monoName": "XR Origin",
-      "MonoType": "Options.Movement.LocomotionHandler, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "EnableOption": true,
-      "expandOption": true,
-      "Mono": {
-        "LeftHandLocomotionType": "Continuous",
-        "LeftHandTurnType": "Disabled",
-        "RightHandLocomotionType": "Discrete",
-        "RightHandTurnType": "Discrete",
-        "LeftHandGrabMove": true,
-        "RightHandGrabMove": true,
-        "dynamicMoveProvider": {
-          "ID": "-1300",
-          "IsAsset": false,
-          "ObjectType": "Player.Movement.ExtendedDynamicMoveProvider, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "XR Origin"
-        },
-        "teleportationProvider": {
-          "ID": "-1308",
-          "IsAsset": false,
-          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.TeleportationProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "XR Origin"
-        },
-        "grabMoveProvider": {
-          "ID": "-1302",
-          "IsAsset": false,
-          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.TwoHandedGrabMoveProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "XR Origin"
-        },
-        "snapTurnProvider": {
-          "ID": "-1306",
-          "IsAsset": false,
-          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedSnapTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "XR Origin"
-        },
-        "continuousTurnProvider": {
-          "ID": "-1304",
-          "IsAsset": false,
-          "ObjectType": "UnityEngine.XR.Interaction.Toolkit.ActionBasedContinuousTurnProvider, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "XR Origin"
-        },
-        "leftHandControllerManager": {
-          "ID": "-1344",
-          "IsAsset": false,
-          "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "LeftHand Controller"
-        },
-        "rightHandControllerManager": {
-          "ID": "-1512",
-          "IsAsset": false,
-          "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "RightHand Controller"
-        },
-        "leftHandLocomotionType": "Continuous",
-        "leftHandTurnType": "Disabled",
-        "rightHandLocomotionType": "Discrete",
-        "rightHandTurnType": "Discrete",
-        "leftHandGrabMove": true,
-        "rightHandGrabMove": true,
-        "m_MoveSpeed": 3.0,
-        "m_EnableStrafe": true,
-        "m_LeftHandMovementDirection": "HeadRelative",
-        "m_RightHandMovementDirection": "HeadRelative",
-        "m_FixDownhill": true,
-        "m_DelayTime": 0.0,
-        "m_MoveFactor": 2.0,
-        "m_RequireTwoHandsForTranslation": false,
-        "m_EnableRotation": false,
-        "m_EnableScaling": true,
-        "m_TurnAmount": 45.0,
-        "m_DebounceTime": 0.5,
-        "m_EnableTurnAround": true,
-        "m_TurnSpeed": 60.0
       }
     }
   ]

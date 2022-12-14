@@ -167,16 +167,16 @@ namespace Options.Movement
         
         private void OnEnable()
         {
-            GameManager.GameStateChanged += GameStateChanged;
-            GameStateChanged(GameManager.State);
+            GameHandler.GameStateChanged += GameStateChanged;
+            GameStateChanged(GameHandler.State);
         }
 
-        private void GameStateChanged(GameManager.StateType state)
+        private void GameStateChanged(GameHandler.StateType state)
         {
             Debug.Log(state);
             switch (state)
             {
-                case GameManager.StateType.Menu : case GameManager.StateType.Pause:
+                case GameHandler.StateType.Menu : case GameHandler.StateType.Pause:
                     if (grabMoveProvider != null)
                     {
                         ChangeGrabMove(false, false);
@@ -190,7 +190,7 @@ namespace Options.Movement
                     rightHandControllerManager.TurnType = MovementType.Disabled;
                     break;
                 
-                case GameManager.StateType.Playing:
+                case GameHandler.StateType.Playing:
                     if (grabMoveProvider != null)
                     {
                         ChangeGrabMove(false, LeftHandGrabMove);
@@ -252,7 +252,7 @@ namespace Options.Movement
 
         private void OnDisable()
         {
-            GameManager.GameStateChanged -= GameStateChanged;
+            GameHandler.GameStateChanged -= GameStateChanged;
         }
     }
 }

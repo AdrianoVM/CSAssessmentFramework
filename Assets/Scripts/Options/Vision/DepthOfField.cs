@@ -64,7 +64,7 @@ namespace Options.Vision
             {
                 return;
             }
-            _xrChara = GameManager.Instance.XROrigin.GetComponent<CharacterController>();
+            _xrChara = GameHandler.Instance.XROrigin.GetComponent<CharacterController>();
 
         }
 
@@ -85,7 +85,7 @@ namespace Options.Vision
                 return;
             }
 
-            if (dynamicBlur && GameManager.State == GameManager.StateType.Playing)
+            if (dynamicBlur && GameHandler.State == GameHandler.StateType.Playing)
             {
                 var m = false;
                 var t = false;
@@ -99,7 +99,7 @@ namespace Options.Vision
 
                 _lastPos = pos;
 
-                Quaternion rot = GameManager.Instance.XROrigin.transform.rotation;
+                Quaternion rot = GameHandler.Instance.XROrigin.transform.rotation;
                 Quaternion deltaRot = rot * Quaternion.Inverse(_lastRot);
                 var eulerRot =  new Vector3( Mathf.DeltaAngle( 0, deltaRot.eulerAngles.x ), Mathf.DeltaAngle( 0, deltaRot.eulerAngles.y ),Mathf.DeltaAngle( 0, deltaRot.eulerAngles.z ) );
                 Vector3 angularVelocity = eulerRot / Time.fixedDeltaTime;
