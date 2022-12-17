@@ -4,6 +4,10 @@ using UnityEngine.Audio;
 
 namespace Utilities
 {
+    /// <summary>
+    /// Class serving as interface for referencing assets through code.
+    /// inspired by https://youtu.be/QL29aTa7J5Q
+    /// </summary>
     public class GameAssets : MonoBehaviour
     {
         private static GameAssets _i;
@@ -23,7 +27,10 @@ namespace Utilities
         public SoundAudioClip[] soundAudioClips;
         
         
-        // When changing this class, also change SoundAudioClipConverter
+        /// <summary>
+        /// helping class for managing sounds.
+        /// When changing this class, also change SoundAudioClipConverter
+        /// </summary>
         [Serializable]
         public class SoundAudioClip
         {

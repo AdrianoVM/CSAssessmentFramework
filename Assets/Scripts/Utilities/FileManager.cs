@@ -1,8 +1,5 @@
 ﻿using System;
 using System.IO;
-using Options;
-using Options.Managers;
-using UnityEditor;
 using UnityEngine;
 
 namespace Utilities
@@ -10,15 +7,12 @@ namespace Utilities
     //From Unitenow20-Persistent-Data
     public static class FileManager
     {
-        public static bool WriteToFile(string a_FileName, string a_FileContents, bool isFullPath= false)
+        public static bool WriteToFile(string fileName, string fileContents, bool isFullPath= false)
         {
-            //Temporary change
-            //var fullPath = Path.Combine(Application.persistentDataPath, a_FileName);
-
-            var fullPath = isFullPath? a_FileName : Path.Combine(Application.dataPath, "Presets",a_FileName);
+            var fullPath = isFullPath? fileName : Path.Combine(Application.dataPath, "Presets",fileName);
             try
             {
-                File.WriteAllText(fullPath, a_FileContents);
+                File.WriteAllText(fullPath, fileContents);
                 return true;
             }
             catch (Exception e)
@@ -28,10 +22,9 @@ namespace Utilities
             }
         }
 
-        public static bool LoadFromFile(string a_FileName, out string result, bool isFullPath = false, bool muteError = false)
+        public static bool LoadFromFile(string fileName, out string result, bool isFullPath = false, bool muteError = false)
         {
-            //var fullPath = Path.Combine(Application.persistentDataPath, a_FileName);
-            var fullPath = isFullPath? a_FileName : Path.Combine(Application.dataPath, "Presets",a_FileName);
+            var fullPath = isFullPath? fileName : Path.Combine(Application.dataPath, "Presets",fileName);
 
             try
             {

@@ -12,7 +12,6 @@ namespace Options.Managers
             {
                 JsonSaving.LoadInspectorOptions(ref optionsList, nameof(VisionManager), globalInfo.FilePath);
             }
-            
         }
         
         public override void Load()

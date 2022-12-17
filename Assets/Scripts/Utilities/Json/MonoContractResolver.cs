@@ -9,6 +9,9 @@ using Object = UnityEngine.Object;
 
 namespace Utilities.Json
 {
+    /// <summary>
+    /// Contract resolver used to specify the <see cref="JsonConverter"/> of components saved in Managers
+    /// </summary>
     public class MonoContractResolver : UnityTypeContractResolver
     {
         public static readonly MonoContractResolver Instance = new();
@@ -26,14 +29,13 @@ namespace Utilities.Json
 
                     if (property.PropertyType.IsSubclassOf(typeof(Object)) || (listType.Length > 0 && listType.Single().IsSubclassOf(typeof(Object))))
                     {
-                        //property.ValueProvider = new MonoValueProvider(property.ValueProvider, property.PropertyName);
                         property.Converter = new MonoConverter();
                     }
                 }
             }
             else
             {
-                property.ShouldSerialize = o => false;
+                property.ShouldSerialize = _ => false;
             }
             
             return property;

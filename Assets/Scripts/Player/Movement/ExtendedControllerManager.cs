@@ -3,14 +3,15 @@ using System.Collections;
 using Options.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+// ReSharper disable InconsistentNaming
 
 namespace Player.Movement
 {
     /// <summary>
-    /// This class Is an extended Copy of <see cref="ActionBasedControllerManager"/>. 
+    /// This class Is an extended Copy of <see cref="ActionBasedControllerManager"/>.
+    /// If interaction toolkit is updated, this class could break.
     /// Use this class to mediate the controllers and their associated interactors and input actions under different interaction states.
     /// </summary>
     [AddComponentMenu("XR/Extended Controller Manager")]
@@ -40,7 +41,7 @@ namespace Player.Movement
 
         [SerializeField]
         [Tooltip("The GameObject containing the interactor used for distant/ray manipulation.")]
-        XRRayInteractor m_RayInteractor;
+        private XRRayInteractor m_RayInteractor;
 
         [SerializeField]
         [Tooltip("Whether the ray Interactor can be enabled or not.")]
@@ -54,22 +55,22 @@ namespace Player.Movement
 
         [SerializeField]
         [Tooltip("The GameObject containing the interactor used for teleportation.")]
-        XRRayInteractor m_TeleportInteractor;
+        private XRRayInteractor m_TeleportInteractor;
 
         [Space]
         [Header("Controller Actions")]
 
         [SerializeField]
         [Tooltip("The reference to the action of selecting with this controller.")]
-        InputActionReference m_Select;
+        private InputActionReference m_Select;
 
         [SerializeField]
         [Tooltip("The reference to the action of moving an object closer or further away with the ray interactor")]
-        InputActionReference m_AnchorTranslate;
+        private InputActionReference m_AnchorTranslate;
 
         [SerializeField]
         [Tooltip("The reference to the action of rotating an object with the ray interactor")]
-        InputActionReference m_AnchorRotate;
+        private InputActionReference m_AnchorRotate;
 
         [SerializeField]
         [Tooltip("The reference to the action to start the teleport aiming mode for this controller.")]
@@ -92,9 +93,9 @@ namespace Player.Movement
         [Tooltip("The reference to the action of moving the XR Origin with this controller.")]
         private InputActionReference move;
 
-        bool m_DirectHover;
-        bool m_DirectSelect;
-        bool m_Teleporting;
+        private bool m_DirectHover;
+        private bool m_DirectSelect;
+        private bool m_Teleporting;
 
         [Space]
         [Header("Locomotion Settings")]

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Utilities.Json.Converters
 {
     /// <summary>
-    /// Converts BezierPaths from the spline asset we use, will break once we use another spline asset.
+    /// Converts BezierPaths from the spline asset we use, will break if another spline asset is used.
     /// </summary>
     public class BezierPathConverter : PartialConverter<BezierPath>
     {

@@ -5,6 +5,7 @@ namespace Player.Character
 {
     /// <summary>
     /// Responsible for handling hand instantiation and animation.
+    /// Not used in current version as we have visible controllers, but could be useful if a more immersive look is wanted.
     /// </summary>
     public class HandPresence : MonoBehaviour
     {

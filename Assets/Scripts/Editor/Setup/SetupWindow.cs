@@ -15,14 +15,14 @@ namespace Setup
             GetWindow<SetupWindow>("Scene Setup");
         }
         
-        private int _selectedTab = 0;
+        private int _selectedTab;
         private bool _showButtons;
 
         private PlayModeStateChange _currentState;
 
         private bool _stateChangeHandled;
 
-        public GlobalInfo info = null;
+        public GlobalInfo info;
         private Manager[] _managers;
         private Editor[] _managerEditors = new Editor[0];
         private SerializedObject[] _managerSOList;
@@ -66,7 +66,8 @@ namespace Setup
         }
 
         /// <summary>
-        /// Finds all the managers in the current scene.
+        /// Finds all the managers in the current scene, populating <see cref="_managers"/> and <see cref="_managerEditors"/>.
+        /// This needs to be done in quite a few occasions, but is too expensive to call every update.
         /// </summary>
         private void FindManagers()
         {
@@ -151,7 +152,6 @@ namespace Setup
             EditorGUILayout.BeginVertical();
             _selectedTab = GUILayout.Toolbar(_selectedTab, _managers.Select(i => i.managerName).ToArray(),GUILayout.MinHeight(30));
             EditorGUILayout.EndVertical();
-            //SetupUtilities.DrawSeparatorLine();
             if (_managerEditors.Length <= _selectedTab)
             {
                 _selectedTab = 0;
@@ -159,6 +159,7 @@ namespace Setup
             }
             else
             {
+                // render the corresponding manager editor.
                 _managerEditors[_selectedTab].OnInspectorGUI();
             }
 

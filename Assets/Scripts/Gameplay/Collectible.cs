@@ -4,20 +4,30 @@ using ScriptableObjects;
 using UnityEngine;
 using Utilities;
 
-namespace Options.Gameplay.Activity
+namespace Gameplay
 {
+    /// <summary>
+    /// Floating collectible, when there is a collision with the player calls <see cref="OnPickedUp"/> and disappears.
+    /// </summary>
+    [RequireComponent(typeof(Collider))]
     public class Collectible : MonoBehaviour
     {
         [SerializeField] private CollectiblePickUpSO pickUpChannel;
+        
+        /// <summary>
+        /// Material that is used when the Collectible can be picked up
+        /// </summary>
         [SerializeField] private Material primaryMaterial;
+        
+        /// <summary>
+        /// Material that is used when the Collectible cannot be picked up
+        /// </summary>
         [SerializeField] private Material secondaryMaterial;
 
         [SerializeField] private float rotationSpeed = 10;
         [SerializeField] private float upDownPerSecond = 1;
         [SerializeField] private float upDownDistance = 0.5f;
         [SerializeField] private bool isInteractable;
-
-        public delegate void PickUpAction();
 
         public event EventHandler OnPickedUp;
         
@@ -58,6 +68,9 @@ namespace Options.Gameplay.Activity
             }
         }
 
+        /// <summary>
+        /// Set position based on Terrain, start respawn effect and the calls coroutine to hover.
+        /// </summary>
         public void ReEnable()
         {
             //set position based on terrain
@@ -94,7 +107,7 @@ namespace Options.Gameplay.Activity
             while (timer < 0.5f)
             {
                 timer += Time.deltaTime;
-                float t = timer / 0.5f;
+                var t = timer / 0.5f;
                 //smoother step algorithm
                 t = t * t * t * (t * (6f * t - 15f) + 10f);
                 transform.localScale = Vector3.Lerp(startScale, Vector3.zero, t);
@@ -117,7 +130,7 @@ namespace Options.Gameplay.Activity
             while (timer < 1)
             {
                 timer += Time.deltaTime;
-                float t = timer / 1;
+                var t = timer / 1;
                 //smoother step algorithm
                 t = t * t * t * (t * (6f * t - 15f) + 10f);
                 transform.localScale = Vector3.Lerp(Vector3.zero, _scale, t);

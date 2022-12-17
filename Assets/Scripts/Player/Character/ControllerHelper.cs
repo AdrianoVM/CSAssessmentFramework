@@ -1,13 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Player.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 namespace Player.Character
 {
+    /// <summary>
+    /// Helper for controller visuals based on actions. Updating material and controlling animation.
+    /// </summary>
     public class ControllerHelper : MonoBehaviour
     {
         [Header("Actions with Button Values")]
@@ -23,7 +24,7 @@ namespace Player.Character
         [SerializeField] private List<InputActionReference> secondaryBRelatedActions;
         [SerializeField] private List<InputActionReference> joystickRelatedActions;
 
-        // TODO: add a way to change materials of buttons to signify if they are enabled
+        [Header("Materials")]
         [SerializeField] private Material enabledMaterial;
         [SerializeField] private Material disabledMaterial;
 
@@ -96,7 +97,6 @@ namespace Player.Character
 
         private void Update()
         {
-            //could use a event system instead of checking every frame
             if (_animator != null)
             {
                 if (joystickValue != null)

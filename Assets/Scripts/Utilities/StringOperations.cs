@@ -2,6 +2,9 @@
 
 namespace Utilities
 {
+    /// <summary>
+    /// Helper Class for extension methods for strings.
+    /// </summary>
     public static class StringOperations
     {
         public static string CamelCaseToSpaces(this string s)

@@ -8,6 +8,10 @@ using UnityEngine.Rendering.Universal;
 
 namespace Player
 {
+    /// <summary>
+    /// Character manager, handling respawn, fade to black,
+    /// and telling <see cref="GameHandler"/> who <see cref="GameHandler.XROrigin"/> is.
+    /// </summary>
     public class GameCharacter : MonoBehaviour
     {
         
@@ -65,17 +69,18 @@ namespace Player
             StartCoroutine(ChangeVignette(true, 2));
         }
 
-        public void Respawn(SpawnPoint atSpawn = SpawnPoint.AtSpawn)
+        public void Respawn(SpawnPoint spawnPoint = SpawnPoint.AtSpawn)
         {
             if (GameHandler.State == GameHandler.StateType.Playing)
             {
+                // doesn't work it seems
                 StartCoroutine(ChangeVignette(false,2));
             }
             
             if (_activeTerrain != null)
             {
                 Vector3 pos;
-                switch (atSpawn)
+                switch (spawnPoint)
                 {
                     case SpawnPoint.AtPath:
                         pos = GameHandler.Instance.LastCollectiblePos;
@@ -96,6 +101,11 @@ namespace Player
         }
 
 
+        /// <summary>
+        /// Make the vignette fade down or up depending on <paramref name="toBlack"/>.
+        /// </summary>
+        /// <param name="toBlack">whether to fade down or up.</param>
+        /// <param name="fadeSpeed">Speed in seconds for fade.</param>
         private IEnumerator ChangeVignette(bool toBlack, float fadeSpeed)
         {
             if (_vignette == null)

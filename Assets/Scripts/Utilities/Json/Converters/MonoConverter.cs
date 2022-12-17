@@ -10,6 +10,11 @@ using Object = UnityEngine.Object;
 
 namespace Utilities.Json.Converters
 {
+    /// <summary>
+    /// Converts MonoBehaviours contained in Managers to and from a specific JSON format.
+    /// Handles references and list of references. Finding the corresponding object when reading,
+    /// and saving the reference when writing.
+    /// </summary>
     public class MonoConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -29,9 +34,8 @@ namespace Utilities.Json.Converters
             }
 
             
-            foreach (var obj in listOfObj)
+            foreach (Object obj in listOfObj)
             {
-                //var obj = (Object)value;
                 var path = "";
                 var isAsset = false;
                 if (obj != null)
@@ -77,7 +81,6 @@ namespace Utilities.Json.Converters
             
             var isList = reader.TokenType == JsonToken.StartArray;
             //Making a list of the correct type or we get an error
-            //Type existingType = isList ? existingValue.ConvertTo<List<object>>()[0].GetType() : existingValue.GetType();
             Type makeMe;
             if (!isList)
             {

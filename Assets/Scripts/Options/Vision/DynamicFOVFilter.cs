@@ -9,6 +9,7 @@ using UnityEngine;
 namespace Options.Vision
 {
     /// <summary>
+    /// NOT USED, but could be interesting to explore. Didn't work correctly in last check
     /// Slightly Modified version of DynamicFOVFilter.cs from https://github.com/angsamuel/GingerVR
     /// </summary>
     public class DynamicFOVFilter : MonoBehaviour

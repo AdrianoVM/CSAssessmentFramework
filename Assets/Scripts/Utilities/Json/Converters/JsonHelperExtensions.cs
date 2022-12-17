@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Utilities.Json.Converters
 {
+    /// <summary>
+    /// Helper class for Json Conversions
+    /// </summary>
     public static class JsonHelperExtensions
     {
         public static float? ReadAsFloat(this JsonReader reader)
@@ -28,6 +31,8 @@ namespace Utilities.Json.Converters
         
         public static void ReplaceValueWithID<T>(ref T param, string id, string objectName) where T : class
         {
+            // necessary for outside editor
+            // ReSharper disable once RedundantAssignment
             T asset = null;
 #if UNITY_EDITOR
             asset = FindObjects.FindInAssets(id, typeof(T)) as T;

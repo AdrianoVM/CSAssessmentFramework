@@ -1,9 +1,12 @@
-﻿using Options.Gameplay.Activity;
+﻿using Gameplay;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace ScriptableObjects
 {
+    /// <summary>
+    /// Channel used to communicate that a <see cref="Collectible"/> has been picked up.
+    /// </summary>
     [CreateAssetMenu(menuName = "Events/Collectible Event Channel", order = 0)]
     public class CollectiblePickUpSO : ScriptableObject
     {

@@ -2,11 +2,11 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.UnityConverters;
 using UnityEditor;
-using UnityEngine;
-using UnityEngine.Audio;
-
 namespace Utilities.Json.Converters
 {
+    /// <summary>
+    /// Converts <see cref="GameAssets.SoundAudioClip"/> from and into JSON 
+    /// </summary>
     public class SoundAudioClipConverter : PartialConverter<GameAssets.SoundAudioClip>
     {
         protected override void ReadValue(ref GameAssets.SoundAudioClip value, string name, JsonReader reader, JsonSerializer serializer)

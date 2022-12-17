@@ -22,10 +22,6 @@ namespace Setup
         /// <summary>
         /// Taken From Unity's Terrain Tool GUI Helper
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="state"></param>
-        /// <param name="enabled"></param>
-        /// <param name="padding"></param>
         public static void DrawToggleHeaderFoldout(GUIContent title, ref bool state, ref bool enabled,float padding)
         {
             Rect backgroundRect = GUILayoutUtility.GetRect(1f, 17f);

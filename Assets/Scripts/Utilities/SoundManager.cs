@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 namespace Utilities
 {
@@ -13,7 +12,6 @@ namespace Utilities
         public enum Sound
         {
             CoinPickup,
-            // ReSharper disable once InconsistentNaming
             FMS,
             GameEnd
             
@@ -48,6 +46,11 @@ namespace Utilities
             
         }
 
+        /// <summary>
+        /// Creates a new gameObject at specified position which plays a 3d sound.
+        /// </summary>
+        /// <param name="sound">The sound to play.</param>
+        /// <param name="position">The position of the instantiated GameObject</param>
         public static void PlaySound(Sound sound, Vector3 position)
         {
             if (CanPlaySound(sound, out var idx))
@@ -76,6 +79,10 @@ namespace Utilities
             
         }
         
+        /// <summary>
+        /// Plays a 2d sound
+        /// </summary>
+        /// <param name="sound">The sound to play</param>
         public static void PlaySound(Sound sound)
         {
             
@@ -103,6 +110,12 @@ namespace Utilities
             
         }
 
+        /// <summary>
+        /// Checks whether it is allowed to play specified sound. 
+        /// </summary>
+        /// <param name="sound">The <see cref="Sound"/> to check.</param>
+        /// <param name="idx">Index of sound if there are multiple audio clips for one sound</param>
+        /// <returns>Can <paramref name="sound"/> be played or not.</returns>
         private static bool CanPlaySound(Sound sound, out int idx)
         {
             if (_soundTimersAndId.ContainsKey(sound))
@@ -115,11 +128,9 @@ namespace Utilities
                 }
                 else
                 {
-                    //TODO: use the randomness correctly
                     var lastTimePlayed = _soundTimersAndId[sound].lastPlayed;
                     if (lastTimePlayed + _soundMinDelays[sound][idx] < Time.time)
                     {
-                        //Random.InitState(System.DateTime.Now.Millisecond);
                         var randRange = Random.Range(0, _soundMinDelays[sound].Count);
                         _soundTimersAndId[sound] = (Time.time, randRange);
                         return true;
@@ -138,6 +149,12 @@ namespace Utilities
             }
         }
 
+        /// <summary>
+        /// Get a <see cref="GameAssets.SoundAudioClip"/> corresponding to given <see cref="Sound"/>.
+        /// </summary>
+        /// <param name="sound">The <see cref="Sound"/> for which we want a <see cref="GameAssets.SoundAudioClip"/>.</param>
+        /// <param name="idx">the index of the clip we want, used for when there are multiple clips per <see cref="Sound"/></param>
+        /// <returns>The selected <see cref="GameAssets.SoundAudioClip"/> if it exists, otherwise <c>null</c>.</returns>
         private static GameAssets.SoundAudioClip GetSoundAudioClip(Sound sound, int idx = 0)
         {
             var matchingSounds = new List<GameAssets.SoundAudioClip>();

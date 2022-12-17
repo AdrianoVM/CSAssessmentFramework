@@ -5,13 +5,13 @@ using Options.Gameplay;
 using Options.Movement;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Gameplay
 {
     public class GameHandlerUI : MonoBehaviour
     {
+        [Header("Experiment Control options")] 
         [SerializeField] private Button startExperimentButton;
         [SerializeField] private Button endExperimentButton;
         [SerializeField] private TextMeshProUGUI timeLabel;
@@ -42,7 +42,7 @@ namespace Gameplay
         private void OnEnable()
         {
             
-            GameHandler.GameStateChanged += GameManagerOnGameStateChanged;
+            GameHandler.GameStateChanged += OnGameStateChanged;
             // no unsubscribing with anonymous functions
             DataSaver.FolderChanged += (v) => fileNameLabel.text = v;
             DataSaver.DataSaved += (v) => savedNotificationLabel.gameObject.SetActive(v);
@@ -65,6 +65,7 @@ namespace Gameplay
                 collectiblesLabel.text = "0 / ";
             }
 
+            //Movement UI
             if (leftLocDropdown != null && rightLocDropdown != null && leftTurnDropdown != null && rightTurnDropdown != null)
             {
                 var movementTypesNames = Enum.GetNames(typeof(LocomotionHandler.MovementType))
@@ -106,17 +107,15 @@ namespace Gameplay
 
         public void CollectiblesInputChange(string input)
         {
-            int.TryParse(input, out var i);
-            _gM.NumberOfCollectiblesToPickUp = i;
+            if (int.TryParse(input, out var i)) _gM.NumberOfCollectiblesToPickUp = i;
         }
         
         public void TimerInputChange(string input)
         {
-            int.TryParse(input, out var i);
-            _gM.ExperimentLength = i;
+            if (int.TryParse(input, out var i)) _gM.ExperimentLength = i;
         }
 
-        private void GameManagerOnGameStateChanged(GameHandler.StateType state)
+        private void OnGameStateChanged(GameHandler.StateType state)
         {
             switch (state)
             {
@@ -142,7 +141,6 @@ namespace Gameplay
                     collectiblesInput.interactable = false;
                     var c = _gM.NumberOfCollectiblesToPickUp > 0 ? _gM.NumberOfCollectiblesToPickUp.ToString() : "∞";
                     collectiblesInput.text = c;
-                    
                     break;
             }
         }
@@ -150,7 +148,7 @@ namespace Gameplay
 
         private void OnDisable()
         {
-            GameHandler.GameStateChanged -= GameManagerOnGameStateChanged;
+            GameHandler.GameStateChanged -= OnGameStateChanged;
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Linq;
 using ScriptableObjects;
 using UnityEngine;
-using Utilities;
 
 namespace Options.Managers
 {
@@ -62,7 +61,5 @@ namespace Options.Managers
                 return false;
             }
         }
-
-        
     }
 }

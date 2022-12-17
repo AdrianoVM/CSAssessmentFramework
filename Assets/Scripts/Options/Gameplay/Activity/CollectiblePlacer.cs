@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay;
 using PathCreation;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Options.Gameplay.Activity {
         public int numberOfVisibleCollectibles = 5;
 
         private const float MinSpacing = 1f;
-        private float _currentDist = 0;
+        private float _currentDist;
         private Queue<Collectible> _collectibles = new();
 
 
@@ -34,6 +35,10 @@ namespace Options.Gameplay.Activity {
             CreatePath();
         }
 
+        /// <summary>
+        /// Creates and places the first visible collectibles on path, populating <see cref="_collectibles"/>,
+        /// and starting to listen each coin's <see cref="Collectible.OnPickedUp"/>.
+        /// </summary>
         private void CreatePath()
         {
             // Clearing possible existing path
@@ -45,13 +50,13 @@ namespace Options.Gameplay.Activity {
             _collectibles.Clear();
             
             spacing = Mathf.Max(MinSpacing, spacing);
+            //place the visible coins
             if (pathCreator != null && collectible != null && holder != null)
             {
                 for (var i = 0; i < numberOfVisibleCollectibles; i++)
                 {
                     
                     Vector3 point = pathCreator.path.GetPointAtDistance(i*spacing);
-                    //Quaternion rot = pathCreator.path.GetRotationAtDistance(i*spacing);
                     Collectible instCol = Instantiate(collectible, point, Quaternion.identity, holder.transform);
                     if (i == 0)
                     {
@@ -74,11 +79,15 @@ namespace Options.Gameplay.Activity {
             }
         }
 
+        /// <summary>
+        /// Places the <see cref="Collectible"/> <paramref name="sender"/> to next point in line.
+        /// </summary>
         private void OnCollectiblePickup(object sender, EventArgs e)
         {
             Collectible pickedCollectible = _collectibles.Dequeue();
             
             Vector3 point = pathCreator.path.GetPointAtDistance(_currentDist);
+            // Rotating is also possible, but not needed in our case
             //Quaternion rot = pathCreator.path.GetRotationAtDistance(_currentDist);
             Transform collectibleTransform = pickedCollectible.transform;
             collectibleTransform.position = point;

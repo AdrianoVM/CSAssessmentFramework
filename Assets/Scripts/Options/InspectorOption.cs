@@ -1,14 +1,15 @@
 ﻿using System;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Options
 {
-    [Serializable] //[JsonObject(MemberSerialization.OptIn)]
+    /// <summary>
+    /// Class used to encapsulate components stored in a <c>Manager</c>, facilitating serialization.
+    /// </summary>
+    [Serializable]
     public class InspectorOption
     {
-        [SerializeField]
-        private MonoBehaviour monoBehaviour;
+        [SerializeField] private MonoBehaviour monoBehaviour;
         public MonoBehaviour Mono
         {
             get => monoBehaviour;
@@ -22,6 +23,8 @@ namespace Options
                 }
             }
         }
+
+        [SerializeField] private bool enableOption = true;
 
         public bool EnableOption
         {
@@ -44,29 +47,28 @@ namespace Options
             }
         }
 
+        private Type _monoType;
+
+
         public Type MonoType
         {
             get
             {
-                if (_monoType == null && MonoTypeName != "")
+                if (_monoType == null && monoTypeName != "")
                 {
-                    _monoType = Type.GetType(MonoTypeName);
+                    _monoType = Type.GetType(monoTypeName);
                 }
                 return _monoType;
             }
             set
             {
                 _monoType = value;
-                MonoTypeName = value == null ? "" : value.AssemblyQualifiedName;
+                monoTypeName = value == null ? "" : value.AssemblyQualifiedName;
             }
         }
 
         public string monoName = "New Option";
-        
-        public Type _monoType;
-        public string MonoTypeName = "";
-        [SerializeField]
-        private bool enableOption = true;
+        public string monoTypeName = "";
         public bool expandOption = true;
 
         public InspectorOption()

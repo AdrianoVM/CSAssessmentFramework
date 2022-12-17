@@ -2,12 +2,14 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.XR.Interaction.Toolkit;
+// ReSharper disable InconsistentNaming
 
 namespace Player.Movement
 {
     /// <summary>
-    /// This class Is an extended Copy of <see cref="DynamicMoveProvider"/>. <br/>
+    /// This class Is an extended Copy of <c>DynamicMoveProvider</c>. <br/>
     /// Most of the code thus belongs to Unity. Any addition is identified by "Added"<br/>
+    /// If interaction toolkit is updated, this class could break.
     /// 
     /// A version of action-based continuous movement that automatically controls the frame of reference that
     /// determines the forward direction of movement based on user preference for each hand.

@@ -6,6 +6,9 @@ using Object = UnityEngine.Object;
 
 namespace Utilities
 {
+    /// <summary>
+    /// Helper Class used to find Objects either in scene or in Assets
+    /// </summary>
     public static class FindObjects
     {
         /// <summary>

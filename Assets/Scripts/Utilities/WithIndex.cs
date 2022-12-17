@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Utilities
 {
+    /// <summary>
+    /// Helper Class for extension methods for <see cref="IEnumerable{T}"/>.
+    /// </summary>
     public static class IndexedLinq
     {
         /// <summary>

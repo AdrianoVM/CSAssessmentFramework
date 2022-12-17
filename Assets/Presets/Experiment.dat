@@ -1,0 +1,86 @@
+{
+  "ExperimentManager": [
+    {
+      "monoName": "Game Handler",
+      "MonoType": "Options.Gameplay.GameHandler, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "NumberOfCollectiblesToPickUp": 10,
+        "ExperimentLength": 320,
+        "XROrigin": null,
+        "StartTime": 0.0,
+        "PickedUpCollectibles": 0,
+        "PlayTime": 0.0,
+        "LastCollectiblePos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "collectibleEventChannel": {
+          "ID": "60b2c797e3ce4314cbc0316fe664468a",
+          "IsAsset": true,
+          "ObjectType": "ScriptableObjects.CollectiblePickUpSO, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "ObjectName": "CollectiblePickUpChannelSO"
+        },
+        "numberOfCollectiblesToPickUp": 10,
+        "experimentLength": 320,
+        "playFMSPrompt": true,
+        "FMSPromptInterval": 30.0
+      }
+    },
+    {
+      "monoName": "Game Handler",
+      "MonoType": "DataSaving.DataSaver, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "FolderName": "",
+        "SaveData": false,
+        "sampleFrequencyInSeconds": 1.0
+      }
+    },
+    {
+      "monoName": "GameAssets",
+      "MonoType": "Utilities.GameAssets, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnableOption": true,
+      "expandOption": true,
+      "Mono": {
+        "soundAudioClips": [
+          {
+            "sound": 0,
+            "volume": 0.35,
+            "audioClip": "da0e6a73074fdf04180e2c9112f558b4",
+            "audioMixerGroup": "c811e67997d4911459b8004038457190",
+            "audioMixerGroupName": "Sound Effects",
+            "minRepetitionDelay": 0.0
+          },
+          {
+            "sound": 1,
+            "volume": 1.0,
+            "audioClip": "86fef823688d30542936718143c5d646",
+            "audioMixerGroup": "c811e67997d4911459b8004038457190",
+            "audioMixerGroupName": "Master",
+            "minRepetitionDelay": 5.0
+          },
+          {
+            "sound": 1,
+            "volume": 1.0,
+            "audioClip": "97be786f182e7e34ea8ffbda5ba63d21",
+            "audioMixerGroup": "c811e67997d4911459b8004038457190",
+            "audioMixerGroupName": "Master",
+            "minRepetitionDelay": 5.0
+          },
+          {
+            "sound": 2,
+            "volume": 0.5,
+            "audioClip": "ebb836c5e253c324e9d0c23c716b78c6",
+            "audioMixerGroup": "c811e67997d4911459b8004038457190",
+            "audioMixerGroupName": "Master",
+            "minRepetitionDelay": 5.0
+          }
+        ]
+      }
+    }
+  ]
+}

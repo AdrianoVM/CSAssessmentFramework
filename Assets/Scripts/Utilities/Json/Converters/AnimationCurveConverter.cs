@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Utilities.Json.Converters
 {
+    /// <summary>
+    /// Converts <see cref="AnimationCurve"/> from and into JSON 
+    /// </summary>
     public class AnimationCurveConverter : PartialConverter<AnimationCurve>
     {
         protected override void ReadValue(ref AnimationCurve value, string name, JsonReader reader, JsonSerializer serializer)

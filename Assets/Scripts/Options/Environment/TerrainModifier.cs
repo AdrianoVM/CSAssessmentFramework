@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Random = UnityEngine.Random;
+﻿using UnityEngine;
 
 namespace Options.Environment
 {
@@ -41,6 +39,9 @@ namespace Options.Environment
         }
 
 
+        /// <summary>
+        /// Applies the terrain modifications to the terrain, and rotates <see cref="rotateWithTerrain"/> to correspond.
+        /// </summary>
         public void Apply()
         {
             var tMaxHeight = TargetTerrain.terrainData.heightmapScale.y;
@@ -49,6 +50,7 @@ namespace Options.Environment
             position = new Vector3(position.x, -tMaxHeight/2, position.z);
             transformT.position = position;
             var arr = new float[_tRes, _tRes];
+            // At each point of the terrain.
             for (var k = 0; k < _tRes; k+=1)
             {
                 for (var l = 0; l < _tRes; l+=1)
@@ -68,7 +70,6 @@ namespace Options.Environment
                         orientation = (xPos - terrainData.size.x / 2f) * Mathf.Sin(-angle * Mathf.Deg2Rad)/Mathf.Sin((90-angle) * Mathf.Deg2Rad);
                     }
                     
-                    
                     //applying the small scale modification
                     var h = (curveApplyToZ ? smallScaleCurve.Evaluate(xPos% (sizeOfCurve+1) / sizeOfCurve) : 1) 
                             * (curveApplyToX ? smallScaleCurve.Evaluate(zPos% (sizeOfCurve+1) / sizeOfCurve) : 1);
@@ -79,7 +80,6 @@ namespace Options.Environment
 
                     if (usePerlinNoise)
                     {
-
                         // Scaling down effect near 0,0 (spawn)
                         var perlinBlendX = Mathf.Clamp01(Mathf.Abs(xPos - terrainData.size.x / 2f) / 20f);
                         var perlinBlendZ = Mathf.Clamp01(Mathf.Abs(zPos - terrainData.size.z / 2f) / 20f);

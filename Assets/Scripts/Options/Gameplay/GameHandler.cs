@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Globalization;
-using Options.Gameplay.Activity;
+using Gameplay;
 using ScriptableObjects;
-using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using Utilities;
 
 namespace Options.Gameplay
 {
+    /// <summary>
+    /// Game Handler responsible of controlling the experiment.
+    /// </summary>
     public class GameHandler : MonoBehaviour
     {
         public static GameHandler Instance;
@@ -34,7 +35,7 @@ namespace Options.Gameplay
 
         [SerializeField] private bool playFMSPrompt;
 
-        [SerializeField] private float FMSPromptInterval = 30f;
+        [SerializeField] private float promptInterval = 30f;
 
         public XROrigin XROrigin { get; set; }
         
@@ -92,8 +93,8 @@ namespace Options.Gameplay
                 return;
             }
             Instance = this;
-            Debug.Log("created instance");
             DontDestroyOnLoad(gameObject);
+            
             XROrigin = FindObjectOfType<XROrigin>();
             SoundManager.Initialize();
         }
@@ -118,7 +119,7 @@ namespace Options.Gameplay
                 
                 if (playFMSPrompt)
                 {
-                    if (_lastTimeFMSPlayed + FMSPromptInterval < PlayTime)
+                    if (_lastTimeFMSPlayed + promptInterval < PlayTime)
                     {
                         _lastTimeFMSPlayed = PlayTime;
                         SoundManager.PlaySound(SoundManager.Sound.FMS);
@@ -152,6 +153,7 @@ namespace Options.Gameplay
             if (GameEnded != null) GameEnded();
         }
 
+        // Not used yet
         public void PauseExperiment(bool pause)
         {
             State = pause ? StateType.Pause : StateType.Playing;

@@ -1,6 +1,5 @@
 ﻿using System;
 using Options.Managers;
-using ScriptableObjects;
 using Setup;
 using UnityEditor;
 using UnityEngine;
@@ -34,12 +33,15 @@ namespace Options
         {
             _options = serializedObject.FindProperty("options");
             _showFileButtons = serializedObject.FindProperty("showFileButtons");
-            // I don't know for sure which way is best
+            // I don't know for sure which way is best, searching with string or with nameof.
             _globalInfo = serializedObject.FindProperty(nameof(Manager.globalInfo));
             _managerName = serializedObject.FindProperty(nameof(Manager.managerName));
             CreateEditors();
         }
 
+        /// <summary>
+        /// Creates the editors for each option in <see cref="_options"/>.
+        /// </summary>
         private void CreateEditors()
         {
             foreach (Editor editor in _editors)
@@ -64,6 +66,7 @@ namespace Options
             var myManager = (Manager) target;
 
             _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
+            
             EditorGUILayout.PropertyField(_globalInfo);
             EditorGUILayout.PropertyField(_managerName);
 
@@ -76,6 +79,7 @@ namespace Options
             EditorGUILayout.EndScrollView();
             
             serializedObject.ApplyModifiedProperties();
+            
             //apply all the setters
             foreach (InspectorOption option in myManager.options)
             {
@@ -83,24 +87,29 @@ namespace Options
             }
         }
 
+        /// <summary>
+        /// Renders the inspectors of all the components in <see cref="_options"/>
+        /// </summary>
         private void RenderInspectors()
         {
-            //TODO: Add a way to add missing MonoBehaviour notification
+            //TODO: Add a way to add dismissible missing MonoBehaviour notification
             var toRemove = -1;
             var reCreate = false;
             for (var i = 0; i < _options.arraySize; i++)
             {
                 SerializedProperty optionP = _options.GetArrayElementAtIndex(i);
+                // if the optionP points to nothing, then it should be removed
                 if (optionP.managedReferenceValue == null)
                 {
                     toRemove = i;
                     break;
                 }
+                
                 SerializedProperty expandOption = optionP.FindPropertyRelative("expandOption");
                 SerializedProperty enableOption = optionP.FindPropertyRelative("enableOption");
                 SerializedProperty mono = optionP.FindPropertyRelative("monoBehaviour");
                 SerializedProperty monoName = optionP.FindPropertyRelative("monoName");
-                SerializedProperty monoTypeName = optionP.FindPropertyRelative("MonoTypeName");
+                SerializedProperty monoTypeName = optionP.FindPropertyRelative("monoTypeName");
                 
                 SetupUtilities.DrawSeparatorLine();
                 
@@ -108,6 +117,7 @@ namespace Options
                 {
                     GUILayout.Label(monoName.stringValue);
                     
+                    // we use monoName in the preset system to check if mono has a null ref because the component was not found.
                     if (monoName.stringValue != new InspectorOption().monoName)
                     {
                         EditorGUILayout.HelpBox("Missing MonoBehaviour of type " + Type.GetType(monoTypeName.stringValue)?.Name.CamelCaseToSpaces(), MessageType.Warning);
@@ -154,14 +164,13 @@ namespace Options
                 }
                 else
                 {
+                    // there is a reference, so there is something to render.
+                    
+                    // To select the corresponding gameObject in hierarchy.
                     var selectStyle = new GUIStyle();
                     selectStyle.fixedWidth = 20;
                     selectStyle.fixedHeight = 20;
                     GUILayout.BeginHorizontal();
-
-
-                    //var selected = GUI.Button(selectRect,EditorGUIUtility.IconContent("GameObject Icon","|Select target"), GUIStyle.none);
-                    
                     var selected = GUILayout.Button(EditorGUIUtility.IconContent("GameObject Icon", "|Select target"),
                         selectStyle);
                     EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(),MouseCursor.Link);
@@ -196,17 +205,15 @@ namespace Options
                         {
                             try
                             {
-                                _editors[i].OnInspectorGUI();
+                                _editors[i].OnInspectorGUI();  //render inspector
                             }
-                            catch (Exception e)
+                            catch (Exception)
                             {
                                 // When entering play mode, while Setup window is closed,
-                                // editors are destroyed and recreated
+                                // editors are destroyed and recreated, which sometimes causes issues
                                 reCreate = true;
                             }
-                            
                         }
-
                         EditorGUI.EndDisabledGroup();
                     }
 

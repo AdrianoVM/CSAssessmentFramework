@@ -1,5 +1,4 @@
-﻿using System;
-using Options.Environment;
+﻿using Options.Environment;
 using UnityEditor;
 using UnityEngine;
 

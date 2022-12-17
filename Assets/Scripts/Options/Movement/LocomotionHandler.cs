@@ -1,9 +1,10 @@
-﻿using System;
+﻿using JetBrains.Annotations;
 using Options.Gameplay;
 using Player.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+// ReSharper disable InconsistentNaming
 
 namespace Options.Movement
 {
@@ -17,17 +18,20 @@ namespace Options.Movement
             Disabled
         }
         
+        // Providers are used in the custom editor
+        
         // More complete version of ActionBasedContinuousMoveProvider
-        [SerializeField] private ExtendedDynamicMoveProvider dynamicMoveProvider;
-        [SerializeField] private TeleportationProvider teleportationProvider;
+        [SerializeField] [UsedImplicitly] private ExtendedDynamicMoveProvider dynamicMoveProvider;
+        [SerializeField] [UsedImplicitly] private TeleportationProvider teleportationProvider;
         [SerializeField] private TwoHandedGrabMoveProvider grabMoveProvider;
-        [SerializeField] private ActionBasedSnapTurnProvider snapTurnProvider;
-        [SerializeField] private ActionBasedContinuousTurnProvider continuousTurnProvider;
+        [SerializeField] [UsedImplicitly] private ActionBasedSnapTurnProvider snapTurnProvider;
+        [SerializeField] [UsedImplicitly] private ActionBasedContinuousTurnProvider continuousTurnProvider;
 
         [SerializeField] private ExtendedControllerManager leftHandControllerManager;
 
         [SerializeField] private ExtendedControllerManager rightHandControllerManager;
 
+        // Left Hand
         [SerializeField] private MovementType leftHandLocomotionType;
 
         public MovementType LeftHandLocomotionType => leftHandLocomotionType;
@@ -60,7 +64,7 @@ namespace Options.Movement
         }
         
         
-
+        // Right Hand
         [SerializeField] private MovementType rightHandLocomotionType;
         public MovementType RightHandLocomotionType => rightHandLocomotionType;
 
@@ -92,7 +96,7 @@ namespace Options.Movement
             SetRightHandTurnType((MovementType) enumInt);
         }
 
-
+        //Grab
         [SerializeField] private bool leftHandGrabMove;
         
         public bool LeftHandGrabMove
@@ -137,31 +141,33 @@ namespace Options.Movement
         
 
         //list of parameters of various movement controllers, used by Editor
+        // They must exist here so that they are saved in JSON presets.
         // They must have the same name as the parameters they are controlling
         // I kind of hate this way of doing it. Please enhance if you can
+        
         //ExtendedDynamicMoveProvider
-        [SerializeField] private float m_MoveSpeed = 1f;
-        [SerializeField] private bool m_EnableStrafe = true;
-        [SerializeField] private ExtendedDynamicMoveProvider.MovementDirection m_LeftHandMovementDirection;
-        [SerializeField] private ExtendedDynamicMoveProvider.MovementDirection m_RightHandMovementDirection;
-        [SerializeField] private bool m_FixDownhill = true;
+        [SerializeField] [UsedImplicitly] private float m_MoveSpeed = 1f;
+        [SerializeField] [UsedImplicitly] private bool m_EnableStrafe = true;
+        [SerializeField] [UsedImplicitly] private ExtendedDynamicMoveProvider.MovementDirection m_LeftHandMovementDirection;
+        [SerializeField] [UsedImplicitly] private ExtendedDynamicMoveProvider.MovementDirection m_RightHandMovementDirection;
+        [SerializeField] [UsedImplicitly] private bool m_FixDownhill = true;
         
         //TeleportationProvider
-        [SerializeField] private float m_DelayTime;
+        [SerializeField] [UsedImplicitly] private float m_DelayTime;
         
         //TwoHandedGrabMoveProvider
-        [SerializeField] private float m_MoveFactor = 1;
-        [SerializeField] private bool m_RequireTwoHandsForTranslation;
-        [SerializeField] private bool m_EnableRotation;
-        [SerializeField] private bool m_EnableScaling;
+        [SerializeField] [UsedImplicitly] private float m_MoveFactor = 1;
+        [SerializeField] [UsedImplicitly] private bool m_RequireTwoHandsForTranslation;
+        [SerializeField] [UsedImplicitly] private bool m_EnableRotation;
+        [SerializeField] [UsedImplicitly] private bool m_EnableScaling;
         
         //ActionBasedSnapTurnProvider
-        [SerializeField] private float m_TurnAmount = 45f;
-        [SerializeField] private float m_DebounceTime = 0.5f;
-        [SerializeField] private bool m_EnableTurnAround = true;
+        [SerializeField] [UsedImplicitly] private float m_TurnAmount = 45f;
+        [SerializeField] [UsedImplicitly] private float m_DebounceTime = 0.5f;
+        [SerializeField] [UsedImplicitly] private bool m_EnableTurnAround = true;
         
         //ActionBasedContinuousTurnProvider
-        [SerializeField] private float m_TurnSpeed = 60f;
+        [SerializeField] [UsedImplicitly] private float m_TurnSpeed = 60f;
         
         
         
@@ -173,7 +179,6 @@ namespace Options.Movement
 
         private void GameStateChanged(GameHandler.StateType state)
         {
-            Debug.Log(state);
             switch (state)
             {
                 case GameHandler.StateType.Menu : case GameHandler.StateType.Pause:
@@ -206,6 +211,9 @@ namespace Options.Movement
         }
 
 
+        /// <summary>
+        /// Propagate updates to left hand <see cref="ExtendedControllerManager"/>
+        /// </summary>
         private void UpdateLeftLocomotion(MovementType motionType, MovementType turnType)
         {
             if (leftHandControllerManager == null)
@@ -224,6 +232,9 @@ namespace Options.Movement
             
         }
         
+        /// <summary>
+        /// Propagate updates to right hand <see cref="ExtendedControllerManager"/>
+        /// </summary>
         private void UpdateRightLocomotion(MovementType motionType, MovementType turnType)
         {
             if (rightHandControllerManager == null)

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Options.Gameplay;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 namespace Options.Vision
 {
@@ -12,12 +10,14 @@ namespace Options.Vision
     {
         [SerializeField] private Volume postProcessing;
         [Range(0.5f, 1.5f)] [SerializeField] private float blurIntensity = 1;
+        [Header("Constant Blur")]
         [SerializeField] private bool constantBlur;
         [Range(0, 50)] [SerializeField] private float blurStartDistance = 10;
         [Range(0, 50)] [SerializeField] private float blurMaxDistance = 20;
+        [Header("Dynamic Blur")]
         [SerializeField] private bool dynamicBlur;
-        [Range(0, 50)] [SerializeField] private float dynamicBlurStartDistance = 0;
-        [Range(0, 50)] [SerializeField] private float dynamicBlurMaxDistance = 0;
+        [Range(0, 50)] [SerializeField] private float dynamicBlurStartDistance;
+        [Range(0, 50)] [SerializeField] private float dynamicBlurMaxDistance;
 
         private float _changedBlurStart;
         private float _changedBlurMax;
@@ -31,6 +31,8 @@ namespace Options.Vision
         private Coroutine _changeBlurRoutine;
         
         //TODO: figure out simple way to get rid of non-dirtying
+        // When disabling this mono in edit mode, the DOF will go back to the shown values in play mode
+        // This can be fixed by adding #ifUnityEditor and serialized objects, with applymodifiedproperties
         private void OnEnable()
         {
             _changedBlurStart = constantBlur ? blurStartDistance : 500;
@@ -45,16 +47,9 @@ namespace Options.Vision
                 Debug.LogWarning("No Depth of Field found");
                 return;
             }
-            if (constantBlur || dynamicBlur)
-            {
-                
-                _depthOfField.active = true;
-            }
-            else
-            {
-                _depthOfField.active = false;
-            }
-            
+
+            _depthOfField.active = constantBlur || dynamicBlur;
+
             UpdateDof(_changedBlurStart, _changedBlurMax);
         }
 
@@ -65,16 +60,6 @@ namespace Options.Vision
                 return;
             }
             _xrChara = GameHandler.Instance.XROrigin.GetComponent<CharacterController>();
-
-        }
-
-        private void OnDisable()
-        {
-            if (postProcessing != null && _depthOfField != null)
-            {
-                //_depthOfField.intensity.value = _vignette.intensity.min;
-                _depthOfField.active = false;
-            }
         }
 
 
@@ -91,6 +76,7 @@ namespace Options.Vision
                 var t = false;
                 var v = _xrChara.velocity.magnitude;
                 Vector3 pos = _xrChara.transform.position;
+                // If moving
                 //velocity sometimes stick to a value even when stopped
                 if (v > 0.3 && pos != _lastPos)
                 {
@@ -104,6 +90,7 @@ namespace Options.Vision
                 var eulerRot =  new Vector3( Mathf.DeltaAngle( 0, deltaRot.eulerAngles.x ), Mathf.DeltaAngle( 0, deltaRot.eulerAngles.y ),Mathf.DeltaAngle( 0, deltaRot.eulerAngles.z ) );
                 Vector3 angularVelocity = eulerRot / Time.fixedDeltaTime;
                 
+                // If turning
                 if (_lastAngularVelocity.magnitude > 10 && angularVelocity.magnitude > 10)
                 {
                     t = true;
@@ -146,6 +133,13 @@ namespace Options.Vision
             }
         }
 
+        private void UpdateDof(float startDist, float maxDist)
+        {
+            _depthOfField.gaussianStart.value = startDist;
+            _depthOfField.gaussianEnd.value = maxDist;
+            _depthOfField.gaussianMaxRadius.value = blurIntensity;
+        }
+
 
         private void OnValidate()
         {
@@ -153,18 +147,19 @@ namespace Options.Vision
             {
                 _changedBlurStart = constantBlur ? blurStartDistance : 500;
                 _changedBlurMax = constantBlur ? blurMaxDistance : 500;
+                _depthOfField.active = constantBlur || dynamicBlur;
                 UpdateDof(_changedBlurStart, _changedBlurMax);
             }
         }
-        
 
-        private void UpdateDof(float startDist, float maxDist)
+
+        private void OnDisable()
         {
-            _depthOfField.gaussianStart.value = startDist;
-            _depthOfField.gaussianEnd.value = maxDist;
-            _depthOfField.gaussianMaxRadius.value = blurIntensity;
+            if (postProcessing != null && _depthOfField != null)
+            {
+                //_depthOfField.intensity.value = _vignette.intensity.min;
+                _depthOfField.active = false;
+            }
         }
-        
-        
     }
 }

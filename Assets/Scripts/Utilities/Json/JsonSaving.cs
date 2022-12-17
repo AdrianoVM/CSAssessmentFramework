@@ -12,6 +12,9 @@ using Object = UnityEngine.Object;
 
 namespace Utilities.Json
 {
+    /// <summary>
+    /// Class responsible for saving and reading the <see cref="Component"/> in managers from JSON.
+    /// </summary>
     public class JsonSaving : Object
     {
         private static JsonSerializerSettings _settings = new()
@@ -103,7 +106,7 @@ namespace Utilities.Json
                 
                 foreach ((JToken optionToken, var i) in fullList.WithIndex())
                 {
-                    DeSerializeOption(options, i, optionToken);
+                    DeSerializeOption(ref options, i, optionToken);
                 }
 
                 
@@ -129,8 +132,14 @@ namespace Utilities.Json
             
         }
         
-        //TODO: Make it so that it doesn't overwrite if the ref is dead?
-        private static void DeSerializeOption(List<InspectorOption> options, int i, JToken optionToken)
+        /// <summary>
+        /// Reads an <see cref="InspectorOption"/> from parameter <paramref name="optionToken"/>
+        /// and adds / replace it in parameter <paramref name="options"/>. Updating the corresponding components too. 
+        /// </summary>
+        /// <param name="options">List of <see cref="InspectorOption"/></param>
+        /// <param name="i">Which element of parameter <paramref name="options"/> is parameter <paramref name="optionToken"/> supposed to be.</param>
+        /// <param name="optionToken"> <see cref="JToken"/> containing serialized information about option <paramref name="i"/> in list <paramref name="options"/></param>
+        private static void DeSerializeOption(ref List<InspectorOption> options, int i, JToken optionToken)
         {
             if (options.Count <= i)
             {
@@ -149,7 +158,7 @@ namespace Utilities.Json
             {
                 monoTypeToken = typeJson?.ToObject<Type>();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.LogError(nameToken+" in File has type "+ typeJson?.ToString().Split(",")[0] +", which is not a type that exists");
                 monoTypeToken = null;
@@ -195,10 +204,10 @@ namespace Utilities.Json
 
         }
     }
-    
-    
 
-
+    /// <summary>
+    /// Helper Class to find references.
+    /// </summary>
     public class ObjectID
     {
         public string ID;
