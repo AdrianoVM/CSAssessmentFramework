@@ -21,6 +21,8 @@ namespace Utilities
         {
             var foundObjects = Object.FindObjectsOfType(typeToken, true);
             // TODO: Fix warning, add more details on who raised issue
+            // Also this method will fail with objects of same type and name,
+            // returning one of them randomly
             if (foundObjects.Length == 1)
             {
                 if (foundObjects.First().name != nameToken)

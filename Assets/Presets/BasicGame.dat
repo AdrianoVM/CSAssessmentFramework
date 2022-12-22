@@ -43,13 +43,13 @@
           "ObjectName": "XR Origin"
         },
         "leftHandControllerManager": {
-          "ID": "-1350",
+          "ID": "-1362",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "LeftHand Controller"
         },
         "rightHandControllerManager": {
-          "ID": "-1518",
+          "ID": "-1530",
           "IsAsset": false,
           "ObjectType": "Player.Movement.ExtendedControllerManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "RightHand Controller"
@@ -85,7 +85,7 @@
       "expandOption": true,
       "Mono": {
         "TargetTerrain": {
-          "ID": "30356",
+          "ID": "30318",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Terrain, UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "Terrain"
@@ -103,10 +103,10 @@
         "angle": 1,
         "angleApplyToZNotX": false,
         "rotateWithTerrain": {
-          "ID": "30856",
+          "ID": "30802",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "ObjectName": "Black Volume"
+          "ObjectName": "Rotate With Terrain"
         }
       }
     },
@@ -119,7 +119,7 @@
         "spacing": 10.0,
         "numberOfVisibleCollectibles": 5,
         "pathCreator": {
-          "ID": "30834",
+          "ID": "30784",
           "IsAsset": false,
           "ObjectType": "PathCreation.PathCreator, PathCreator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "CollectiblesPath"
@@ -164,7 +164,7 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "-1338",
+          "ID": "-1342",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"
@@ -185,7 +185,7 @@
       "expandOption": true,
       "Mono": {
         "postProcessing": {
-          "ID": "-1338",
+          "ID": "-1342",
           "IsAsset": false,
           "ObjectType": "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "ObjectName": "PostProcess"

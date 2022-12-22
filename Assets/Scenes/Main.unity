@@ -829,7 +829,7 @@ MonoBehaviour:
   perlinIntensity: 15
   angle: 1
   angleApplyToZNotX: 0
-  rotateWithTerrain: {fileID: 1185208594}
+  rotateWithTerrain: {fileID: 1177105058}
 --- !u!1 &91999537
 GameObject:
   m_ObjectHideFlags: 0
@@ -9261,6 +9261,11 @@ PrefabInstance:
         type: 3}
       propertyPath: options.Array.data[3]
       value: 5952885289636069376
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096527448339050246, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[1000].expandOption
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8096527448339050246, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}

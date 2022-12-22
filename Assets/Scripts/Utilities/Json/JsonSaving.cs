@@ -170,6 +170,7 @@ namespace Utilities.Json
                 //Searching for the MonoBehaviour 
                 if (options[i].Mono == null || options[i].Mono.GetType() != monoTypeToken)
                 {
+                    // TODO: verify the fact that we only search in scene doesn't cause errors with assets 
                     MonoBehaviour found = (MonoBehaviour)FindObjects.FindInScene(monoTypeToken, nameToken) ?? options[i].Mono;
                     // for when there are multiple objects of same type in JSON but less in scene.
                     for (var j = 0; j < i; j++)
@@ -241,6 +242,19 @@ namespace Utilities.Json
                     if (!o || objectID.ObjectType != o.GetType())
                     {
                         o = FindObjects.FindInScene(t, objectID.ObjectName);
+                    }
+                    // In case they have a different name
+                    else if (objectID.ObjectName != o.name)
+                    {
+                        Object found = FindObjects.FindInScene(t, objectID.ObjectName);
+                        if (found != null)
+                        {
+                            o = found;
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Found Object has correct type but wrong name: {o.name} instead of {objectID.ObjectName}");
+                        }
                     }
                 }
             }
