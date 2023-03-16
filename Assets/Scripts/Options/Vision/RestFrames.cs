@@ -15,7 +15,10 @@ namespace Options.Vision
         [Range(0, 1)][SerializeField] private float zPosition = .5f;
         [Range(0f, 1f)][SerializeField] private float noseWidth = 1;
         [Range(0f, 1f)][SerializeField] private float noseFlatness = 1;
-        
+
+        [Header("Hat")]
+        [SerializeField] private bool hat;
+        [SerializeField] private GameObject hatPrefab;
 
 
         void Start()
@@ -37,15 +40,23 @@ namespace Options.Vision
                 noseScript.NoseWidth = noseWidth;
                 noseScript.NoseFlatness = noseFlatness;
             }
-
+            // HAT --------------------------------------------
+            if (hat && hatPrefab == null)
+            {
+                // try to find the prefab if it is null
+                hatPrefab = GameObject.Find("Sombrero");
+                if (hatPrefab == null)
+                {
+                    Debug.Log("Hat Prefab is not found on the scene.");
+                    hat = false;
+                }
+            }
+            else if (hatPrefab != null)
+            {
+                hatPrefab.SetActive(hat);
+            }
         }
 
-
-        void Update()
-        {
-            
-            
-        }
     }
 }
 
