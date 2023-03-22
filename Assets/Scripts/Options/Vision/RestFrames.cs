@@ -16,6 +16,10 @@ namespace Options.Vision
         [Range(0f, 1f)][SerializeField] private float noseWidth = 1;
         [Range(0f, 1f)][SerializeField] private float noseFlatness = 1;
 
+        [Header("Double Nose")]
+        [SerializeField] private bool doubleNose;
+        [SerializeField] private GameObject doubleNosePrefab;
+
         [Header("Hat")]
         [SerializeField] private bool hat;
         [SerializeField] private GameObject hatPrefab;
@@ -40,6 +44,23 @@ namespace Options.Vision
                 noseScript.NoseWidth = noseWidth;
                 noseScript.NoseFlatness = noseFlatness;
             }
+
+            // DOUBLE NOSE --------------------------------------------
+            if (doubleNose && doubleNosePrefab == null)
+            {
+                // try to find the nose prefab if it is null
+                doubleNosePrefab = GameObject.Find("SingleNose");
+                if (doubleNosePrefab == null)
+                {
+                    Debug.Log("Single Nose Prefab is not found on the scene.");
+                    doubleNose = false;
+                }
+            }
+            else if (doubleNosePrefab != null)
+            {
+                doubleNosePrefab.SetActive(doubleNose);
+            }
+
             // HAT --------------------------------------------
             if (hat && hatPrefab == null)
             {
