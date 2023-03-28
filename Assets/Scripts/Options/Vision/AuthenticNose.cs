@@ -17,7 +17,7 @@ public class AuthenticNose : MonoBehaviour
 
     [Range(0,1)]
     public float yPosition = .5f;
-    [Range(-1,1)]
+    [Range(0,1)]
     public float zPosition = 0f;
 
     [Range(0f,1f)]
