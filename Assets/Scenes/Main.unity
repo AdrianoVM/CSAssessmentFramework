@@ -7881,7 +7881,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 131366749279188630}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131366749279188632}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11cb535e42be477095d166bf84067166, type: 3}
   m_Name: 
@@ -9314,7 +9314,7 @@ PrefabInstance:
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
       propertyPath: options.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
@@ -9324,7 +9324,17 @@ PrefabInstance:
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
       propertyPath: options.Array.data[4]
-      value: 6815626820104224768
+      value: 6919548174329970690
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: options.Array.data[5]
+      value: 6919548174329970692
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: options.Array.data[6]
+      value: 6919548174329970692
       objectReference: {fileID: 0}
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
@@ -9419,6 +9429,31 @@ PrefabInstance:
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
       propertyPath: managedReferences[6815626820104224768]
+      value: Assembly-CSharp Options.InspectorOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970688]
+      value: Assembly-CSharp Options.InspectorOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970689]
+      value: Assembly-CSharp Options.InspectorOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970690]
+      value: Assembly-CSharp Options.InspectorOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970691]
+      value: Assembly-CSharp Options.InspectorOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970692]
       value: Assembly-CSharp Options.InspectorOption
       objectReference: {fileID: 0}
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
@@ -9518,6 +9553,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
+      propertyPath: managedReferences[6919548174329970688].monoName
+      value: PostProcess
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970689].monoName
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970690].monoName
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970691].monoName
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970692].monoName
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
       propertyPath: managedReferences[5952884899374432301].MonoTypeName
       value: Options.Vision.ReducedFOV, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
@@ -9541,7 +9601,7 @@ PrefabInstance:
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
       propertyPath: managedReferences[5952884926967185408].enableOption
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
@@ -9864,6 +9924,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
+      propertyPath: managedReferences[6919548174329970688].enableOption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970688].expandOption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970688].monoTypeName
+      value: UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970689].enableOption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970689].expandOption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970689].monoTypeName
+      value: UnityEngine.Rendering.Universal.UniversalAdditionalCameraData, Unity.RenderPipelines.Universal.Runtime,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970690].enableOption
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970690].expandOption
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970690].monoTypeName
+      value: Options.Vision.VisionSnapper, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970691].enableOption
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970691].expandOption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970691].monoTypeName
+      value: Options.Vision.ColorChange, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970692].enableOption
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970692].expandOption
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970692].monoTypeName
+      value: Options.Vision.ColorManipulation, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
       propertyPath: managedReferences[5952884899374432301].monoBehaviour
       value: 
       objectReference: {fileID: 1336199189}
@@ -9970,6 +10110,31 @@ PrefabInstance:
     - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
         type: 3}
       propertyPath: managedReferences[6815626820104224768].monoBehaviour
+      value: 
+      objectReference: {fileID: 131366749279188633}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970688].monoBehaviour
+      value: 
+      objectReference: {fileID: 131366749279188631}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970689].monoBehaviour
+      value: 
+      objectReference: {fileID: 1830454705}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970690].monoBehaviour
+      value: 
+      objectReference: {fileID: 131366749279188634}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970691].monoBehaviour
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401551567597168129, guid: c94822a2739f7a546b42fa4e1be69169,
+        type: 3}
+      propertyPath: managedReferences[6919548174329970692].monoBehaviour
       value: 
       objectReference: {fileID: 131366749279188633}
     m_RemovedComponents: []
@@ -11913,7 +12078,7 @@ MonoBehaviour:
   singleNose: 0
   singleNosePrefab: {fileID: 1737076214}
   yPosition: 0.709
-  zPosition: 0.019
+  zPosition: 0.203
   noseWidth: 0.376
   noseFlatness: 0.306
   hat: 0
@@ -13918,6 +14083,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 608504448, guid: 9fdcf02d01c7cb440befc0fbb4ecefee, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1528197651, guid: 9fdcf02d01c7cb440befc0fbb4ecefee, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -13925,7 +14094,12 @@ PrefabInstance:
     - target: {fileID: 131366749279188635, guid: 9fdcf02d01c7cb440befc0fbb4ecefee,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 131366749279188635, guid: 9fdcf02d01c7cb440befc0fbb4ecefee,
+        type: 3}
+      propertyPath: constantBlur
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 131366749279188635, guid: 9fdcf02d01c7cb440befc0fbb4ecefee,
         type: 3}
@@ -14191,7 +14365,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 131366749279188630}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -14209,16 +14383,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131366749279188632}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3989498c84fd6df4cb5a95f25342f2b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   postProcessing: {fileID: 131366749279188631}
-  redDegradation: 1
-  greenDegradation: 1
-  blueDegradation: 1
-  saturationDegradation: 0.789
+  hueManipulation: 0
+  redDegradation: 0.433
+  greenDegradation: 0.622
+  blueDegradation: 0.78
+  whiteDegradation: 0.362
+  contrastSaturation: 0
+  contrastStrength: 0
+  saturationStrength: 0
+--- !u!114 &131366749279188634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131366749279188632}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb22514161906f4cb281bfa2f2fa38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessing: {fileID: 131366749279188631}
 --- !u!114 &131366749279188642 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5058732888698417907, guid: 9fdcf02d01c7cb440befc0fbb4ecefee,
